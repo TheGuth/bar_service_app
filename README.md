@@ -2,6 +2,79 @@
 
 ##To Reach MVP (Minimum Viable Product)
 
+this app is for cash pickups of drinks.
+
+list: long island, beer, update and delete, at top a create button
+
+Sunday: WireFrames: Web-app, Phone, Tablet
+React Native: flex week?
+
+Monday:
+  1. Landing page + Sign Up with authentication (check box for client vs business) (React and Redux)
+    1. landing page with log in fields & log in & sign up buttons
+    2. Sign up page with sign up fields, and submit button
+  2. Set up MongoDb and add end points for landing page/ sign up (Node and Express)
+    1. set up mLab
+    2. set up post endpoints for log in from landing page & sign up page
+    3. set up models and schemas for user and business.
+
+Tuesday:
+  1. Profile page (client and business) (both work on this)
+    1. Client
+      (All should be editable)
+      1. Nav bar on top
+      2. First and Last name
+      3. Email
+      4. Driver License Number / picture of Drivers License (If there is time)
+    2. Business
+      1. Nav bar on top
+      2. Name
+      3. Unique ID
+      4. Email
+      5. drink list button
+        1. CRUD operations for drinks (possible drink list page that can be add to, updated, or deleted)
+        2. list: long island, beer, update and delete, at top a create button
+  2. build get endpoints for profile page(), build CRUD endpoints for business drinks (mentor?) create in mongo we would have to create a new collection for each unique business.
+
+Wednesday:
+  1. DashBoard Page (client and business) (both work on this)
+    1. Client
+      1. displays name
+      2. displays input field for Unique business id with submit button
+        1. when submit show business's drink list.
+        2. drink list are selectable. click drink pop up with are you sure message, if yes send drink order
+      3. Notification Area/Receipt Area
+    2. Business
+      1. Display Name
+      2. Display list of orders
+        1. Each order is clickable when completed. When clicked should ask are you sure?
+  2.  build get endpoints for dashboard pages
+  4. build get ordered drinks endpoints
+
+Thursday:
+  Finish any work leftover
+  and start adding CSS
+
+Friday:
+  CSS / fix bugs
+
+MVP (Marketable)
+
+React and Redux
+1. Landing page + Sign Up ()
+2. Profile Page (client and business)
+3. DashBoard Page (client and business) (email micro Service)
+middleware(redux-axios, redux-saga, redux-ship, https://github.com/zeit/next.js)
+
+Node and Express
+1. End Points
+2. micro Services (authentication, basic-authentication, emailer, )
+3. Mongoose connection and searching through mongo
+4. Testing
+
+MongoDb
+1. models and Schemas
+
 ###Overall Ideas
 
 1. Have a Client and Business Interface
@@ -89,18 +162,6 @@ user profile page
 
 1 person node and express and mongo
 authentication, user schema
-
-
-Monday:
-
-Tuesday:
-
-Wednesday:
-
-Thursday:
-
-Friday:
-
 
 
 
