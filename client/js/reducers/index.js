@@ -21,11 +21,18 @@ const initialState = {
     orderHistory: []
   },
   business: false,
-
-
-
 };
 
 export default (state=initialState, action) => {
-        return state;
-    }
+  switch(action.type){
+
+    case actions.SIGNUP:
+      return state;
+
+    case actions.LOGIN:
+      return state;
+
+    default:
+      return state;
+  }
+}
