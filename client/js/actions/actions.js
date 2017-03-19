@@ -43,11 +43,6 @@ export const updateDrink = () => ({
     type: UPDATE_DRINK
 });
 
-export const UPDATE_DRINK = 'UPDATE_DRINK';
-export const updateDrink = () => ({
-    type: UPDATE_DRINK
-});
-
 export const DRINK_IS_READY = 'DRINK_IS_READY';
 export const drinkIsReady = () => ({
     type: DRINK_IS_READY

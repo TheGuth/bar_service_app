@@ -23,7 +23,7 @@ const initialState = {
   business: false,
 };
 
-export default (state=initialState, action) => {
+export const reducer = (state=initialState, action) => {
   switch(action.type){
 
     case actions.SIGNUP:
