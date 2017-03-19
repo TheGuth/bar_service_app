@@ -9,7 +9,7 @@ console.log(`Client running in ${process.env.NODE_ENV} mode`);
 document.addEventListener('DOMContentLoaded', () =>
     ReactDOM.render(
         <Provider store={store}>
-          
+
         </Provider>,
         document.getElementById('app')
     )
