@@ -9,17 +9,15 @@ export class Login extends React.Component {
 
 
     render() {
-
-
         return (
           <div className="login-container">
             <h1>App Name</h1>
             <h3>enticing description</h3>
             <form>
               <label>Email:</label>
-              <input>email</input>
+              <input type="text" placeholder="email"/>
               <label>Password:</label>
-              <input>Password</input>
+              <input type="text" placeholder="Password"/>
               <button type="submit">Login</button>
             </form>
             <button type="submit">Signup</button>
@@ -27,4 +25,4 @@ export class Login extends React.Component {
         )
     }
   }
-export default connect(Login);
+export default connect()(Login);

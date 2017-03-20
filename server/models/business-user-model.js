@@ -8,15 +8,17 @@ const BusinessUserSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    manager: {
-      type: String,
-      required: true
-    },
+    // manager: {
+    //   type: String,
+    //   required: true
+    // },
     email: {
       type: String,
       unique: true,
       required: true
     },
+    // address: '',
+    // phone: '',
     password: {
       type: String,
       required: true
@@ -25,8 +27,8 @@ const BusinessUserSchema = mongoose.Schema({
 
 BusinessUserSchema.methods.apiRepr = function() {
   return {
-    businessName: this.name,
-    manager: this.manager,
+    businessName: this.businessName,
+    // manager: this.manager,
     username: this.email,
     id: this._id
   }

@@ -6,22 +6,18 @@ export class Signup extends React.Component {
         super(props);
     }
 
-
-
     render() {
-
-
         return (
           <div className="signup-container">
             <h1>App Name</h1>
             <h3>enticing description</h3>
             <form>
               <label>Name:</label>
-              <input>Name</input>
+              <input type="text" placeholder="Name"/>
               <label>Email:</label>
-              <input>email</input>
+              <input type="text" placeholder="email"/>
               <label>Password:</label>
-              <input>password</input>
+              <input type="text" placeholder="password"/>
               <label>Business?</label>
               <input type="checkbox"></input>
               <button type="submit">Submit</button>
@@ -30,4 +26,4 @@ export class Signup extends React.Component {
         )
     }
   }
-export default connect(Signup);
+export default connect()(Signup);
