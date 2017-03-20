@@ -20,6 +20,9 @@ const MenuSchema = mongoose.Schema({
     },
     imageUrl: {
       type: String
+    },
+    timeEstimate: {
+      type: Number
     }
 });
 
@@ -30,7 +33,8 @@ MenuSchema.methods.apiRepr = function() {
     price: this.price,
     createdById: this.createdById,
     ingredients: this.ingredients || '',
-    imageUrl: this.imageUrl || ''
+    imageUrl: this.imageUrl || '',
+    timeEstimate: this.timeEstimate || ''
   }
 }
 

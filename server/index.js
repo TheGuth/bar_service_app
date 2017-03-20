@@ -7,7 +7,7 @@ import {BasicStrategy} from 'passport-http';
 import {PORT, DATABASE_URL} from './config';
 
 // Schema Imports
-
+import {Order} from './models/order-model';
 import {MenuItem} from './models/menu-model';
 // import {ClientUser} from './models/client-user-model';
 import {BusinessUser} from './models/business-user-model';
@@ -49,7 +49,7 @@ const strategy = new BasicStrategy(function(username, password, callback) {
 passport.use(strategy);
 
 
-// Endpoints
+//Bar Endpoints
 
 app.get('/users', (req, res) => {
   BusinessUser
@@ -114,9 +114,18 @@ app.post('/login', (req, res) => {
   });
 });
 
-// app.get('/dashboard/:id', (req, res) {
-//
-// })
+app.get('/dashboard/:id', (req, res) => {
+  BusinessUser
+    .findById(req.params.id)
+      .exec()
+      .then(post => res.json(post.apiRepr()))
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({error: 'something went horribly awry'});
+      });
+});
+
+//Drink Endpoints
 
 app.get('/dashboard/:id/drinks/:page', (req, res) => {
   MenuItem
@@ -187,14 +196,34 @@ app.put('/dashboard/:id/drinks/:drinkid', (req, res) => {
 
 
 
-// ENDPOINTS ///
+// Client ENDPOINTS
 
 // app.post('/login', (req, res) => {
 //
 // }
 
+app.get('/client/dashboard/:id', (req, res) => {
+  BusinessUser
+    .findById(req.params.id)
+      .exec()
+      .then(post => res.json(post.apiRepr()))
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({error: 'something went horribly awry'});
+  });
+});
 
-
+// app.post('/order/:id', (req, res) => {
+//   OrderModel
+//     .create({
+//
+//     })
+//     .then(order => res.status(201).json(order.apiRepr()))
+//        .catch(err => {
+//            console.error(err);
+//            res.status(500).json({error: 'Something went wrong'});
+//        });
+//    });
 
 
 
