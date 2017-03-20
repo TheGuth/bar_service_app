@@ -100,24 +100,55 @@ app.post('/users', (req, res) => {
       res.status(500).json({message: 'Internal server error'})
     });
 });
-// app.post('/login',
-//   passport.authenticate('basic', {session: false}),
-//   (req, res) {
-//
-// })
+
+app.post('/login', (req, res) => {
+    BusinessUser
+    .findOne({email: req.body.email})
+    .exec()
+    .then(user => {
+      res.status(201).json(user.apiRepr());
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+    });
+});
 
 // app.get('/dashboard/:id', (req, res) {
 //
 // })
-//
-// app.get('/dashboard/:id/drinks/:page', (req, res) {
-//
-// })
-// 
-// app.post('/dashboard/:id/drinks', (req, res) {
-//
-// })
-//
+
+app.get('/dashboard/:id/drinks/:page', (req, res) => {
+    MenuItem
+    .find({createdById: req.params.id})
+    .limit(10)
+    .exec()
+    .then(drinks => {
+       res.json(drinks.map(drink => drink.apiRepr()));
+
+    })
+    .catch(err => {
+     console.error(err);
+     res.status(500).json({error: 'something went horribly awry'});
+   });
+})
+
+app.post('/dashboard/:id/drinks', (req, res) => {
+    MenuItem
+    .create({
+      drinkName: req.body.drinkName,
+      price: req.body.price,
+      createdById: req.params.id,
+      ingredients: req.body.ingredients || '',
+      imageUrl: req.body.imageUrl || ''
+    })
+    .then(drink => res.status(201).json(drink.apiRepr()))
+    .catch(err => {
+        console.error(err);
+        res.status(500).json({error: 'Something went wrong'});
+    });
+})
+
 // app.delete('/dashboard/:id/drinks/:drink-id', (req, res) {
 //
 // })

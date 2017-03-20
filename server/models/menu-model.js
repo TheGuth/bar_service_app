@@ -11,6 +11,10 @@ const MenuSchema = mongoose.Schema({
       type: Number,
       required: true
     },
+    createdById: {
+      type: String,
+      required: true
+    },
     ingredients: {
       type: Array,
     },
@@ -23,6 +27,7 @@ MenuSchema.methods.apiRepr = function() {
   return {
     drinkName: this.drinkName,
     price: this.price,
+    createdById: this.createdById,
     ingredients: this.ingredients || '',
     imageUrl: this.imageUrl || ''
   }
