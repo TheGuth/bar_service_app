@@ -1,14 +1,9 @@
 //client
-
-export const SIGNUP = 'SIGNUP';
-export const signup = () => ({
-    type: SIGNUP
+export const CONNECT-TO-BUSINESS = 'CONNECT-TO-BUSINESS';
+export const connectToBusiness = () => ({
+    type: CONNECT-TO-BUSINESS
 });
 
-export const LOGIN = 'LOGIN';
-export const login = () => ({
-    type: LOGIN
-});
 
 export const ORDER_DRINK = 'ORDER_DRINK';
 export const orderDrink = () => ({
@@ -27,6 +22,17 @@ export const nextMenuPage = () => ({
 });
 
 //business
+
+
+export const SIGNUP = 'SIGNUP';
+export const signup = () => ({
+    type: SIGNUP
+});
+
+export const LOGIN = 'LOGIN';
+export const login = () => ({
+    type: LOGIN
+});
 
 export const CREATE_DRINK = 'CREATE_DRINK';
 export const createDrink = () => ({

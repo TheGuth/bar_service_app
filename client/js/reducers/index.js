@@ -7,7 +7,6 @@ const initialState = {
     id: null,
     name: '',
     email: '',
-    orderHistory: [],
     menu: [],
     orderStatus: null,
     orderingFrom: ''
@@ -19,8 +18,7 @@ const initialState = {
     menu: [],
     orderQueue: [],
     orderHistory: []
-  },
-  business: false,
+  }
 };
 
 export const reducer = (state=initialState, action) => {
