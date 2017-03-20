@@ -102,16 +102,16 @@ app.post('/users', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    BusinessUser
-    .findOne({email: req.body.email})
-    .exec()
-    .then(user => {
-      res.status(201).json(user.apiRepr());
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({error: 'something went terribly wrong'});
-    });
+  BusinessUser
+  .findOne({email: req.body.email})
+  .exec()
+  .then(user => {
+    res.status(201).json(user.apiRepr());
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({error: 'something went terribly wrong'});
+  });
 });
 
 // app.get('/dashboard/:id', (req, res) {
@@ -119,43 +119,70 @@ app.post('/login', (req, res) => {
 // })
 
 app.get('/dashboard/:id/drinks/:page', (req, res) => {
-    MenuItem
-    .find({createdById: req.params.id})
-    .limit(10)
-    .exec()
-    .then(drinks => {
-       res.json(drinks.map(drink => drink.apiRepr()));
+  MenuItem
+  .find({createdById: req.params.id})
+  .limit(10)
+  .exec()
+  .then(drinks => {
+     res.json(drinks.map(drink => drink.apiRepr()));
 
-    })
-    .catch(err => {
-     console.error(err);
-     res.status(500).json({error: 'something went horribly awry'});
-   });
+  })
+  .catch(err => {
+   console.error(err);
+   res.status(500).json({error: 'something went horribly awry'});
+ });
 })
 
 app.post('/dashboard/:id/drinks', (req, res) => {
-    MenuItem
-    .create({
-      drinkName: req.body.drinkName,
-      price: req.body.price,
-      createdById: req.params.id,
-      ingredients: req.body.ingredients || '',
-      imageUrl: req.body.imageUrl || ''
-    })
-    .then(drink => res.status(201).json(drink.apiRepr()))
-    .catch(err => {
-        console.error(err);
-        res.status(500).json({error: 'Something went wrong'});
-    });
-})
+  MenuItem
+  .create({
+    drinkName: req.body.drinkName,
+    price: req.body.price,
+    createdById: req.params.id,
+    ingredients: req.body.ingredients || '',
+    imageUrl: req.body.imageUrl || ''
+  })
+  .then(drink => res.status(201).json(drink.apiRepr()))
+  .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'Something went wrong'});
+  });
+});
 
-// app.delete('/dashboard/:id/drinks/:drink-id', (req, res) {
-//
-// })
-//
-// app.put('/dashboard/:id/drinks/:drink-id', (req, res) {
-//
-// })
+app.delete('/dashboard/:id/drinks/:drinkid', (req, res) => {
+  MenuItem
+    .findByIdAndRemove(req.params.drinkid)
+    .exec()
+    .then(() => {
+      res.status(204).json({message: 'success'});
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+    });
+});
+
+app.put('/dashboard/:id/drinks/:drinkid', (req, res) => {
+  if (!(req.params.drinkid && req.body.drinkid && req.params.drinkid === req.body.drinkid)) {
+      res.status(400).json({
+        error: 'Request path id and request body id values must match'
+      });
+    }
+
+    const updated = {};
+    const updateableFields = ['drinkName', 'price', 'ingredients', 'imageUrl'];
+    updateableFields.forEach(field => {
+      if (field in req.body) {
+        updated[field] = req.body[field];
+      }
+    });
+
+    MenuItem
+      .findByIdAndUpdate(req.params.drinkid, {$set: updated}, {new: true})
+      .exec()
+      .then(updatedDrink => res.status(201).json(updatedDrink.apiRepr()))
+      .catch(err => res.status(500).json({message: 'Something went wrong'}));
+  });
 
 
 

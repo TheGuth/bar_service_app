@@ -25,6 +25,7 @@ const MenuSchema = mongoose.Schema({
 
 MenuSchema.methods.apiRepr = function() {
   return {
+    id: this._id,
     drinkName: this.drinkName,
     price: this.price,
     createdById: this.createdById,
