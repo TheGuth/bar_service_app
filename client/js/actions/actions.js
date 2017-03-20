@@ -1,11 +1,43 @@
 
 
 // Login
+
+export const userLogin = login => (emailInput, passwordInput) => {
+    const url = new URL('http://localhost:8080/login');
+    const data = {username: emailInput, password: passwordInput};
+
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    }).then(data => {
+      return dispatch(login())
+    }).catch(error => {
+      return dispatch(login(error));
+    });
+};
+
+
 export const LOGIN = 'LOGIN';
-export const login = (emailInput, passwordInput) => ({
+export const login = (data) => ({
     type: LOGIN,
-    email: emailInput,
-    password: passwordInput
+    email: data.username,
+    id: data,
+    businessName: data.businessName
+
+});
+
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const loginError = (error) => ({
+    type: LOGIN_ERROR,
+    error: error
 });
 
 export const PROCESS_USER_EMAIL_INPUT = 'PROCESS_USER_EMAIL_INPUT';

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {login, proccessUserEmailInput, proccessUserPasswordInput} from '../../actions/actions';
+import {userLogin, proccessUserEmailInput, proccessUserPasswordInput} from '../../actions/actions';
 export class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -11,7 +11,7 @@ export class Login extends React.Component {
           <div className="login-container">
             <h1>App Name</h1>
             <h3>enticing description</h3>
-            <form onSubmit={() => this.props.dispatch(login(this.props.userEmailInput, this.props.userPasswordInput))}>
+            <form onSubmit={() => this.props.dispatch(userLogin(this.props.userEmailInput, this.props.userPasswordInput))}>
               <label>Email:</label>
               <input type="text" placeholder="email" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(proccessUserEmailInput(e.target.value))}/>
               <label>Password:</label>
