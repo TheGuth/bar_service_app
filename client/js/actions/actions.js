@@ -1,7 +1,30 @@
+
+
+// Login
+export const LOGIN = 'LOGIN';
+export const login = (emailInput, passwordInput) => ({
+    type: LOGIN,
+    email: emailInput,
+    password: passwordInput
+});
+
+export const PROCESS_USER_EMAIL_INPUT = 'PROCESS_USER_EMAIL_INPUT';
+export const proccessUserEmailInput = (emailInput) => ({
+  type: PROCESS_USER_EMAIL_INPUT,
+  emailInput: emailInput
+});
+
+export const PROCESS_USER_PASSWORD_INPUT = 'PROCESS_USER_PASSWORD_INPUT';
+export const proccessUserPasswordInput = (passwordInput) => ({
+  type: PROCESS_USER_PASSWORD_INPUT,
+  passwordInput: passwordInput
+});
+
+
 //client
-export const CONNECT-TO-BUSINESS = 'CONNECT-TO-BUSINESS';
+export const CONNECT_TO_BUSINESS = 'CONNECT_TO_BUSINESS';
 export const connectToBusiness = () => ({
-    type: CONNECT-TO-BUSINESS
+    type: CONNECT_TO_BUSINESS
 });
 
 
@@ -29,10 +52,6 @@ export const signup = () => ({
     type: SIGNUP
 });
 
-export const LOGIN = 'LOGIN';
-export const login = () => ({
-    type: LOGIN
-});
 
 export const CREATE_DRINK = 'CREATE_DRINK';
 export const createDrink = () => ({

@@ -11,6 +11,10 @@ const initialState = {
     orderStatus: null,
     orderingFrom: ''
   },
+  login: {
+    emailInput: '',
+    passwordInput: '',
+  },
   business: {
     id: null,
     name: '',
@@ -24,10 +28,19 @@ const initialState = {
 export const reducer = (state=initialState, action) => {
   switch(action.type){
 
-    case actions.SIGNUP:
-      return state;
+    case actions.PROCESS_USER_EMAIL_INPUT:
+    console.log(action.emailInput);
+      return {...state, login: {emailInput: action.emailInput}};
+
+    case actions.PROCESS_USER_PASSWORD_INPUT:
+      return {...state, login: {passwordInput: action.passwordInput}};
 
     case actions.LOGIN:
+      console.log(state.login.emailInput);
+      console.log(state.login.passwordInput);
+      return state;
+
+    case actions.SIGNUP:
       return state;
 
     default:
