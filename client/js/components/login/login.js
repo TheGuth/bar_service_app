@@ -6,7 +6,11 @@ export class Login extends React.Component {
         super(props);
     }
 
+
     render() {
+
+      const {userEmailInput} = this.props;
+
         return (
           <div className="login-container">
             <h1>App Name</h1>
@@ -24,8 +28,8 @@ export class Login extends React.Component {
   }
 
 const mapStateToProps = (state, props) => ({
-  userEmailInput: state.userEmailInput,
-  userPasswordInput: state.userPasswordInput
+  userEmailInput: state.emailInput,
+  userPasswordInput: state.passwordInput
 })
 
 export default connect(mapStateToProps)(Login);

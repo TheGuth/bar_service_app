@@ -32,6 +32,8 @@ const OrderSchema = mongoose.Schema({
     }
 });
 
+// created at mongoose timestamp
+
 OrderSchema.methods.apiRepr = function() {
   return {
     id: this._id,

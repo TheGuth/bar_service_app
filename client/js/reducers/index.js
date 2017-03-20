@@ -44,7 +44,6 @@ export const reducer = (state=initialState, action) => {
       return {...state, passwordInput: action.passwordInput};
 
     case actions.LOGIN:
-      console.log(state);
       return state;
 
     case actions.SIGNUP:

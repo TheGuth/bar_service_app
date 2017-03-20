@@ -102,6 +102,7 @@ app.post('/users', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
+  console.log('goodbye');
   BusinessUser
   .findOne({email: req.body.email})
   .exec()

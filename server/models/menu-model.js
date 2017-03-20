@@ -26,6 +26,9 @@ const MenuSchema = mongoose.Schema({
     }
 });
 
+
+// created at, and updated at mongoose timestamp
+
 MenuSchema.methods.apiRepr = function() {
   return {
     id: this._id,
