@@ -208,11 +208,6 @@ export const updateDrink = () => ({
     type: UPDATE_DRINK
 });
 
-export const DRINK_IS_READY = 'DRINK_IS_READY';
-export const drinkIsReady = () => ({
-    type: DRINK_IS_READY
-});
-
 export const PREVIOUS_ORDER_PAGE = 'PREVIOUS_ORDER_PAGE';
 export const previousOrderPage = () => ({
     type: PREVIOUS_ORDER_PAGE
@@ -221,4 +216,32 @@ export const previousOrderPage = () => ({
 export const NEXT_ORDER_PAGE = 'NEXT_ORDER_PAGE';
 export const nextOrderPage = () => ({
     type: NEXT_ORDER_PAGE
+});
+
+
+export const completeOrder = (orderId) => dispatch => {
+    return fetch(`/order/${orderId}`, {
+      method: 'DELETE'
+    }).then(response => {
+      console.log(response);
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    }).then(data => {
+      console.log(data);
+      return dispatch(drinkIsReady(data))
+    }).catch(error => {
+      return dispatch(drinkIsReadyError(error));
+    });
+};
+
+export const DRINK_IS_READY = 'DRINK_IS_READY';
+export const drinkIsReady = () => ({
+    type: DRINK_IS_READY
+});
+
+export const DRINK_IS_READY_ERROR = 'DRINK_IS_READY_ERROR';
+export const drinkIsReadyError = () => ({
+    type: DRINK_IS_READY_ERROR
 });

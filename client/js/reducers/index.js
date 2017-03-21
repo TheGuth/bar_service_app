@@ -11,7 +11,6 @@ const initialState = {
   name: '',
   email: '',
   menu: [],
-  orderQueue: [],
   orderHistory: [],
   orders: [],
   currentConnection: '58cffedf015af4d521e640bc'
@@ -93,7 +92,12 @@ export const reducer = (state=initialState, action) => {
       console.error(action.error);
       return state;
 
+    case actions.DRINK_IS_READY:
+      return state;
 
+    case actions.DRINK_IS_READY_ERROR:
+      console.error(action.error);
+      return state;
 
     default:
       return state;

@@ -23,12 +23,13 @@ export class BusinessDash extends React.Component {
       if (this.props.orders) {
         orderItems = this.props.orders.map((order, id) => {
           // addd onClick function to each list item
-          return <li key={id}>
+          return <li key={order.id}>
                     <h1>{order.clientName}</h1>
                     <p>{order.table}</p>
                     <p>{order.clientEmail}</p>
                     <p>{order.orderTotal}</p>
                     <p>{order.totalDrinks}</p>
+                    <button onClick={() => dispatch(completeOrder(order.id))} >Ding Order Done</button>
                   </li>
         });
       }

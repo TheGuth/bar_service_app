@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const ClientUserSchema = mongoose.Schema({
-    Name: {
+    name: {
       type: String,
       required: true
     },
