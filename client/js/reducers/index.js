@@ -61,7 +61,7 @@ export const reducer = (state=initialState, action) => {
       return state;
 
     case actions.LOGIN:
-      return state;
+      return {...state, currentConnection: action.id};
 
     case actions.LOGIN_ERROR:
       console.error(action.error);

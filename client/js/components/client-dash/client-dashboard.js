@@ -7,6 +7,10 @@ export class ClientDash extends React.Component {
         super(props);
     }
 
+    componentWillMount() {
+      this.props.dispatch(actions.fetchMenu(this.props.currentConnection));
+    }
+
     render() {
 
       const menuItems = this.props.menu.map((item, id) => {
@@ -18,9 +22,10 @@ export class ClientDash extends React.Component {
                   <h3>{item.ingredients}</h3>
                 </li>
       });
-      // console.log(this.props.location.params.id || '');
+      // this.props.location.params.id
+      // this holds the currentConnection from landing page
+      
         return (
-
           <div className="client-dash-container">
             <div className="menu">
               <ul>

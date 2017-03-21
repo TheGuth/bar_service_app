@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {userLogin, proccessUserEmailInput, proccessUserPasswordInput} from '../../actions/actions';
+import {Link} from 'react-router-dom';
+
 export class Login extends React.Component {
     constructor(props) {
         super(props);
     }
-
 
     render() {
 
@@ -20,7 +21,7 @@ export class Login extends React.Component {
               <input type="text" placeholder="email" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(proccessUserEmailInput(e.target.value))}/>
               <label>Password:</label>
               <input type="text" placeholder="Password" value={this.props.userPasswordInput} onChange={(e) => this.props.dispatch(proccessUserPasswordInput(e.target.value))}/>
-              <button type="submit">Login</button>
+              <Link to={`/business/dashboard/${this.props.currentConnection}`} ><button type="submit">Login</button></Link>
             </form>
           </div>
         )
@@ -29,7 +30,8 @@ export class Login extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   userEmailInput: state.emailInput,
-  userPasswordInput: state.passwordInput
+  userPasswordInput: state.passwordInput,
+  currentConnection: state.currentConnection
 })
 
 export default connect(mapStateToProps)(Login);

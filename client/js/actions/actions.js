@@ -54,6 +54,7 @@ export const userLogin = (emailInput, passwordInput) => dispatch => {
       }
       return response.json();
     }).then(data => {
+      console.log(data);
       return dispatch(login(data))
     }).catch(error => {
       return dispatch(loginError(error));
