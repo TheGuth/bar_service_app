@@ -13,7 +13,7 @@ const initialState = {
   menu: [],
   orderHistory: [],
   orders: [],
-  currentConnection: '58cffedf015af4d521e640bc'
+  currentConnection: '58d1887ad2a4b85d29c9afa8'
 }
 
 // const initialState = {

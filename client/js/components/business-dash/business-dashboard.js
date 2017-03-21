@@ -29,7 +29,7 @@ export class BusinessDash extends React.Component {
                     <p>{order.clientEmail}</p>
                     <p>{order.orderTotal}</p>
                     <p>{order.totalDrinks}</p>
-                    <button onClick={() => dispatch(completeOrder(order.id))} >Ding Order Done</button>
+                    <button onClick={() => this.props.dispatch(actions.completeOrder(order.id))} >Ding Order Done</button>
                   </li>
         });
       }
