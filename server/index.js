@@ -49,7 +49,7 @@ const strategy = new BasicStrategy(function(username, password, callback) {
 passport.use(strategy);
 
 
-//Bar Endpoints
+//Business User Endpoints
 
 app.get('/users', (req, res) => {
   BusinessUser
@@ -213,19 +213,53 @@ app.get('/client/dashboard/:id', (req, res) => {
         res.status(500).json({error: 'something went horribly awry'});
   });
 });
+//Orders Endpoints
 
-// app.post('/order/:id', (req, res) => {
-//   OrderModel
-//     .create({
-//
-//     })
-//     .then(order => res.status(201).json(order.apiRepr()))
-//        .catch(err => {
-//            console.error(err);
-//            res.status(500).json({error: 'Something went wrong'});
-//        });
-//    });
+app.post('/order/:id', (req, res) => {
+  Order
+    .create({
+      businessId: req.params.id,
+      clientName: req.body.clientName,
+      table: req.body.table,
+      clientEmail: req.body.clientEmail,
+      order: req.body.order,
+      orderTotal: req.body.orderTotal,
+      totalDrinks: req.body.totalDrinks
+    })
+    .then(order => res.status(201).json(order.apiRepr()))
+       .catch(err => {
+           console.error(err);
+           res.status(500).json({error: 'Something went wrong'});
+       });
+   });
 
+
+app.get('/order/:id', (req, res) => {
+  Order
+    .find({businessId: req.params.id})
+    .limit(10)
+    .exec()
+    .then(orders => {
+      res.json(orders.map(order => order.apiRepr()));
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went horribly awry'});
+  });
+});
+
+app.delete('/order/:id', (req, res) => {
+  Order
+    .findByIdAndRemove(req.params.id)
+    .exec()
+    .then(() => {
+      res.status(204).json({message: 'success'});
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went terribly wrong'});
+    });
+});
 
 app.get('*', (req, res) => {
   res.sendFile('index.html', {root: process.env.CLIENT_PATH});

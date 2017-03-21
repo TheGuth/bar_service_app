@@ -12,7 +12,8 @@ const initialState = {
   menu: [],
   orderQueue: [],
   orderHistory: [],
-  orders: []
+  orders: [],
+  currentConnection: ''
 }
 
 // const initialState = {
@@ -67,6 +68,16 @@ export const reducer = (state=initialState, action) => {
 
     case actions.SIGNUP:
       return state;
+
+    case actions.LOAD_MENU:
+      console.log(action.currentConnection);
+      return {...state, drinkName: data.drinkName, price: data.price, ingredients: data.ingredients};
+
+    case actions.LOAD_MENU_ERROR:
+      console.error(action.error);
+      return state;
+
+
 
     default:
       return state;

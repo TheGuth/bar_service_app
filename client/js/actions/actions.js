@@ -97,6 +97,35 @@ export const connectToBusiness = () => ({
     type: CONNECT_TO_BUSINESS
 });
 
+export const fetchMenu = (currentConnection) => dispatch => {
+    return fetch(`/order/${currentConnection}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    }).then(data => {
+      return dispatch(loadMenu(data))
+    }).catch(error => {
+      return dispatch(loadMenuError(error));
+    });
+};
+
+export const LOAD_MENU = 'LOAD_MENU';
+export const loadMenu = (data) => ({
+    type: LOAD_MENU,
+    drinkName: data.drinkName,
+    price: data.price,
+    ingredients: data.ingredients
+});
+
+export const LOAD_MENU_ERROR = 'LOAD_MENU_ERROR';
+export const loadMenuError = (data) => ({
+    type: LOAD_MENU_ERROR,
+    drinkName: data.drinkName,
+    price: data.price,
+    ingredients: data.ingredients
+});
 
 export const ORDER_DRINK = 'ORDER_DRINK';
 export const orderDrink = () => ({

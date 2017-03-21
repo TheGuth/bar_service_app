@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import * as action from '../../actions/actions'
 
 export class ClientDash extends React.Component {
     constructor(props) {
@@ -13,9 +14,22 @@ export class ClientDash extends React.Component {
 
         return (
           <div className="client-dash-container">
-            <div className="profile">
+            <div className="menu">
+              <ul>
+              </ul>
             </div>
-            <div className="previous-orders">
+            <div className="client-input">
+              <form onSubmit={(e) => {
+                e.preventDefault();
+              }}>
+                <label>Name:</label>
+                <input type="text"></input>
+                <label>Table:</label>
+                <input type="text"></input>
+                <label>Email:</label>
+                <input type="text"></input>
+                <button type="submit">Submit</button>
+              </form>
             </div>
             <div className="drink-status">
             </div>
@@ -25,4 +39,9 @@ export class ClientDash extends React.Component {
         )
     }
   }
+
+  const mapStateToProps = (state, props) => ({
+
+  })
+
 export default connect(ClientDash);
