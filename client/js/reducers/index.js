@@ -13,7 +13,7 @@ const initialState = {
   orderQueue: [],
   orderHistory: [],
   orders: [],
-  currentConnection: ''
+  currentConnection: '58cffedf015af4d521e640bc'
 }
 
 // const initialState = {
@@ -70,8 +70,8 @@ export const reducer = (state=initialState, action) => {
       return state;
 
     case actions.LOAD_MENU:
-      console.log(action.currentConnection);
-      return {...state, drinkName: data.drinkName, price: data.price, ingredients: data.ingredients};
+      console.log(action.data);
+      return {...state, menu: action.data};
 
     case actions.LOAD_MENU_ERROR:
       console.error(action.error);

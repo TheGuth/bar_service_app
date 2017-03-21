@@ -1,23 +1,27 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as action from '../../actions/actions'
+import * as actions from '../../actions/actions'
 
 export class ClientDash extends React.Component {
     constructor(props) {
         super(props);
     }
 
+    componentWillMount() {
+      this.props.dispatch(actions.fetchMenu(this.props.currentConnection));
+    }
+
     render() {
 
-      const menuItems = props.menu.map((item, id) => {
+      const menuItems = this.props.menu.map((item, id) => {
+        // addd onClick function to each list item
         return <li key={id}>
                   <h1>{item.drinkName}</h1>
                   <h3>{item.price}</h3>
                   <h3>{item.ingredients}</h3>
                 </li>
       });
-      
-      {this.props.dispatch(actions.fetchMenu());}
+
         return (
 
           <div className="client-dash-container">
@@ -49,7 +53,8 @@ export class ClientDash extends React.Component {
   }
 
   const mapStateToProps = (state, props) => ({
-    menu: state.menu
+    menu: state.menu,
+    currentConnection: state.currentConnection
   })
 
 export default connect(mapStateToProps)(ClientDash);

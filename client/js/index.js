@@ -6,7 +6,8 @@ import store from './store';
 import Login from './components/login/login';
 import Signup from './components/signup/signup';
 import ClientDash from './components/client-dash/client-dashboard';
-import {BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import BusinessDash from './components/business-dash/business-dashboard';
+import {HashRouter as Router, Route, Link } from 'react-router-dom';
 
 console.log(`Client running in ${process.env.NODE_ENV} mode`);
 

@@ -1,24 +1,5 @@
 
-// Login
-export const userLogin = (emailInput, passwordInput) => dispatch => {
-    const data = {email: emailInput, password: passwordInput};
-    return fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then(response => {
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    }).then(data => {
-      return dispatch(login(data))
-    }).catch(error => {
-      return dispatch(loginError(error));
-    });
-};
+// Sign Up Actions
 
 export const userSignUp = (emailInput, passwordInput, nameInput) => dispatch => {
     const data = {email: emailInput, password: passwordInput, businessName: nameInput};
@@ -57,6 +38,27 @@ export const signupError = (error) => ({
     error: error
 });
 
+// Login Actions
+
+export const userLogin = (emailInput, passwordInput) => dispatch => {
+    const data = {email: emailInput, password: passwordInput};
+    return fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    }).then(data => {
+      return dispatch(login(data))
+    }).catch(error => {
+      return dispatch(loginError(error));
+    });
+};
 
 export const LOGIN = 'LOGIN';
 export const login = (data) => ({
@@ -71,6 +73,8 @@ export const loginError = (error) => ({
     type: LOGIN_ERROR,
     error: error
 });
+
+// Input Actions
 
 export const PROCESS_USER_EMAIL_INPUT = 'PROCESS_USER_EMAIL_INPUT';
 export const proccessUserEmailInput = (emailInput) => ({
@@ -91,14 +95,18 @@ export const proccessUserNameInput = (nameInput) => ({
 });
 
 
-//client
+// Client Side Actions
+
 export const CONNECT_TO_BUSINESS = 'CONNECT_TO_BUSINESS';
 export const connectToBusiness = () => ({
     type: CONNECT_TO_BUSINESS
 });
 
+// Grab Menu List from Business
+
 export const fetchMenu = (currentConnection) => dispatch => {
-    return fetch(`/order/${currentConnection}`)
+  // /dashboard/:id/drinks/:page
+    return fetch(`/dashboard/${currentConnection}/drinks/0`)
     .then(response => {
       if (!response.ok) {
         throw new Error(response.statusText);
@@ -114,24 +122,44 @@ export const fetchMenu = (currentConnection) => dispatch => {
 export const LOAD_MENU = 'LOAD_MENU';
 export const loadMenu = (data) => ({
     type: LOAD_MENU,
-    drinkName: data.drinkName,
-    price: data.price,
-    ingredients: data.ingredients
+    data: data
 });
 
 export const LOAD_MENU_ERROR = 'LOAD_MENU_ERROR';
-export const loadMenuError = (data) => ({
+export const loadMenuError = (error) => ({
     type: LOAD_MENU_ERROR,
-    drinkName: data.drinkName,
-    price: data.price,
-    ingredients: data.ingredients
+    error: error
 });
+
+// Send and receive Order Drink Actions
+
+export const fetchOrders = (currentConnection) => dispatch => {
+    return fetch(`/order/${currentConnection}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    }).then(data => {
+      return dispatch(orderDrink(data))
+    }).catch(error => {
+      return dispatch(orderDrinkError(error));
+    });
+};
 
 export const ORDER_DRINK = 'ORDER_DRINK';
-export const orderDrink = () => ({
-    type: ORDER_DRINK
+export const orderDrink = (data) => ({
+    type: ORDER_DRINK,
+    data: data
 });
 
+export const ORDER_DRINK_ERROR = 'ORDER_DRINK_ERROR';
+export const orderDrinkError = (error) => ({
+    type: ORDER_DRINK_ERROR,
+    error: error
+});
+
+// Pagination actions for menu list
 
 export const PREVIOUS_MENU_PAGE = 'PREVIOUS_MENU_PAGE';
 export const previousMenuPage = () => ({
