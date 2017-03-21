@@ -7,15 +7,23 @@ export class ClientDash extends React.Component {
         super(props);
     }
 
-
-
     render() {
 
-
+      const menuItems = props.menu.map((item, id) => {
+        return <li key={id}>
+                  <h1>{item.drinkName}</h1>
+                  <h3>{item.price}</h3>
+                  <h3>{item.ingredients}</h3>
+                </li>
+      });
+      
+      {this.props.dispatch(actions.fetchMenu());}
         return (
+
           <div className="client-dash-container">
             <div className="menu">
               <ul>
+                {menuItems}
               </ul>
             </div>
             <div className="client-input">
@@ -41,7 +49,7 @@ export class ClientDash extends React.Component {
   }
 
   const mapStateToProps = (state, props) => ({
-
+    menu: state.menu
   })
 
-export default connect(ClientDash);
+export default connect(mapStateToProps)(ClientDash);
