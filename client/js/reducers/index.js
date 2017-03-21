@@ -1,41 +1,21 @@
 
 import * as actions from '../actions/actions';
 
-
+// when inputs in state no longer need a value be set to '';
 const initialState = {
   emailInput: '',
   passwordInput: '',
   nameInput: '',
   idInput: '',
+  tableInput: '',
   id: null,
   name: '',
   email: '',
   menu: [],
   orderHistory: [],
   orders: [],
-  currentConnection: '58d1887ad2a4b85d29c9afa8'
+  currentConnection: ''
 }
-
-// const initialState = {
-//   client: {
-//     id: null,
-//     name: '',
-//     email: '',
-//     menu: [],
-//     orderStatus: null,
-//     orderingFrom: ''
-//   },
-//   emailInput: '',
-//   passwordInput: '',
-//   business: {
-//     id: null,
-//     name: '',
-//     email: '',
-//     menu: [],
-//     orderQueue: [],
-//     orderHistory: []
-//   }
-// };
 
 export const reducer = (state=initialState, action) => {
   switch(action.type){
@@ -51,6 +31,9 @@ export const reducer = (state=initialState, action) => {
 
     case actions.PROCESS_USER_ID_INPUT:
       return {...state, idInput: action.idInput};
+
+    case actions.PROCESS_USER_TABLE_INPUT:
+      return {...state, tableInput: action.tableInput};
 
     case actions.SIGN_UP:
       return state;
@@ -69,6 +52,9 @@ export const reducer = (state=initialState, action) => {
     case actions.SIGNUP:
       return state;
 
+    case actions.CONNECT_TO_BUSINESS:
+      return {...state, currentConnection: action.currentConnection};
+
     case actions.LOAD_MENU:
       return {...state, menu: action.data};
 
@@ -84,11 +70,20 @@ export const reducer = (state=initialState, action) => {
       console.error(action.error);
       return state;
 
-    case actions.ORDER_DRINK:
-      console.log(action.data);
-      return {...state, menu: action.data};
+    case actions.ADD_ORDER:
+      console.log(state.orders);
+      const currentOrder = state.orders;
+      currentOrder.push({drinkName: action.drinkName, price: action.price});
+      return {...state, orders: currentOrder};
 
-    case actions.ORDER_DRINK_ERROR:
+    case actions.ADD_ORDER_ERROR:
+      console.error(action.error);
+      return state;
+
+    case actions.ORDER_SUCCESS:
+      return state;
+
+    case actions.ORDER_FAILURE:
       console.error(action.error);
       return state;
 

@@ -39,7 +39,7 @@ OrderSchema.methods.apiRepr = function() {
     id: this._id,
     businessId: this.businessId,
     clientName: this.clientName,
-    table: this.table || null,
+    table: this.table || '',
     clientEmail: this.clientEmail,
     order: this.order,
     orderTotal: this.orderTotal,

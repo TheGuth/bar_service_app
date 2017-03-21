@@ -101,12 +101,18 @@ export const proccessUserIdInput = (idInput) => ({
   idInput: idInput
 });
 
+export const PROCESS_USER_TABLE_INPUT = 'PROCESS_USER_TABLE_INPUT';
+export const proccessUserTableInput = (tableInput) => ({
+  type: PROCESS_USER_TABLE_INPUT,
+  tableInput: tableInput
+});
 
 // Client Side Actions
 
 export const CONNECT_TO_BUSINESS = 'CONNECT_TO_BUSINESS';
-export const connectToBusiness = () => ({
-    type: CONNECT_TO_BUSINESS
+export const connectToBusiness = (currentConnection) => ({
+    type: CONNECT_TO_BUSINESS,
+    currentConnection: currentConnection
 });
 
 // Grab Menu List from Business
@@ -120,6 +126,7 @@ export const fetchMenu = (currentConnection) => dispatch => {
       }
       return response.json();
     }).then(data => {
+      dispatch(connectToBusiness(currentConnection));
       return dispatch(loadMenu(data))
     }).catch(error => {
       return dispatch(loadMenuError(error));
@@ -166,15 +173,76 @@ export const grabOrdersError = (error) => ({
     error: error
 });
 
-export const ORDER_DRINK = 'ORDER_DRINK';
-export const orderDrink = (data) => ({
-    type: ORDER_DRINK,
-    data: data
+// export const userLogin = (emailInput, passwordInput) => dispatch => {
+//     const data = {email: emailInput, password: passwordInput};
+//     return fetch('/login', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(data)
+//     }).then(response => {
+//       if (!response.ok) {
+//         throw new Error(response.statusText);
+//       }
+//       return response.json();
+//     }).then(data => {
+//       console.log(data);
+//       return dispatch(login(data))
+//     }).catch(error => {
+//       return dispatch(loginError(error));
+//     });
+// };
+
+export const submitOrder = (userNameInput, userEmailInput, userTableInput, orders, currentConnection) => dispatch => {
+  let orderTotal = 0;
+  orders.forEach((order) => {
+    console.log(order);
+    orderTotal += order.price;
+  })
+  const data = {clientName: userNameInput, table: userTableInput, clientEmail: userEmailInput, order: orders, totalDrinks: orders.length, orderTotal: orderTotal }
+  console.log(data);
+  console.log(data.orderTotal)
+  return fetch(`/order/${currentConnection}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  }).then(data => {
+    console.log(data);
+    return dispatch(orderSuccess);
+  }).catch(error => {
+    return dispatch(orderFailure(error));
+  });
+};
+
+export const ORDER_SUCCESS = 'ORDER_SUCCESS';
+export const orderSuccess = () => ({
+    type: ORDER_SUCCESS
 });
 
-export const ORDER_DRINK_ERROR = 'ORDER_DRINK_ERROR';
-export const orderDrinkError = (error) => ({
-    type: ORDER_DRINK_ERROR,
+export const ORDER_FAILURE = 'ORDER_FAILURE';
+export const orderFailure = (error) => ({
+    type: ORDER_FAILURE,
+    error: error
+});
+
+export const ADD_ORDER = 'ADD_ORDER';
+export const addOrder = (drinkName, price) => ({
+    type: ADD_ORDER,
+    drinkName: drinkName,
+    price: price,
+});
+
+export const ADD_ORDER_ERROR = 'ADD_ORDER_ERROR';
+export const addOrderError = (error) => ({
+    type: ADD_ORDER_ERROR,
     error: error
 });
 
@@ -218,8 +286,9 @@ export const nextOrderPage = () => ({
     type: NEXT_ORDER_PAGE
 });
 
+// Bussiness Order Actions
 
-export const completeOrder = (orderId) => dispatch => {
+export const completeOrder = (orderId, currentConnection) => dispatch => {
     return fetch(`/order/${orderId}`, {
       method: 'DELETE'
     }).then(response => {
@@ -227,6 +296,7 @@ export const completeOrder = (orderId) => dispatch => {
       if (!response.ok) {
         throw new Error(response.statusText);
       }
+      dispatch(fetchOrders(currentConnection));
       return response.json();
     }).then(data => {
       console.log(data);
