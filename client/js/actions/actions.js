@@ -94,6 +94,12 @@ export const proccessUserNameInput = (nameInput) => ({
   nameInput: nameInput
 });
 
+export const PROCESS_USER_ID_INPUT = 'PROCESS_USER_ID_INPUT';
+export const proccessUserIdInput = (idInput) => ({
+  type: PROCESS_USER_ID_INPUT,
+  idInput: idInput
+});
+
 
 // Client Side Actions
 
@@ -141,11 +147,23 @@ export const fetchOrders = (currentConnection) => dispatch => {
       }
       return response.json();
     }).then(data => {
-      return dispatch(orderDrink(data))
+      return dispatch(grabOrders(data))
     }).catch(error => {
-      return dispatch(orderDrinkError(error));
+      return dispatch(grabOrdersError(error));
     });
 };
+
+export const GRAB_ORDERS = 'GRAB_ORDERS';
+export const grabOrders = (data) => ({
+    type: GRAB_ORDERS,
+    data: data
+});
+
+export const GRAB_ORDERS_ERROR = 'GRAB_ORDERS_ERROR';
+export const grabOrdersError = (error) => ({
+    type: GRAB_ORDERS_ERROR,
+    error: error
+});
 
 export const ORDER_DRINK = 'ORDER_DRINK';
 export const orderDrink = (data) => ({

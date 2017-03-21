@@ -6,6 +6,7 @@ const initialState = {
   emailInput: '',
   passwordInput: '',
   nameInput: '',
+  idInput: '',
   id: null,
   name: '',
   email: '',
@@ -41,16 +42,16 @@ export const reducer = (state=initialState, action) => {
   switch(action.type){
 
     case actions.PROCESS_USER_EMAIL_INPUT:
-      console.log(action.emailInput);
       return {...state, emailInput: action.emailInput};
 
     case actions.PROCESS_USER_PASSWORD_INPUT:
-      console.log(action.passwordInput);
       return {...state, passwordInput: action.passwordInput};
 
     case actions.PROCESS_USER_NAME_INPUT:
-      console.log(action.nameInput);
       return {...state, nameInput: action.nameInput};
+
+    case actions.PROCESS_USER_ID_INPUT:
+      return {...state, idInput: action.idInput};
 
     case actions.SIGN_UP:
       return state;
@@ -70,10 +71,25 @@ export const reducer = (state=initialState, action) => {
       return state;
 
     case actions.LOAD_MENU:
-      console.log(action.data);
       return {...state, menu: action.data};
 
     case actions.LOAD_MENU_ERROR:
+      console.error(action.error);
+      return state;
+
+    case actions.GRAB_ORDERS:
+      console.log(action.data);
+      return {...state, orders: action.data};
+
+    case actions.GRAB_ORDERS_ERROR:
+      console.error(action.error);
+      return state;
+
+    case actions.ORDER_DRINK:
+      console.log(action.data);
+      return {...state, menu: action.data};
+
+    case actions.ORDER_DRINK_ERROR:
       console.error(action.error);
       return state;
 
