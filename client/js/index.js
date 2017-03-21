@@ -8,13 +8,11 @@ import Signup from './components/signup/signup'
 import {BrowserRouter as Router, Route } from 'react-router-dom';
 
 console.log(`Client running in ${process.env.NODE_ENV} mode`);
-
-// <Route path="/" component={Signup}/>
+// <Route exact path="/" component={Login}/>
 const routes = (
   <Router>
     <div>
-      <Route exact path="/" component={Login}/>
-
+      <Route path="/" component={Signup}/>
     </div>
   </Router>
 );

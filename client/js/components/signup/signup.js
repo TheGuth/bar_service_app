@@ -8,6 +8,7 @@ export class Signup extends React.Component {
     }
 
     render() {
+      console.log(this.props.userEmailInput);
         return (
           <div className="signup-container">
             <h1>App Name</h1>
@@ -33,4 +34,4 @@ export class Signup extends React.Component {
   })
 
 
-export default connect()(Signup);
+export default connect(mapStateToProps)(Signup);
