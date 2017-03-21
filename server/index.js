@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import passport from 'passport';
 import {BasicStrategy} from 'passport-http';
 import {PORT, DATABASE_URL} from './config';
+import Path from 'path';
 
 // Schema Imports
 import {Order} from './models/order-model';
@@ -20,7 +21,6 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use(express.static(process.env.CLIENT_PATH));
-
 
 // Authentication //
 
@@ -227,7 +227,9 @@ app.get('/client/dashboard/:id', (req, res) => {
 //    });
 
 
-
+app.get('*', (req, res) => {
+  res.sendFile('index.html', {root: process.env.CLIENT_PATH});
+})
 
 
 let server;
