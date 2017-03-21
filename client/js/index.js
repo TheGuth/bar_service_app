@@ -9,11 +9,12 @@ import {BrowserRouter as Router, Route } from 'react-router-dom';
 
 console.log(`Client running in ${process.env.NODE_ENV} mode`);
 
+// <Route path="/" component={Signup}/>
 const routes = (
   <Router>
     <div>
       <Route exact path="/" component={Login}/>
-      <Route path="/signup" component={Signup}/>
+
     </div>
   </Router>
 );

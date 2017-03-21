@@ -9,6 +9,27 @@ export const userLogin = (emailInput, passwordInput) => dispatch => {
       },
       body: JSON.stringify(data)
     }).then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    }).then(data => {
+      return dispatch(login(data))
+    }).catch(error => {
+      return dispatch(loginError(error));
+    });
+};
+
+export const userSignUp = (emailInput, passwordInput, nameInput) => dispatch => {
+    const data = {email: emailInput, password: passwordInput, businessName: nameInput};
+    console.log(data);
+    return fetch('/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(response => {
       console.log(response);
       if (!response.ok) {
         throw new Error(response.statusText);
@@ -16,11 +37,25 @@ export const userLogin = (emailInput, passwordInput) => dispatch => {
       return response.json();
     }).then(data => {
       console.log(data);
-      return dispatch(login(data))
+      return dispatch(signup(data))
     }).catch(error => {
-      return dispatch(loginError(error));
+      return dispatch(signupError(error));
     });
 };
+
+export const SIGN_UP = 'SIGN_UP';
+export const signup = (data) => ({
+    type: SIGN_UP,
+    email: data.username,
+    id: data.id,
+    businessName: data.businessName
+});
+
+export const SIGN_UP_ERROR = 'SIGN_UP_ERROR';
+export const signupError = (error) => ({
+    type: SIGN_UP_ERROR,
+    error: error
+});
 
 
 export const LOGIN = 'LOGIN';
@@ -49,6 +84,12 @@ export const proccessUserPasswordInput = (passwordInput) => ({
   passwordInput: passwordInput
 });
 
+export const PROCESS_USER_NAME_INPUT = 'PROCESS_USER_NAME_INPUT';
+export const proccessUserNameInput = (nameInput) => ({
+  type: PROCESS_USER_NAME_INPUT,
+  nameInput: nameInput
+});
+
 
 //client
 export const CONNECT_TO_BUSINESS = 'CONNECT_TO_BUSINESS';
@@ -74,12 +115,6 @@ export const nextMenuPage = () => ({
 });
 
 //business
-
-
-export const SIGNUP = 'SIGNUP';
-export const signup = () => ({
-    type: SIGNUP
-});
 
 
 export const CREATE_DRINK = 'CREATE_DRINK';

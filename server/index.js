@@ -62,6 +62,7 @@ app.get('/users', (req, res) => {
 });
 
 app.post('/users', (req, res) => {
+  console.log(req.body);
   const requiredFields = ['email', 'businessName', 'password'];
 
   const missingIndex = requiredFields.findIndex(field => !req.body[field]);
@@ -102,7 +103,6 @@ app.post('/users', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  console.log('goodbye');
   BusinessUser
   .findOne({email: req.body.email})
   .exec()
