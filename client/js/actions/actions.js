@@ -245,9 +245,53 @@ export const createDrink = () => ({
     type: CREATE_DRINK
 });
 
+// export const completeOrder = (orderId, currentConnection) => dispatch => {
+//     return fetch(`/order/${orderId}`, {
+//       method: 'DELETE'
+//     }).then(response => {
+//       console.log(response);
+//       if (!response.ok) {
+//         throw new Error(response.statusText);
+//       }
+//       dispatch(fetchOrders(currentConnection));
+//       return response.json();
+//     }).then(data => {
+//       console.log(data);
+//       return dispatch(drinkIsReady(data))
+//     }).catch(error => {
+//       return dispatch(drinkIsReadyError(error));
+//     });
+// };
+
+export const deleteDrinkFromMenu = (drinkId, currentConnection) => dispatch => {
+  console.log('hello');
+  console.log(drinkId, currentConnection);
+  return fetch(`/dashboard/${currentConnection}/drinks/${drinkId}`, {
+    method: 'DELETE'
+  }).then(response => {
+    console.log(response);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+     }
+     dispatch(fetchMenu(currentConnection));
+     return response.json();
+   }).then(data => {
+     console.log(data);
+     return dispatch(deleteDrink(data));
+   }).catch(error => {
+     return dispatch(deleteDrinkError(error));
+  });
+
+};
+
 export const DELETE_DRINK = 'DELETE_DRINK';
 export const deleteDrink = () => ({
     type: DELETE_DRINK
+});
+
+export const DELETE_DRINK_ERROR = 'DELETE_DRINK_ERROR';
+export const deleteDrinkError = () => ({
+    type: DELETE_DRINK_ERROR
 });
 
 export const UPDATE_DRINK = 'UPDATE_DRINK';

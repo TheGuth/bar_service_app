@@ -59,6 +59,7 @@ export const reducer = (state=initialState, action) => {
       return {...state, currentConnection: action.currentConnection};
 
     case actions.LOAD_MENU:
+      console.log(action.data);
       return {...state, menu: action.data};
 
     case actions.LOAD_MENU_ERROR:
@@ -99,6 +100,11 @@ export const reducer = (state=initialState, action) => {
 
     case actions.DELETE_DRINK:
       return state;
+
+    case actions.DELETE_DRINK_ERROR:
+      console.error(action.error);
+      return state;
+
 
     default:
       return state;
