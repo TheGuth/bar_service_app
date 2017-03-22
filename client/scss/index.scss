@@ -1,0 +1,38 @@
+body {
+  background: #604878; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #604878 , #001848); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #604878 , #001848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: lightgray;
+}
+
+.landing-page-signup {
+  margin: 20% 0 0 0;
+}
+
+.landing-page-signup button {
+  margin: 20px 0;
+  padding: 50px 100px;
+}
+
+.landing-page-connect {
+  margin: 10% 0 0 0;
+}
+
+.landing-page-connect button {
+  margin: 20px 0;
+  padding: 10px 50px;
+}
+
+.landing-page-connect input {
+  margin-top: 5px;
+  background: transparent;
+  color: lightgray
+}
+
+.landing-page-title {
+  margin-top: 20px;
+}
+
+.landing-page-login button {
+
+}
