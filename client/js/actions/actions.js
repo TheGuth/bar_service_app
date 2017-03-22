@@ -41,6 +41,7 @@ export const signupError = (error) => ({
 // Login Actions
 
 export const userLogin = (emailInput, passwordInput) => dispatch => {
+    console.log('were in');
     const data = {email: emailInput, password: passwordInput};
     return fetch('/login', {
       method: 'POST',
@@ -49,13 +50,14 @@ export const userLogin = (emailInput, passwordInput) => dispatch => {
       },
       body: JSON.stringify(data)
     }).then(response => {
+      console.log('hello');
       if (!response.ok) {
         throw new Error(response.statusText);
       }
       return response.json();
     }).then(data => {
       console.log(data);
-      return dispatch(login(data))
+      return dispatch(login(data));
     }).catch(error => {
       return dispatch(loginError(error));
     });

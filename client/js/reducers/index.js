@@ -14,8 +14,9 @@ const initialState = {
   menu: [],
   orderHistory: [],
   orders: [],
-  currentConnection: '58cffedf015af4d521e640bc'
+  currentConnection: ''
 }
+// 58cffedf015af4d521e640bc
 
 export const reducer = (state=initialState, action) => {
   switch(action.type){
@@ -43,6 +44,7 @@ export const reducer = (state=initialState, action) => {
       return state;
 
     case actions.LOGIN:
+      console.log(action.id);
       return {...state, currentConnection: action.id};
 
     case actions.LOGIN_ERROR:
