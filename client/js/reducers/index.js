@@ -15,7 +15,10 @@ const initialState = {
   orderHistory: [],
   orders: [],
   currentOrder: [],
-  currentConnection: ''
+  currentConnection: '',
+  newDrinkName: '',
+  newDrinkPrice: '',
+  newDrinkIngredients: ''
 }
 // 58cffedf015af4d521e640bc
 
@@ -105,6 +108,17 @@ export const reducer = (state=initialState, action) => {
       console.error(action.error);
       return state;
 
+    case actions.PROCESS_NEW_DRINK_NAME:
+      return {...state, newDrinkName: action.newDrinkName};
+
+    case actions.PROCESS_NEW_DRINK_PRICE:
+      return {...state, newDrinkPrice: action.newDrinkPrice};
+
+    case actions.PROCESS_NEW_DRINK_INGREDIENTS:
+      return {...state, newDrinkIngredients: action.newDrinkIngredients};
+
+    case actions.CREATE_DRINK:
+    return
 
     default:
       return state;

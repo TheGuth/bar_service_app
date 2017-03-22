@@ -14,7 +14,6 @@ export class BusinessDash extends React.Component {
     render() {
 
       const businessMenuItems = this.props.menu.map((item, id) => {
-        console.log(item.id);
         return <li key={id}>
                   <h1>{item.drinkName}</h1>
                   <h3>Price: {item.price}</h3>
@@ -60,6 +59,19 @@ export class BusinessDash extends React.Component {
               {businessMenuItems}
             </ul>
             </div>
+            <div className="addDrink">
+              <form onSubmit={() => {
+                   this.props.dispatch(actions.addDrinkToMenu(this.props.currentConnection, this.props.newDrinkName, this.props.newDrinkPrice, this.props.newDrinkIngredients));
+                   }}>
+                <label>Drink Name:</label>
+                <input type="text" placeholder="Drink Name" value={this.props.newDrinkName} onChange={(e) => this.props.dispatch(actions.processNewDrinkName(e.target.value))}/>
+                <label>Price:</label>
+                <input type="text" placeholder="Price" value={this.props.newDrinkPrice} onChange={(e) => this.props.dispatch(actions.processNewDrinkPrice(e.target.value))}/>
+                <label>Ingredients</label>
+                <input type="text" placeholder="Ingredients" value={this.props.newDrinkIngredients} onChange={(e) => this.props.dispatch(actions.processNewDrinkIngredients(e.target.value))}/>
+                <button type="submit">Add Drink</button>
+              </form>
+            </div>
           </div>
         )
     }
@@ -68,7 +80,10 @@ export class BusinessDash extends React.Component {
 const mapStateToProps = (state, props) => ({
   orders: state.orders,
   currentConnection: state.currentConnection,
-  menu: state.menu
+  menu: state.menu,
+  newDrinkName: state.newDrinkName,
+  newDrinkPrice: state.newDrinkPrice,
+  newDrinkIngredients: state.newDrinkIngredients
 })
 
 export default connect(mapStateToProps)(BusinessDash);

@@ -14,7 +14,6 @@ export class LandingPage extends React.Component {
           <Link to="/login"><button>Log In</button></Link>
           <h1>Bar Service App</h1>
           <h2>Connect to a Business!</h2>
-          // add value to input to grab for params in Link
           <input type="text" placeholder="Unique ID:" value={this.props.userIdInput} onChange={(e) => this.props.dispatch(actions.proccessUserIdInput(e.target.value))}/>
           <Link to={{pathname: '/client/dashboard', params: {id: this.props.userIdInput}} }><button>Connect</button></Link>
           <h3>Business Sign Up</h3>

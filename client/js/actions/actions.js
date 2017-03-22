@@ -240,28 +240,58 @@ export const nextMenuPage = () => ({
 
 //business
 
-export const CREATE_DRINK = 'CREATE_DRINK';
-export const createDrink = () => ({
-    type: CREATE_DRINK
+export const PROCESS_NEW_DRINK_NAME = 'PROCESS_NEW_DRINK_NAME';
+export const processNewDrinkName = (newDrinkName) => ({
+  type: PROCESS_NEW_DRINK_NAME,
+  newDrinkName: newDrinkName
 });
 
-// export const completeOrder = (orderId, currentConnection) => dispatch => {
-//     return fetch(`/order/${orderId}`, {
-//       method: 'DELETE'
-//     }).then(response => {
-//       console.log(response);
-//       if (!response.ok) {
-//         throw new Error(response.statusText);
-//       }
-//       dispatch(fetchOrders(currentConnection));
-//       return response.json();
-//     }).then(data => {
-//       console.log(data);
-//       return dispatch(drinkIsReady(data))
-//     }).catch(error => {
-//       return dispatch(drinkIsReadyError(error));
-//     });
-// };
+export const PROCESS_NEW_DRINK_PRICE = 'PROCESS_NEW_DRINK_PRICE';
+export const processNewDrinkPrice = (newDrinkPrice) => ({
+  type: PROCESS_NEW_DRINK_PRICE,
+  newDrinkPrice: newDrinkPrice
+});
+
+export const PROCESS_NEW_DRINK_INGREDIENTS = 'PROCESS_NEW_DRINK_INGREDIENTS';
+export const processNewDrinkIngredients = (newDrinkIngredients) => ({
+  type: PROCESS_NEW_DRINK_INGREDIENTS,
+  newDrinkIngredients: newDrinkIngredients
+});
+
+export const addDrinkToMenu = (currentConnection, newDrinkName, newDrinkPrice, newDrinkIngredients,) => dispatch => {
+    const data = {drinkName: newDrinkName, price: newDrinkPrice, ingredients: newDrinkIngredients};
+    console.log(data);
+    return fetch(`/dashboard/${currentConnection}/drinks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(response => {
+      console.log(response);
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    }).then(data => {
+      return dispatch(createDrink(data))
+    }).catch(error => {
+      return dispatch(createDrinkError(error));
+    });
+};
+
+export const CREATE_DRINK = 'CREATE_DRINK';
+export const createDrink = (data) => ({
+    type: CREATE_DRINK,
+    drinkName: data.drinkName,
+    price: data.price,
+    ingredients: data.ingredients
+});
+
+export const CREATE_DRINK_ERROR = 'CREATE_DRINK_ERROR';
+export const createDrinkError = () => ({
+    type: CREATE_DRINK_ERROR
+});
 
 export const deleteDrinkFromMenu = (drinkId, currentConnection) => dispatch => {
   console.log('hello');
