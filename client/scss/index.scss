@@ -1,38 +1,154 @@
+// GLOBAL RULES ///////////////////////////////////////////
 body {
   background: #604878; /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #604878 , #001848); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #604878 , #001848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: lightgray;
+  width: 100%;
+  height: 100vh;
+  font-family: 'Hind', sans-serif;
 }
 
+button {
+  background-color: #428bca;
+  color: lightgray;
+  font-size: 18px;
+  border-radius: 2%;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: #214565;
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  font-size: 24px;
+}
+
+li {
+  list-style: none;
+}
+
+// LANDING PAGE CONTAINER RULES //////////////////////////////////////
+
+.landing-page-container {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.landing-page-container h2 {
+  font-family: 'hind', sans-serif;
+  font-weight: 400;
+}
+
+.landing-page-title {
+  margin-top: 50px;
+}
+
+.landing-page-login button {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+// LANDING PAGE SIGNUP RULES //////////////////////////
 .landing-page-signup {
-  margin: 20% 0 0 0;
+  margin-top: 100px;
+  height: 100%;
 }
 
 .landing-page-signup button {
-  margin: 20px 0;
-  padding: 50px 100px;
+  margin: 10px 0 0 0;
+  padding: 10px 50px;
+  border-radius: 5px;
+
 }
 
+// LANDING PAGE CONNECT RULES ///////////////////////////////
+
 .landing-page-connect {
-  margin: 10% 0 0 0;
+  margin-top: 100px;
 }
 
 .landing-page-connect button {
-  margin: 20px 0;
+  margin: 20px 62px;
   padding: 10px 50px;
+  border-radius: 5px;
+  display: block;
+  text-align: center;
 }
 
 .landing-page-connect input {
   margin-top: 5px;
+  padding: 10px;
   background: transparent;
   color: lightgray
 }
 
-.landing-page-title {
-  margin-top: 20px;
+// SIGNUP PAGE RULES /////////////////////////////////////
+
+.signup-container {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.landing-page-login button {
-
+.signup-page-header {
+  margin: 40px 0;
 }
+
+.signup-page-form input,
+.signup-page-form button {
+  display: block;
+}
+
+.signup-page-form input {
+  margin: 10px 42px;
+  width: 200px;
+  padding: 15px 5px;
+  background: transparent;
+  color: lightgray
+}
+
+.signup-page-form button {
+  margin: 40px 72px;
+  padding: 15px 50px
+}
+
+
+// LOGIN PAGE RULES /////////////////////////////////////
+
+.login-container {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login-page-header {
+  margin: 40px 0;
+}
+
+.login-page-form input,
+.login-page-form button {
+  display: block;
+}
+
+.login-page-form input {
+  margin: 10px 42px;
+  width: 200px;
+  padding: 15px 5px;
+  background: transparent;
+  color: lightgray
+}
+
+.login-page-form button {
+  margin: 40px 72px;
+  padding: 15px 50px
+}
+
+// CLIENT DASHBOARD PAGE RULES /////////////////////////////

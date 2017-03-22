@@ -14,19 +14,23 @@ export class Login extends React.Component {
 
         return (
           <div className="login-container">
-            <h1>App Name</h1>
-            <h3>enticing description</h3>
-            <form onSubmit={() => {
-                this.props.dispatch(userLogin(this.props.userEmailInput, this.props.userPasswordInput)).then(() => {
-                  this.props.history.push(`/business/dashboard/${this.props.currentConnection}`);
-                });
-              }}>
-              <label>Email:</label>
-              <input type="text" placeholder="email" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(proccessUserEmailInput(e.target.value))}/>
-              <label>Password:</label>
-              <input type="text" placeholder="Password" value={this.props.userPasswordInput} onChange={(e) => this.props.dispatch(proccessUserPasswordInput(e.target.value))}/>
-              <button type="submit">Login</button>
-            </form>
+            <div className="login-page-header">
+              <h1>App Name</h1>
+              <h3>enticing description</h3>
+            </div>
+            <div className="login-page-form">
+              <form onSubmit={() => {
+                  this.props.dispatch(userLogin(this.props.userEmailInput, this.props.userPasswordInput)).then(() => {
+                    this.props.history.push(`/business/dashboard/${this.props.currentConnection}`);
+                  });
+                }}>
+                <label>Email</label>
+                <input type="text" placeholder="email" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(proccessUserEmailInput(e.target.value))}/>
+                <label>Password</label>
+                <input type="text" placeholder="Password" value={this.props.userPasswordInput} onChange={(e) => this.props.dispatch(proccessUserPasswordInput(e.target.value))}/>
+                <button type="submit">Login</button>
+              </form>
+            </div>
           </div>
         )
     }
