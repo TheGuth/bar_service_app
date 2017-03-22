@@ -15,12 +15,20 @@ export class ClientDash extends React.Component {
       const menuItems = this.props.menu.map((item, id) => {
         // addd onClick function to each list item
         return <li key={id}>
-                  <h1>{item.drinkName}</h1>
-                  <h3>{item.price}</h3>
-                  <h3>{item.ingredients}</h3>
+                  <h1>Name: {item.drinkName}</h1>
+                  <h3>Price: {item.price}</h3>
+                  <h3>Ingredients: {item.ingredients}</h3>
                   <button onClick={() => this.props.dispatch(actions.addOrder(item.drinkName, item.price))}>Order</button>
                 </li>
       });
+
+      const currentOrder = this.props.currentOrders.map((order, id) => {
+        console.log(order);
+        return <li key={id}>
+                <h1>Name: {order.drinkName}</h1>
+                <p>Price: {order.price}</p>
+               </li>
+      })
       // this.props.location.params.id
       // this holds the currentConnection from landing page
       const {userNameInput, userEmailInput, userTableInput, orders} = this.props;
@@ -30,6 +38,11 @@ export class ClientDash extends React.Component {
             <div className="menu">
               <ul>
                 {menuItems}
+              </ul>
+            </div>
+            <div className="order-list">
+              <ul>
+                {currentOrder}
               </ul>
             </div>
             <div className="client-input">
@@ -43,10 +56,6 @@ export class ClientDash extends React.Component {
                 <button type="submit">Submit</button>
               </form>
             </div>
-            <div className="drink-status">
-            </div>
-            <div className="order-drink">
-            </div>
           </div>
         )
     }
@@ -56,6 +65,7 @@ export class ClientDash extends React.Component {
     menu: state.menu,
     currentConnection: state.currentConnection,
     orders: state.orders,
+    currentOrders: state.currentOrder,
     userNameInput: state.nameInput,
     userEmailInput: state.emailInput,
     userTableInput: state.tableInput

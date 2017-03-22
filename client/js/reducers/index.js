@@ -14,6 +14,7 @@ const initialState = {
   menu: [],
   orderHistory: [],
   orders: [],
+  currentOrder: [],
   currentConnection: ''
 }
 // 58cffedf015af4d521e640bc
@@ -37,7 +38,7 @@ export const reducer = (state=initialState, action) => {
       return {...state, tableInput: action.tableInput};
 
     case actions.SIGN_UP:
-      return state;
+      return {...state, currentConnection: action.id };
 
     case actions.SIGN_UP_ERROR:
       console.error(action.error);
@@ -74,9 +75,9 @@ export const reducer = (state=initialState, action) => {
 
     case actions.ADD_ORDER:
       console.log(state.orders);
-      const currentOrder = state.orders;
+      const currentOrder = state.currentOrder.slice();
       currentOrder.push({drinkName: action.drinkName, price: action.price});
-      return {...state, orders: currentOrder};
+      return {...state, currentOrder: currentOrder};
 
     case actions.ADD_ORDER_ERROR:
       console.error(action.error);

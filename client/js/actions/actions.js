@@ -17,7 +17,6 @@ export const userSignUp = (emailInput, passwordInput, nameInput) => dispatch => 
       }
       return response.json();
     }).then(data => {
-      console.log(data);
       return dispatch(signup(data))
     }).catch(error => {
       return dispatch(signupError(error));
@@ -41,7 +40,6 @@ export const signupError = (error) => ({
 // Login Actions
 
 export const userLogin = (emailInput, passwordInput) => dispatch => {
-    console.log('were in');
     const data = {email: emailInput, password: passwordInput};
     return fetch('/login', {
       method: 'POST',

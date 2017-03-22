@@ -8,12 +8,15 @@ export class Signup extends React.Component {
     }
 
     render() {
-      console.log(this.props.userEmailInput);
         return (
           <div className="signup-container">
             <h1>App Name</h1>
             <h3>enticing description</h3>
-            <form onSubmit={() => this.props.dispatch(userSignUp(this.props.userNameInput, this.props.userEmailInput, this.props.userPasswordInput))}>
+            <form onSubmit={() => {
+                 this.props.dispatch(userSignUp(this.props.userNameInput, this.props.userEmailInput, this.props.userPasswordInput)).then(() => {
+                   this.props.history.push(`/business/dashboard/${this.props.currentConnection}`);
+                 })
+               }}>
               <label>Name:</label>
               <input type="text" placeholder="Name" value={this.props.userNameInput} onChange={(e) => this.props.dispatch(proccessUserNameInput(e.target.value))}/>
               <label>Email:</label>
@@ -30,7 +33,8 @@ export class Signup extends React.Component {
   const mapStateToProps = (state, props) => ({
     userEmailInput: state.emailInput,
     userPasswordInput: state.passwordInput,
-    userNameInput: state.nameInput
+    userNameInput: state.nameInput,
+    currentConnection: state.currentConnection
   })
 
 
