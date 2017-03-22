@@ -173,27 +173,6 @@ export const grabOrdersError = (error) => ({
     error: error
 });
 
-// export const userLogin = (emailInput, passwordInput) => dispatch => {
-//     const data = {email: emailInput, password: passwordInput};
-//     return fetch('/login', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(data)
-//     }).then(response => {
-//       if (!response.ok) {
-//         throw new Error(response.statusText);
-//       }
-//       return response.json();
-//     }).then(data => {
-//       console.log(data);
-//       return dispatch(login(data))
-//     }).catch(error => {
-//       return dispatch(loginError(error));
-//     });
-// };
-
 export const submitOrder = (userNameInput, userEmailInput, userTableInput, orders, currentConnection) => dispatch => {
   let orderTotal = 0;
   orders.forEach((order) => {
@@ -259,7 +238,6 @@ export const nextMenuPage = () => ({
 });
 
 //business
-
 
 export const CREATE_DRINK = 'CREATE_DRINK';
 export const createDrink = () => ({

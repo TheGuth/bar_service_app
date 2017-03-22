@@ -14,7 +14,7 @@ const initialState = {
   menu: [],
   orderHistory: [],
   orders: [],
-  currentConnection: ''
+  currentConnection: '58cffedf015af4d521e640bc'
 }
 
 export const reducer = (state=initialState, action) => {

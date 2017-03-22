@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(process.env.CLIENT_PATH));
 
-// Authentication //
+// Authentication // (Basic,  *local), google
 
 const strategy = new BasicStrategy(function(username, password, callback) {
   let user;

@@ -62,6 +62,7 @@ export class BusinessDash extends React.Component {
         )
     }
   }
+  
 const mapStateToProps = (state, props) => ({
   orders: state.orders,
   currentConnection: state.currentConnection
