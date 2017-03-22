@@ -155,6 +155,7 @@ export const fetchOrders = (currentConnection) => dispatch => {
       }
       return response.json();
     }).then(data => {
+      dispatch (fetchMenu(currentConnection));
       return dispatch(grabOrders(data))
     }).catch(error => {
       return dispatch(grabOrdersError(error));

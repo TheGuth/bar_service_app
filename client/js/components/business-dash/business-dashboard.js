@@ -13,6 +13,14 @@ export class BusinessDash extends React.Component {
 
     render() {
 
+      const businessMenuItems = this.props.menu.map((item, id) => {
+        return <li key={id}>
+                  <h1>Name: {item.drinkName}</h1>
+                  <h3>Price: {item.price}</h3>
+                  <h3>Ingredients: {item.ingredients}</h3>
+                </li>
+      });
+
       // const drinkOrders = (orders).map(order, id) => {
       //   return <li>
       //     <h1>order.drinkName</h1>
@@ -47,7 +55,7 @@ export class BusinessDash extends React.Component {
             </div>
             <div className="menu">
             <ul>
-             
+              {businessMenuItems}
             </ul>
             </div>
           </div>
@@ -57,7 +65,8 @@ export class BusinessDash extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   orders: state.orders,
-  currentConnection: state.currentConnection
+  currentConnection: state.currentConnection,
+  menu: state.menu
 })
 
 export default connect(mapStateToProps)(BusinessDash);

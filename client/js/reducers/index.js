@@ -97,6 +97,9 @@ export const reducer = (state=initialState, action) => {
       console.error(action.error);
       return state;
 
+    case actions.DELETE_DRINK:
+      return state;
+
     default:
       return state;
   }
