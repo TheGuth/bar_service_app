@@ -1,67 +1,75 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as actions from '../../actions/actions'
+import * as actions from '../../actions/actions';
 
-export class ClientDash extends React.Component {
+export class BusinessDash extends React.Component {
     constructor(props) {
         super(props);
     }
 
     componentWillMount() {
-      this.props.dispatch(actions.fetchMenu(this.props.location.params.id));
+      this.props.dispatch(actions.fetchOrders(this.props.currentConnection));
     }
 
     render() {
-      const menuItems = this.props.menu.map((item, id) => {
-        // addd onClick function to each list item
+
+      const businessMenuItems = this.props.menu.map((item, id) => {
         return <li key={id}>
-                  <h1>{item.drinkName} - ${item.price}</h1>
-                  <p>Made with the best ingredients know to man</p>
-                  <button onClick={() => this.props.dispatch(actions.addOrder(item.drinkName, item.price))}>Order</button>
+                  <h1>{item.drinkName}</h1>
+                  <h3>Price: {item.price}</h3>
+                  <h3>Ingredients: {item.ingredients}</h3>
+                  <button onClick={() => this.props.dispatch(actions.deleteDrinkFromMenu(item.id, this.props.currentConnection))} >Delete Drink</button>
                 </li>
       });
 
-      const currentOrders = this.props.currentOrder.map((order, id) => {
-        console.log(order);
-        return <li key={id}>
-                <h1>{order.drinkName} - ${order.price}</h1>
-               </li>
-      })
-      // this.props.location.params.id
-      // this holds the currentConnection from landing page
-      const {userNameInput, userEmailInput, userTableInput, currentOrder} = this.props;
-      console.log(this.props.userNameInput);
+      // const drinkOrders = (orders).map(order, id) => {
+      //   return <li>
+      //     <h1>order.drinkName</h1>
+      //     <p>order.price</p>
+      //   </li>
+      // }
+      let orderItems;
+      if (this.props.orders) {
+        orderItems = this.props.orders.map((order, id) => {
+          // addd onClick function to each list item
+          return <li key={order.id}>
+                    <h1>Client Name: {order.clientName}</h1>
+                    <p>Table Number: {order.table}</p>
+                    <p>Client Email: {order.clientEmail}</p>
+                    <p>Total Order Price: {order.orderTotal}</p>
+                    <p>Number of Drinks: {order.totalDrinks}</p>
+                    <button onClick={() => this.props.dispatch(actions.completeOrder(order.id, this.props.currentConnection))} >Ding Order Done</button>
+                  </li>
+        });
+      }
+
         return (
-          <div className="client-dash-container">
-            <div className="client-page-menu-list">
-              <ul>
-                {menuItems}
-              </ul>
+          <div className="business-dash-container">
+            <div className="profile">
+              <h1>Bar Name</h1>
+              <h3>Id</h3>
             </div>
-            <div className="client-page-order-list">
-              <ul>
-<<<<<<< HEAD
-                <li>Current Order</li>
-                {currentOrder}
-              </ul>
+            <div className="orders-queue">
+             <ul>
+              {orderItems}
+             </ul>
             </div>
-            <div className="client-page-form">
-              <form onSubmit={() => this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, orders, this.props.currentConnection))}>
-                <label className="client-form-name">Name</label>
-=======
-                {currentOrders}
-              </ul>
+            <div className="menu">
+            <ul>
+              {businessMenuItems}
+            </ul>
             </div>
-            <div className="client-input">
-              <form onSubmit={() => this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, currentOrder, this.props.currentConnection))}>
-                <label>Name:</label>
->>>>>>> menu-functionality
-                <input type="text" value={this.props.userNameInput} onChange={(e) => this.props.dispatch(actions.proccessUserNameInput(e.target.value))}></input>
-                <label className="client-form-table">Table</label>
-                <input type="text" value={this.props.userTableInput} onChange={(e) => this.props.dispatch(actions.proccessUserTableInput(e.target.value))}></input>
-                <label className="client-form-email">Email</label>
-                <input type="text" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(actions.proccessUserEmailInput(e.target.value))}></input>
-                <button type="submit">Submit</button>
+            <div className="addDrink">
+              <form onSubmit={() => {
+                   this.props.dispatch(actions.addDrinkToMenu(this.props.currentConnection, this.props.newDrinkName, this.props.newDrinkPrice, this.props.newDrinkIngredients));
+                   }}>
+                <label>Drink Name:</label>
+                <input type="text" placeholder="Drink Name" value={this.props.newDrinkName} onChange={(e) => this.props.dispatch(actions.processNewDrinkName(e.target.value))}/>
+                <label>Price:</label>
+                <input type="text" placeholder="Price" value={this.props.newDrinkPrice} onChange={(e) => this.props.dispatch(actions.processNewDrinkPrice(e.target.value))}/>
+                <label>Ingredients</label>
+                <input type="text" placeholder="Ingredients" value={this.props.newDrinkIngredients} onChange={(e) => this.props.dispatch(actions.processNewDrinkIngredients(e.target.value))}/>
+                <button type="submit">Add Drink</button>
               </form>
             </div>
           </div>
@@ -69,14 +77,13 @@ export class ClientDash extends React.Component {
     }
   }
 
-  const mapStateToProps = (state, props) => ({
-    menu: state.menu,
-    currentConnection: state.currentConnection,
-    orders: state.orders,
-    currentOrder: state.currentOrder,
-    userNameInput: state.nameInput,
-    userEmailInput: state.emailInput,
-    userTableInput: state.tableInput
-  })
+const mapStateToProps = (state, props) => ({
+  orders: state.orders,
+  currentConnection: state.currentConnection,
+  menu: state.menu,
+  newDrinkName: state.newDrinkName,
+  newDrinkPrice: state.newDrinkPrice,
+  newDrinkIngredients: state.newDrinkIngredients
+})
 
-export default connect(mapStateToProps)(ClientDash);
+export default connect(mapStateToProps)(BusinessDash);
