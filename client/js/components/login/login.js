@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {userLogin, proccessUserEmailInput, proccessUserPasswordInput} from '../../actions/actions';
+import {userLogin, proccessUserEmailInput, proccessUserPasswordInput} from '../../actions/signup-login';
 import {Link} from 'react-router-dom';
 
 export class Login extends React.Component {

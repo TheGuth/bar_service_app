@@ -1,5 +1,15 @@
 
 import * as actions from '../actions/actions';
+import { SIGN_UP,
+         SIGN_UP_ERROR,
+         LOGIN,
+         LOGIN_ERROR,
+         PROCESS_USER_EMAIL_INPUT,
+         PROCESS_USER_PASSWORD_INPUT,
+         PROCESS_USER_NAME_INPUT,
+         PROCESS_USER_ID_INPUT,
+         PROCESS_USER_TABLE_INPUT,
+        } from '../actions/signup-login';
 
 // when inputs in state no longer need a value be set to '';
 const initialState = {
@@ -54,38 +64,38 @@ export const reducer = (state=initialState, action) => {
   console.log(action.type);
   switch(action.type){
 
-    case actions.PROCESS_USER_EMAIL_INPUT:
+    case PROCESS_USER_EMAIL_INPUT:
       return {...state, emailInput: action.emailInput};
 
-    case actions.PROCESS_USER_PASSWORD_INPUT:
+    case PROCESS_USER_PASSWORD_INPUT:
       return {...state, passwordInput: action.passwordInput};
 
-    case actions.PROCESS_USER_NAME_INPUT:
+    case PROCESS_USER_NAME_INPUT:
       return {...state, nameInput: action.nameInput};
 
-    case actions.PROCESS_USER_ID_INPUT:
+    case PROCESS_USER_ID_INPUT:
       return {...state, idInput: action.idInput};
 
-    case actions.PROCESS_USER_TABLE_INPUT:
+    case PROCESS_USER_TABLE_INPUT:
       return {...state, tableInput: action.tableInput};
 
-    case actions.SIGN_UP:
+    case SIGN_UP:
       return {...state, currentConnection: action.id };
 
-    case actions.SIGN_UP_ERROR:
+    case SIGN_UP_ERROR:
       console.error(action.error);
       return state;
 
-    case actions.LOGIN:
+    case LOGIN:
       console.log(action.id);
       return {...state, currentConnection: action.id, businessName: action.businessName};
 
-    case actions.LOGIN_ERROR:
+    case LOGIN_ERROR:
       console.error(action.error);
       return state;
 
-    case actions.SIGNUP:
-      return state;
+    // case actions.SIGNUP:
+    //   return state;
 
     case actions.BUSINESS_INFO_SUCCESS:
       return {...state, businessName: action.data.businessName};

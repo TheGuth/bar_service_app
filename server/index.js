@@ -253,7 +253,7 @@ app.delete('/order/:id', (req, res) => {
     .findByIdAndRemove(req.params.id)
     .exec()
     .then(() => {
-      res.status(204).json({message: 'success'});
+      res.status(200).json({message: 'success'});
     })
     .catch(err => {
       console.error(err);

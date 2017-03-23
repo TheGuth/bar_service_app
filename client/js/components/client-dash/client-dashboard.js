@@ -1,6 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as actions from '../../actions/actions'
+import * as actions from '../../actions/actions';
+import { proccessUserNameInput,
+         proccessUserTableInput,
+         proccessUserEmailInput
+       } from '../../actions/signup-login'
 
 export class ClientDash extends React.Component {
     constructor(props) {
@@ -12,8 +16,6 @@ export class ClientDash extends React.Component {
     }
 
     render() {
-
-      // this.props.dispatch(actions.(this.props.currentConnection));
 
       const menuItems = this.props.menu.map((item, id) => {
         // addd onClick function to each list item
@@ -62,11 +64,11 @@ export class ClientDash extends React.Component {
                   this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, currentOrder, this.props.currentConnection))
                 }}>
                 <label>Name:</label>
-                <input type="text" value={this.props.userNameInput} onChange={(e) => this.props.dispatch(actions.proccessUserNameInput(e.target.value))}></input>
+                <input type="text" value={this.props.userNameInput} onChange={(e) => this.props.dispatch(proccessUserNameInput(e.target.value))}></input>
                 <label>Table:</label>
-                <input type="text" value={this.props.userTableInput} onChange={(e) => this.props.dispatch(actions.proccessUserTableInput(e.target.value))}></input>
+                <input type="text" value={this.props.userTableInput} onChange={(e) => this.props.dispatch(proccessUserTableInput(e.target.value))}></input>
                 <label>Email:</label>
-                <input type="text" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(actions.proccessUserEmailInput(e.target.value))}></input>
+                <input type="text" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(proccessUserEmailInput(e.target.value))}></input>
                 <button type="submit">Submit</button>
               </form>
             </div>
