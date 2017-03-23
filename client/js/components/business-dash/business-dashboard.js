@@ -30,18 +30,18 @@ export class BusinessDash extends React.Component {
         orderItems = this.props.orders.map((order, id) => {
           const orderDrinks = order.order.map((drink, drinkid) => {
             return <li key={drinkid}>
-              <p>{drink.drinkName} - ${drink.price}</p>
+              <p>{drinkid + 1}. {drink.drinkName} - ${drink.price}</p>
             </li>
           })
           return <li key={order.id}>
-                    <h1>Client Name: {order.clientName}</h1>
-                    <p>Table Number: {order.table}</p>
-                    <p>Client Email: {order.clientEmail}</p>
-                    <p>Total Order Price: {order.orderTotal}</p>
-                    <p>Number of Drinks: {order.totalDrinks}</p>
-                    <ul>
+                    <h1>{order.clientName}</h1>
+                    <p>Table:   {order.table}</p>
+                    <p>Email:   {order.clientEmail}</p>
+                    <p>Total:   ${order.orderTotal}</p>
+                    <p># Drinks:   {order.totalDrinks}</p>
+                    <ol>
                       {orderDrinks}
-                    </ul>
+                    </ol>
                     <button onClick={() => this.props.dispatch(actions.completeOrder(order.id, this.props.currentConnection))} >Ding Order Done</button>
                   </li>
         });
@@ -49,21 +49,23 @@ export class BusinessDash extends React.Component {
 
         return (
           <div className="business-dash-container">
-            <div className="profile">
+            <div className="business-dash-header">
               <h1>{this.props.businessName}</h1>
-              <h3>{this.props.currentConnection}</h3>
+              <h3>Unique ID</h3>
+              <p>{this.props.currentConnection}</p>
             </div>
-            <div className="orders-queue">
+            <div className="business-dash-orders-queue">
+             <h2>Current Orders</h2>
              <ul>
               {orderItems}
              </ul>
             </div>
-            <div className="menu">
+            <div className="business-dash-menu">
             <ul>
               {businessMenuItems}
             </ul>
             </div>
-            <div className="addDrink">
+            <div className="business-dash-addDrink-form">
               <form onSubmit={(e) => {
                    e.preventDefault();
                    this.props.dispatch(actions.addDrinkToMenu(this.props.currentConnection, this.props.newDrinkName, this.props.newDrinkPrice, this.props.newDrinkIngredients));

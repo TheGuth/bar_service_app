@@ -8,6 +8,7 @@ body {
   height: 100vh;
   font-family: 'Hind', sans-serif;
   background-attachment: fixed;
+  box-sizing: border-box;
 }
 
 button {
@@ -61,22 +62,16 @@ li {
   margin-top: 50px;
 }
 
-.landing-page-login button {
-  
-}
-
-// LANDING PAGE SIGNUP RULES //////////////////////////
-.landing-page-signup {
+.landing-page-login {
   margin-top: 100px;
-  height: 100%;
 }
 
-.landing-page-signup button {
+.landing-page-login button {
   margin: 10px 0 0 0;
   padding: 10px 50px;
   border-radius: 5px;
-
 }
+
 
 // LANDING PAGE CONNECT RULES ///////////////////////////////
 
@@ -125,8 +120,10 @@ li {
 }
 
 .signup-page-form button {
-  margin: 40px 72px;
-  padding: 15px 50px
+  margin: 40px 62px;
+  width: 165px;
+  height: 50px;
+  border-radius: 5px;
 }
 
 
@@ -148,7 +145,7 @@ li {
 }
 
 .login-page-form input {
-  margin: 10px 42px;
+  margin: 10px auto;
   width: 200px;
   padding: 15px 5px;
   background: transparent;
@@ -156,14 +153,35 @@ li {
 }
 
 .login-page-form button {
-  margin: 40px 72px;
-  padding: 15px 50px
+  margin: 40px auto 50px;
+  width: 165px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+// LOGIN PAGE SIGNUP RULES //////////////////////////
+
+.login-page-signup h3 {
+  font-size: 24px;
+  margin: 0 auto 20px;
+}
+
+.login-page-signup button {
+  margin: 10px auto 0;
+  width: 165px;
+  height: 50px;
+  border-radius: 5px;
+
 }
 
 // CLIENT DASHBOARD PAGE RULES /////////////////////////////
 .client-dash-conatiner {
-  width: 300px;
+  width: 600px;
   margin: 0 auto;
+  text-align: center;
+}
+
+.client-dash-container h1 {
   text-align: center;
 }
 
@@ -172,21 +190,28 @@ li {
 .client-page-menu-list {
   font-size: 14px;
   background-color: transparent;
-  margin: 10px 20px;
+  width: 400px;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .client-page-menu-list ul {
+  text-align: center;
+  width: 350px;
+  margin: 0 auto;
   border-radius: 5%;
   padding: 10px 0;
   background-color: transparent;
 }
 
 .client-page-menu-list li {
-  background-color: #001848;
-  margin: 20px 37px 20px 37px;
+  background-color: rgba(0, 24, 72, 0.2);
+  margin: 20px auto;
+  height: 175px;
+  width: 300px;
   text-align: center;
-  border-radius: 10px;
-  padding-bottom: 10px;
+  border-radius: 12px;
+  padding: 10px 0;
 }
 
 .client-page-menu-list h1 {
@@ -203,16 +228,15 @@ li {
 .client-page-order-list {
   font-size: 14px;
   background-color: transparent;
-  margin: 10px 0px 10px 20px;
-  padding: 10px;
-  color: black;
+  margin: 20px auto;
+  width: 300px;
+  color: white;
   text-align: center;
 }
 
 .client-page-order-list ul {
-  border-radius: 5px;
-  background-color: lightgray;
-  margin: 0 40px 0 0;
+  border-radius: 15px;
+  background:rgba(200,200,200,0.1);
   padding: 10px 0;
 }
 
@@ -237,6 +261,11 @@ li {
   margin: 0;
 }
 
+.client-page-order-list li button {
+  border-radius: 5px;
+  font-size: 14px;
+}
+
 .client-page-order-list p {
   font-size: 14px;
 }
@@ -244,10 +273,11 @@ li {
 // CLIENT PAGE FORM RULES ////////////////////////////////
 
 .client-page-form {
-  background: lightgray;
-  color: black;
-  border-radius: 5%;
-  margin: 0 40px 20px 20px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border-radius: 12px;
+  width: 300px;
+  margin: 20px auto;
   text-align: center;
 }
 
@@ -255,20 +285,110 @@ li {
 .client-form-table,
 .client-form-email {
   text-align: center;
-  margin: 20px 140px;
+  margin: 0 auto;
 }
 
 
 .client-page-form input {
-  margin: 10px 60px;
+  margin: 0 auto;
   width: 200px;
   display: block;
   padding: 5px 5px;
   background: transparent;
-  color: black;
+  color: white;
   text-align: center;
 }
 
 .client-page-form button {
-  margin: 10px 125px 20px
+  margin: 20px auto;
+  border-radius: 5px;
 }
+
+// BUSINESS PAGE RULES ////////////////////////////
+
+.business-dash-container {
+  width: 768px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.business-dash-header {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.business-dash-header h1 {
+font-size: 44px;
+}
+
+.business-dash-header h3 {
+  font-size: 28px
+}
+
+// BUSINESS PAGE ORDER QUEUE  RULES //////////////////
+
+.business-dash-orders-queue {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.business-dash-orders-queue ul {
+
+}
+
+.business-dash-orders-queue li {
+  margin: 10px;
+  width: 200px;
+  display: inline-block;
+  font-size: 14px;
+  text-align: left;
+  border: 2px solid black;
+  padding: 5px;
+}
+
+.business-dash-orders-queue li ol li {
+  border: none;
+  margin: -20px 0;
+  padding: 0;
+  text-align: left;
+  list-style: georgian;
+}
+
+.business-dash-orders-queue li ol li p {
+  border: none;
+}
+
+.business-dash-orders-queue li p {
+  border-bottom: 2px solid black;
+}
+
+.business-dash-orders-queue li button {
+  margin-left: 20px;
+  border-radius: 12px;
+}
+
+// BUSINESS PAGE MENU RULES //////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

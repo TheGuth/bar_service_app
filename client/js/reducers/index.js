@@ -21,9 +21,11 @@ const initialState = {
   newDrinkPrice: '',
   newDrinkIngredients: ''
 }
+
 // 58cffedf015af4d521e640bc
 
 // constant reloading on business dashboard (needs to be fixed);
+// add redirects for when businessConnection is wrong
 
 // afternoon Goals
 // 1. CSS

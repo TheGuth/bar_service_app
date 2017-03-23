@@ -31,7 +31,7 @@ export class Login extends React.Component {
                 <button type="submit">Login</button>
               </form>
             </div>
-            <div className="landing-page-signup">
+            <div className="login-page-signup">
               <h3>Business Sign Up</h3>
               <div>
                 <Link to="/signup"><button>Sign Up</button></Link>

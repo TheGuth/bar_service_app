@@ -53,7 +53,7 @@ export class ClientDash extends React.Component {
             <div className="client-page-order-list">
               <ul>
                 {currentOrders}
-                <li>Current Total: {total}</li>
+                <li>Current Total: ${total}</li>
               </ul>
             </div>
             <div className="client-page-form">
