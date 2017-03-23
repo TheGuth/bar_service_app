@@ -22,7 +22,7 @@ export class ClientDash extends React.Component {
                 </li>
       });
 
-      const currentOrder = this.props.currentOrders.map((order, id) => {
+      const currentOrders = this.props.currentOrder.map((order, id) => {
         console.log(order);
         return <li key={id}>
                 <h1>Name: {order.drinkName}</h1>
@@ -31,7 +31,7 @@ export class ClientDash extends React.Component {
       })
       // this.props.location.params.id
       // this holds the currentConnection from landing page
-      const {userNameInput, userEmailInput, userTableInput, orders} = this.props;
+      const {userNameInput, userEmailInput, userTableInput, currentOrder} = this.props;
       console.log(this.props.userNameInput);
         return (
           <div className="client-dash-container">
@@ -42,11 +42,11 @@ export class ClientDash extends React.Component {
             </div>
             <div className="order-list">
               <ul>
-                {currentOrder}
+                {currentOrders}
               </ul>
             </div>
             <div className="client-input">
-              <form onSubmit={() => this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, orders, this.props.currentConnection))}>
+              <form onSubmit={() => this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, currentOrder, this.props.currentConnection))}>
                 <label>Name:</label>
                 <input type="text" value={this.props.userNameInput} onChange={(e) => this.props.dispatch(actions.proccessUserNameInput(e.target.value))}></input>
                 <label>Table:</label>
@@ -65,7 +65,7 @@ export class ClientDash extends React.Component {
     menu: state.menu,
     currentConnection: state.currentConnection,
     orders: state.orders,
-    currentOrders: state.currentOrder,
+    currentOrder: state.currentOrder,
     userNameInput: state.nameInput,
     userEmailInput: state.emailInput,
     userTableInput: state.tableInput
