@@ -21,7 +21,7 @@ export class ClientDash extends React.Component {
                 </li>
       });
 
-      const currentOrders = this.props.currentOrder.map((order, id) => {
+      const currentOrder = this.props.currentOrders.map((order, id) => {
         console.log(order);
         return <li key={id}>
                 <h1>{order.drinkName} - ${order.price}</h1>
@@ -29,7 +29,7 @@ export class ClientDash extends React.Component {
       })
       // this.props.location.params.id
       // this holds the currentConnection from landing page
-      const {userNameInput, userEmailInput, userTableInput, currentOrder} = this.props;
+      const {userNameInput, userEmailInput, userTableInput, orders} = this.props;
       console.log(this.props.userNameInput);
         return (
           <div className="client-dash-container">
@@ -40,7 +40,6 @@ export class ClientDash extends React.Component {
             </div>
             <div className="client-page-order-list">
               <ul>
-<<<<<<< HEAD
                 <li>Current Order</li>
                 {currentOrder}
               </ul>
@@ -48,14 +47,6 @@ export class ClientDash extends React.Component {
             <div className="client-page-form">
               <form onSubmit={() => this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, orders, this.props.currentConnection))}>
                 <label className="client-form-name">Name</label>
-=======
-                {currentOrders}
-              </ul>
-            </div>
-            <div className="client-input">
-              <form onSubmit={() => this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, currentOrder, this.props.currentConnection))}>
-                <label>Name:</label>
->>>>>>> menu-functionality
                 <input type="text" value={this.props.userNameInput} onChange={(e) => this.props.dispatch(actions.proccessUserNameInput(e.target.value))}></input>
                 <label className="client-form-table">Table</label>
                 <input type="text" value={this.props.userTableInput} onChange={(e) => this.props.dispatch(actions.proccessUserTableInput(e.target.value))}></input>
@@ -73,7 +64,7 @@ export class ClientDash extends React.Component {
     menu: state.menu,
     currentConnection: state.currentConnection,
     orders: state.orders,
-    currentOrder: state.currentOrder,
+    currentOrders: state.currentOrder,
     userNameInput: state.nameInput,
     userEmailInput: state.emailInput,
     userTableInput: state.tableInput

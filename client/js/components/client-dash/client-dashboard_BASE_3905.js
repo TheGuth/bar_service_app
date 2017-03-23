@@ -15,51 +15,43 @@ export class ClientDash extends React.Component {
       const menuItems = this.props.menu.map((item, id) => {
         // addd onClick function to each list item
         return <li key={id}>
-                  <h1>{item.drinkName} - ${item.price}</h1>
-                  <p>Made with the best ingredients know to man</p>
+                  <h1>Name: {item.drinkName}</h1>
+                  <h3>Price: {item.price}</h3>
+                  <h3>Ingredients: {item.ingredients}</h3>
                   <button onClick={() => this.props.dispatch(actions.addOrder(item.drinkName, item.price))}>Order</button>
                 </li>
       });
 
-      const currentOrders = this.props.currentOrder.map((order, id) => {
+      const currentOrder = this.props.currentOrders.map((order, id) => {
         console.log(order);
         return <li key={id}>
-                <h1>{order.drinkName} - ${order.price}</h1>
+                <h1>Name: {order.drinkName}</h1>
+                <p>Price: {order.price}</p>
                </li>
       })
       // this.props.location.params.id
       // this holds the currentConnection from landing page
-      const {userNameInput, userEmailInput, userTableInput, currentOrder} = this.props;
+      const {userNameInput, userEmailInput, userTableInput, orders} = this.props;
       console.log(this.props.userNameInput);
         return (
           <div className="client-dash-container">
-            <div className="client-page-menu-list">
+            <div className="menu">
               <ul>
                 {menuItems}
               </ul>
             </div>
-            <div className="client-page-order-list">
+            <div className="order-list">
               <ul>
-<<<<<<< HEAD
-                <li>Current Order</li>
                 {currentOrder}
               </ul>
             </div>
-            <div className="client-page-form">
-              <form onSubmit={() => this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, orders, this.props.currentConnection))}>
-                <label className="client-form-name">Name</label>
-=======
-                {currentOrders}
-              </ul>
-            </div>
             <div className="client-input">
-              <form onSubmit={() => this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, currentOrder, this.props.currentConnection))}>
+              <form onSubmit={() => this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, orders, this.props.currentConnection))}>
                 <label>Name:</label>
->>>>>>> menu-functionality
                 <input type="text" value={this.props.userNameInput} onChange={(e) => this.props.dispatch(actions.proccessUserNameInput(e.target.value))}></input>
-                <label className="client-form-table">Table</label>
+                <label>Table:</label>
                 <input type="text" value={this.props.userTableInput} onChange={(e) => this.props.dispatch(actions.proccessUserTableInput(e.target.value))}></input>
-                <label className="client-form-email">Email</label>
+                <label>Email:</label>
                 <input type="text" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(actions.proccessUserEmailInput(e.target.value))}></input>
                 <button type="submit">Submit</button>
               </form>
@@ -73,7 +65,7 @@ export class ClientDash extends React.Component {
     menu: state.menu,
     currentConnection: state.currentConnection,
     orders: state.orders,
-    currentOrder: state.currentOrder,
+    currentOrders: state.currentOrder,
     userNameInput: state.nameInput,
     userEmailInput: state.emailInput,
     userTableInput: state.tableInput

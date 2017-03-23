@@ -11,6 +11,7 @@ export class LandingPage extends React.Component {
     render() {
       return (
         <div className="landing-page-container">
+<<<<<<< HEAD
           <div className="landing-page-login">
             <Link to="/login"><button>Log In</button></Link>
           </div>
@@ -28,6 +29,15 @@ export class LandingPage extends React.Component {
               <Link to="/signup"><button>Sign Up</button></Link>
             </div>
           </div>
+=======
+          <Link to="/login"><button>Log In</button></Link>
+          <h1>Bar Service App</h1>
+          <h2>Connect to a Business!</h2>
+          <input type="text" placeholder="Unique ID:" value={this.props.userIdInput} onChange={(e) => this.props.dispatch(actions.proccessUserIdInput(e.target.value))}/>
+          <Link to={{pathname: '/client/dashboard', params: {id: this.props.userIdInput}} }><button>Connect</button></Link>
+          <h3>Business Sign Up</h3>
+          <Link to="/signup"><button>Sign Up</button></Link>
+>>>>>>> menu-functionality
         </div>
       )}
   }

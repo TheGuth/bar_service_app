@@ -13,6 +13,15 @@ export class BusinessDash extends React.Component {
 
     render() {
 
+      const businessMenuItems = this.props.menu.map((item, id) => {
+        return <li key={id}>
+                  <h1>{item.drinkName}</h1>
+                  <h3>Price: {item.price}</h3>
+                  <h3>Ingredients: {item.ingredients}</h3>
+                  <button onClick={() => this.props.dispatch(actions.deleteDrinkFromMenu(item.id, this.props.currentConnection))} >Delete Drink</button>
+                </li>
+      });
+
       // const drinkOrders = (orders).map(order, id) => {
       //   return <li>
       //     <h1>order.drinkName</h1>
@@ -24,11 +33,11 @@ export class BusinessDash extends React.Component {
         orderItems = this.props.orders.map((order, id) => {
           // addd onClick function to each list item
           return <li key={order.id}>
-                    <h1>{order.clientName}</h1>
-                    <p>{order.table}</p>
-                    <p>{order.clientEmail}</p>
-                    <p>{order.orderTotal}</p>
-                    <p>{order.totalDrinks}</p>
+                    <h1>Client Name: {order.clientName}</h1>
+                    <p>Table Number: {order.table}</p>
+                    <p>Client Email: {order.clientEmail}</p>
+                    <p>Total Order Price: {order.orderTotal}</p>
+                    <p>Number of Drinks: {order.totalDrinks}</p>
                     <button onClick={() => this.props.dispatch(actions.completeOrder(order.id, this.props.currentConnection))} >Ding Order Done</button>
                   </li>
         });
@@ -47,8 +56,21 @@ export class BusinessDash extends React.Component {
             </div>
             <div className="menu">
             <ul>
-             
+              {businessMenuItems}
             </ul>
+            </div>
+            <div className="addDrink">
+              <form onSubmit={() => {
+                   this.props.dispatch(actions.addDrinkToMenu(this.props.currentConnection, this.props.newDrinkName, this.props.newDrinkPrice, this.props.newDrinkIngredients));
+                   }}>
+                <label>Drink Name:</label>
+                <input type="text" placeholder="Drink Name" value={this.props.newDrinkName} onChange={(e) => this.props.dispatch(actions.processNewDrinkName(e.target.value))}/>
+                <label>Price:</label>
+                <input type="text" placeholder="Price" value={this.props.newDrinkPrice} onChange={(e) => this.props.dispatch(actions.processNewDrinkPrice(e.target.value))}/>
+                <label>Ingredients</label>
+                <input type="text" placeholder="Ingredients" value={this.props.newDrinkIngredients} onChange={(e) => this.props.dispatch(actions.processNewDrinkIngredients(e.target.value))}/>
+                <button type="submit">Add Drink</button>
+              </form>
             </div>
           </div>
         )
@@ -57,7 +79,11 @@ export class BusinessDash extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   orders: state.orders,
-  currentConnection: state.currentConnection
+  currentConnection: state.currentConnection,
+  menu: state.menu,
+  newDrinkName: state.newDrinkName,
+  newDrinkPrice: state.newDrinkPrice,
+  newDrinkIngredients: state.newDrinkIngredients
 })
 
 export default connect(mapStateToProps)(BusinessDash);
