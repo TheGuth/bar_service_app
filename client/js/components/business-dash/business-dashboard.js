@@ -13,14 +13,12 @@ export class BusinessDash extends React.Component {
 
     render() {
 
-      this.props.dispatch(actions.fetchMenu(this.props.currentConnection));
-
       const businessMenuItems = this.props.menu.map((item, id) => {
         return <li key={id}>
-                  <h1>{item.drinkName}</h1>
-                  <h3>Price: {item.price}</h3>
-                  <h3>Ingredients: {item.ingredients}</h3>
-                  <button onClick={() => this.props.dispatch(actions.deleteDrinkFromMenu(item.id, this.props.currentConnection))} >Delete Drink</button>
+                  <h1>{item.drinkName} - ${item.price}</h1>
+                  <h3>Ingredients</h3>
+                  <p>{item.ingredients}</p>
+                  <button onClick={() => this.props.dispatch(actions.deleteDrinkFromMenu(item.id, this.props.currentConnection))} >Delete</button>
                 </li>
       });
 
@@ -61,18 +59,20 @@ export class BusinessDash extends React.Component {
              </ul>
             </div>
             <div className="business-dash-menu">
-            <ul>
-              {businessMenuItems}
-            </ul>
+              <h1>Menu</h1>
+              <ul>
+                {businessMenuItems}
+              </ul>
             </div>
             <div className="business-dash-addDrink-form">
+              <h1>Add Menu Item</h1>
               <form onSubmit={(e) => {
                    e.preventDefault();
                    this.props.dispatch(actions.addDrinkToMenu(this.props.currentConnection, this.props.newDrinkName, this.props.newDrinkPrice, this.props.newDrinkIngredients));
                    }}>
-                <label>Drink Name:</label>
+                <label>Drink Name</label>
                 <input type="text" placeholder="Drink Name" value={this.props.newDrinkName} onChange={(e) => this.props.dispatch(actions.processNewDrinkName(e.target.value))}/>
-                <label>Price:</label>
+                <label>Price</label>
                 <input type="text" placeholder="Price" value={this.props.newDrinkPrice} onChange={(e) => this.props.dispatch(actions.processNewDrinkPrice(e.target.value))}/>
                 <label>Ingredients</label>
                 <input type="text" placeholder="Ingredients" value={this.props.newDrinkIngredients} onChange={(e) => this.props.dispatch(actions.processNewDrinkIngredients(e.target.value))}/>

@@ -18,9 +18,9 @@ export class ClientDash extends React.Component {
       const menuItems = this.props.menu.map((item, id) => {
         // addd onClick function to each list item
         return <li key={id}>
-                  <h1>Name: {item.drinkName}</h1>
-                  <h3>Price: {item.price}</h3>
-                  <h3>Ingredients: {item.ingredients}</h3>
+                  <h1>{item.drinkName} - ${item.price}</h1>
+                  <h3>Ingredients</h3>
+                  <h3>{item.ingredients}</h3>
                   <button onClick={() => this.props.dispatch(actions.addOrder(item.drinkName, item.price))}>Order</button>
                 </li>
       });
@@ -28,8 +28,8 @@ export class ClientDash extends React.Component {
       // add current total bottom right:
       const currentOrders = this.props.currentOrder.map((order, id) => {
         return <li key={id}>
-                <h1>Name: {order.drinkName}</h1>
-                <p>Price: {order.price}</p>
+                <h1>{order.drinkName}</h1>
+                <p>${order.price}</p>
                 <button onClick={() => this.props.dispatch(actions.removeOrder(id))}>Remove Item</button>
                </li>
       })

@@ -297,7 +297,7 @@ export const processNewDrinkIngredients = (newDrinkIngredients) => ({
 
 export const addDrinkToMenu = (currentConnection, newDrinkName, newDrinkPrice, newDrinkIngredients,) => dispatch => {
     const data = {drinkName: newDrinkName, price: newDrinkPrice, ingredients: newDrinkIngredients};
-    console.log(data);
+
     return fetch(`/dashboard/${currentConnection}/drinks`, {
       method: 'POST',
       headers: {
@@ -305,12 +305,13 @@ export const addDrinkToMenu = (currentConnection, newDrinkName, newDrinkPrice, n
       },
       body: JSON.stringify(data)
     }).then(response => {
-      console.log(response);
       if (!response.ok) {
         throw new Error(response.statusText);
       }
       return response.json();
     }).then(data => {
+      dispatch(fetchOrders(currentConnection));
+      dispatch(fetchMenu(currentConnection));
       return dispatch(createDrink(data))
     }).catch(error => {
       return dispatch(createDrinkError(error));

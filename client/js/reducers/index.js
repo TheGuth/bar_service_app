@@ -24,6 +24,18 @@ const initialState = {
 
 // 58cffedf015af4d521e640bc
 
+// client side
+// get rid of name
+// add $ instead of saying price,
+// mess with alignment for cards.
+// dark gray instead of a hard black;
+// add some padding to the form:
+
+// Business Side
+// let it breath; padding:
+// soften the hard black or change cards into little reciepts
+
+
 // constant reloading on business dashboard (needs to be fixed);
 // add redirects for when businessConnection is wrong
 
