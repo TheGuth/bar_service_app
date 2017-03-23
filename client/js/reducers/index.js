@@ -18,6 +18,7 @@ const initialState = {
   currentConnection: ''
 }
 // 58cffedf015af4d521e640bc
+// web socket library for real time client to business orders;
 
 export const reducer = (state=initialState, action) => {
   switch(action.type){

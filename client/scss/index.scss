@@ -43,6 +43,7 @@ li {
 // Current Order (make look like a receipt) background-color
 // order form have names to the left top.
 // background attachment fixed
+
 // LANDING PAGE CONTAINER RULES //////////////////////////////////////
 
 .landing-page-container {
@@ -184,9 +185,10 @@ li {
 
 .client-page-menu-list li {
   background-color: #001848;
-  margin: 20px 37px 20px 37px;;
+  margin: 20px 37px 20px 37px;
   text-align: center;
   border-radius: 10px;
+  padding-bottom: 10px;
 }
 
 .client-page-menu-list h1 {
@@ -198,14 +200,50 @@ li {
 
 }
 
-.client-page-menut-list button {
-
+.client-page-menu-list button {
 }
 
 // CLIENT PAGE ORDER LIST RULES ///////////////////////////
 
 .client-page-order-list {
+  font-size: 14px;
+  background-color: transparent;
+  margin: 10px 0px 10px 20px;
+  padding: 10px;
+  color: black;
+  text-align: center;
+}
 
+.client-page-order-list ul {
+  border-radius: 5px;
+  background-color: lightgray;
+  margin: 0 40px 0 0;
+  padding: 10px 0;
+}
+
+.client-page-order-list li:first-child {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.client-page-order-list li {
+  border-bottom: 2px solid black;
+  margin: 20px 37px 20px 37px;
+  text-align: center;
+}
+
+.client-page-order-list h1 {
+  font-size: 18px;
+  margin: 0 20px 0 0;
+}
+
+.client-page-order-list li h1 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.client-page-order-list p {
+  font-size: 14px;
 }
 
 // CLIENT PAGE FORM RULES ////////////////////////////////

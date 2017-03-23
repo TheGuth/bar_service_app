@@ -24,8 +24,7 @@ export class ClientDash extends React.Component {
       const currentOrder = this.props.currentOrders.map((order, id) => {
         console.log(order);
         return <li key={id}>
-                <h1>Name: {order.drinkName}</h1>
-                <p>Price: {order.price}</p>
+                <h1>{order.drinkName} - ${order.price}</h1>
                </li>
       })
       // this.props.location.params.id
@@ -41,6 +40,7 @@ export class ClientDash extends React.Component {
             </div>
             <div className="client-page-order-list">
               <ul>
+                <li>Current Order</li>
                 {currentOrder}
               </ul>
             </div>
