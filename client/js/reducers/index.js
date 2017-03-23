@@ -23,6 +23,27 @@ const initialState = {
 // 58cffedf015af4d521e640bc
 // web socket library for real time client to business orders;
 
+// walk through of app: to find any bugs
+// place and order should stay on the same page.
+// when we create a menu item or delete menu item should stay on same page
+// Continue to polish app with css
+// move login and sign up buttons and add business click here button to landing page
+// css mobile first, then tablet, then pc views // responsive design
+// Refactor actions and reducers into seperate groups
+// add remove button to currentOrder list
+// web socket library stuff
+// socket.io for real time client to business orders;
+// add socket.io for real time order feedback to client side
+
+// authentication bonus
+
+// version 1
+
+// version 2:
+// client profile
+// client authenticaion
+// business profile
+
 export const reducer = (state=initialState, action) => {
   switch(action.type){
 

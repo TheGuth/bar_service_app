@@ -35,17 +35,17 @@ export class ClientDash extends React.Component {
       console.log(this.props.userNameInput);
         return (
           <div className="client-dash-container">
-            <div className="menu">
+            <div className="client-page-menu-list">
               <ul>
                 {menuItems}
               </ul>
             </div>
-            <div className="order-list">
+            <div className="client-page-order-list">
               <ul>
                 {currentOrders}
               </ul>
             </div>
-            <div className="client-input">
+            <div className="client-page-form">
               <form onSubmit={() => this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, currentOrder, this.props.currentConnection))}>
                 <label>Name:</label>
                 <input type="text" value={this.props.userNameInput} onChange={(e) => this.props.dispatch(actions.proccessUserNameInput(e.target.value))}></input>
