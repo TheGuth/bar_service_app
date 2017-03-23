@@ -22,16 +22,9 @@ export class BusinessDash extends React.Component {
                 </li>
       });
 
-      // const drinkOrders = (orders).map(order, id) => {
-      //   return <li>
-      //     <h1>order.drinkName</h1>
-      //     <p>order.price</p>
-      //   </li>
-      // }
       let orderItems;
       if (this.props.orders) {
         orderItems = this.props.orders.map((order, id) => {
-          // addd onClick function to each list item
           return <li key={order.id}>
                     <h1>Client Name: {order.clientName}</h1>
                     <p>Table Number: {order.table}</p>
@@ -60,7 +53,8 @@ export class BusinessDash extends React.Component {
             </ul>
             </div>
             <div className="addDrink">
-              <form onSubmit={() => {
+              <form onSubmit={(e) => {
+                   e.preventDefault();
                    this.props.dispatch(actions.addDrinkToMenu(this.props.currentConnection, this.props.newDrinkName, this.props.newDrinkPrice, this.props.newDrinkIngredients));
                    }}>
                 <label>Drink Name:</label>

@@ -181,8 +181,6 @@ export const submitOrder = (userNameInput, userEmailInput, userTableInput, order
     orderTotal += order.price;
   })
   const data = {clientName: userNameInput, table: userTableInput, clientEmail: userEmailInput, order: orders, totalDrinks: orders.length, orderTotal: orderTotal }
-  console.log(data);
-  console.log(data.orderTotal)
   return fetch(`/order/${currentConnection}`, {
     method: 'POST',
     headers: {
@@ -195,7 +193,6 @@ export const submitOrder = (userNameInput, userEmailInput, userTableInput, order
     }
     return response.json();
   }).then(data => {
-    console.log(data);
     return dispatch(orderSuccess);
   }).catch(error => {
     return dispatch(orderFailure(error));

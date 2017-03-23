@@ -23,7 +23,6 @@ export class ClientDash extends React.Component {
       });
 
       const currentOrders = this.props.currentOrder.map((order, id) => {
-        console.log(order);
         return <li key={id}>
                 <h1>Name: {order.drinkName}</h1>
                 <p>Price: {order.price}</p>
@@ -46,7 +45,10 @@ export class ClientDash extends React.Component {
               </ul>
             </div>
             <div className="client-page-form">
-              <form onSubmit={() => this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, currentOrder, this.props.currentConnection))}>
+              <form onSubmit={(e) => {
+                  e.preventDefault();
+                  this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, currentOrder, this.props.currentConnection))
+                }}>
                 <label>Name:</label>
                 <input type="text" value={this.props.userNameInput} onChange={(e) => this.props.dispatch(actions.proccessUserNameInput(e.target.value))}></input>
                 <label>Table:</label>
