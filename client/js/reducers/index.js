@@ -1,5 +1,5 @@
 
-import * as actions from '../actions/actions';
+import * as actions from '../actions/order';
 import { SIGN_UP,
          SIGN_UP_ERROR,
          LOGIN,
@@ -8,8 +8,24 @@ import { SIGN_UP,
          PROCESS_USER_PASSWORD_INPUT,
          PROCESS_USER_NAME_INPUT,
          PROCESS_USER_ID_INPUT,
-         PROCESS_USER_TABLE_INPUT,
+         PROCESS_USER_TABLE_INPUT
         } from '../actions/signup-login';
+
+import { BUSINESS_INFO_SUCCESS,
+         BUSINESS_INFO_ERROR,
+         CONNECT_TO_BUSINESS,
+       } from '../actions/connect-to-business';
+
+import { LOAD_MENU,
+         LOAD_MENU_ERROR,
+         CREATE_DRINK,
+         CREATE_DRINK_ERROR,
+         DELETE_DRINK,
+         DELETE_DRINK_ERROR,
+         PROCESS_NEW_DRINK_NAME,
+         PROCESS_NEW_DRINK_PRICE,
+         PROCESS_NEW_DRINK_INGREDIENTS
+       } from '../actions/menu';
 
 // when inputs in state no longer need a value be set to '';
 const initialState = {
@@ -97,21 +113,21 @@ export const reducer = (state=initialState, action) => {
     // case actions.SIGNUP:
     //   return state;
 
-    case actions.BUSINESS_INFO_SUCCESS:
+    case BUSINESS_INFO_SUCCESS:
       return {...state, businessName: action.data.businessName};
 
-    case actions.BUSINESS_INFO_ERROR:
+    case BUSINESS_INFO_ERROR:
       console.error(action.error)
       return state;
 
-    case actions.CONNECT_TO_BUSINESS:
+    case CONNECT_TO_BUSINESS:
       return {...state, currentConnection: action.currentConnection};
 
-    case actions.LOAD_MENU:
+    case LOAD_MENU:
       console.log(action.data);
       return {...state, menu: action.data};
 
-    case actions.LOAD_MENU_ERROR:
+    case LOAD_MENU_ERROR:
       console.error(action.error);
       return state;
 
@@ -157,23 +173,23 @@ export const reducer = (state=initialState, action) => {
       console.error(action.error);
       return state;
 
-    case actions.DELETE_DRINK:
+    case DELETE_DRINK:
       return state;
 
-    case actions.DELETE_DRINK_ERROR:
+    case DELETE_DRINK_ERROR:
       console.error(action.error);
       return state;
 
-    case actions.PROCESS_NEW_DRINK_NAME:
+    case PROCESS_NEW_DRINK_NAME:
       return {...state, newDrinkName: action.newDrinkName};
 
-    case actions.PROCESS_NEW_DRINK_PRICE:
+    case PROCESS_NEW_DRINK_PRICE:
       return {...state, newDrinkPrice: action.newDrinkPrice};
 
-    case actions.PROCESS_NEW_DRINK_INGREDIENTS:
+    case PROCESS_NEW_DRINK_INGREDIENTS:
       return {...state, newDrinkIngredients: action.newDrinkIngredients};
 
-    case actions.CREATE_DRINK:
+    case CREATE_DRINK:
     return
 
     default:

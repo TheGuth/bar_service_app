@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import * as actions from '../../actions/actions';
 import {proccessUserIdInput} from '../../actions/signup-login';
 
 export class LandingPage extends React.Component {
@@ -22,7 +21,7 @@ export class LandingPage extends React.Component {
           </div>
           <div className="landing-page-login">
             <h1>Business join Here</h1>
-            <Link to="/login"><button>I'm A Business</button></Link>
+            <Link to="/login"><button>I am A Business</button></Link>
           </div>
         </div>
       )}

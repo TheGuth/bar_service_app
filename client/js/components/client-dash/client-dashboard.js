@@ -1,10 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as actions from '../../actions/actions';
+import {addOrder,
+        removeOrder,
+        submitOrder
+       } from '../../actions/order';
 import { proccessUserNameInput,
          proccessUserTableInput,
          proccessUserEmailInput
-       } from '../../actions/signup-login'
+       } from '../../actions/signup-login';
+
+import {fetchMenu} from '../../actions/menu'
 
 export class ClientDash extends React.Component {
     constructor(props) {
@@ -12,7 +17,7 @@ export class ClientDash extends React.Component {
     }
 
     componentWillMount() {
-      this.props.dispatch(actions.fetchMenu(this.props.location.params.id));
+      this.props.dispatch(fetchMenu(this.props.location.params.id));
     }
 
     render() {
@@ -23,7 +28,7 @@ export class ClientDash extends React.Component {
                   <h1>Name: {item.drinkName}</h1>
                   <h3>Price: {item.price}</h3>
                   <h3>Ingredients: {item.ingredients}</h3>
-                  <button onClick={() => this.props.dispatch(actions.addOrder(item.drinkName, item.price))}>Order</button>
+                  <button onClick={() => this.props.dispatch(addOrder(item.drinkName, item.price))}>Order</button>
                 </li>
       });
 
@@ -32,7 +37,7 @@ export class ClientDash extends React.Component {
         return <li key={id}>
                 <h1>Name: {order.drinkName}</h1>
                 <p>Price: {order.price}</p>
-                <button onClick={() => this.props.dispatch(actions.removeOrder(id))}>Remove Item</button>
+                <button onClick={() => this.props.dispatch(removeOrder(id))}>Remove Item</button>
                </li>
       })
 
@@ -61,7 +66,7 @@ export class ClientDash extends React.Component {
             <div className="client-page-form">
               <form onSubmit={(e) => {
                   e.preventDefault();
-                  this.props.dispatch(actions.submitOrder(userNameInput, userEmailInput, userTableInput, currentOrder, this.props.currentConnection))
+                  this.props.dispatch(submitOrder(userNameInput, userEmailInput, userTableInput, currentOrder, this.props.currentConnection))
                 }}>
                 <label>Name:</label>
                 <input type="text" value={this.props.userNameInput} onChange={(e) => this.props.dispatch(proccessUserNameInput(e.target.value))}></input>

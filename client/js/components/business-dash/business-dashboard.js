@@ -1,6 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as actions from '../../actions/actions';
+import { fetchOrders,
+         completeOrder
+       } from '../../actions/order';
+import { addDrinkToMenu,
+         processNewDrinkName,
+         processNewDrinkPrice,
+         processNewDrinkIngredients,
+         deleteDrinkFromMenu
+  } from '../../actions/menu';
 
 export class BusinessDash extends React.Component {
     constructor(props) {
@@ -8,7 +16,7 @@ export class BusinessDash extends React.Component {
     }
 
     componentWillMount() {
-      this.props.dispatch(actions.fetchOrders(this.props.currentConnection));
+      this.props.dispatch(fetchOrders(this.props.currentConnection));
     }
 
     render() {
@@ -18,7 +26,7 @@ export class BusinessDash extends React.Component {
                   <h1>{item.drinkName}</h1>
                   <h3>Price: {item.price}</h3>
                   <h3>Ingredients: {item.ingredients}</h3>
-                  <button onClick={() => this.props.dispatch(actions.deleteDrinkFromMenu(item.id, this.props.currentConnection))} >Delete Drink</button>
+                  <button onClick={() => this.props.dispatch(deleteDrinkFromMenu(item.id, this.props.currentConnection))} >Delete Drink</button>
                 </li>
       });
 
@@ -40,7 +48,7 @@ export class BusinessDash extends React.Component {
                     <ul>
                       {orderDrinks}
                     </ul>
-                    <button onClick={() => this.props.dispatch(actions.completeOrder(order.id, this.props.currentConnection))} >Ding Order Done</button>
+                    <button onClick={() => this.props.dispatch(completeOrder(order.id, this.props.currentConnection))} >Ding Order Done</button>
                   </li>
         });
       }
@@ -64,14 +72,14 @@ export class BusinessDash extends React.Component {
             <div className="addDrink">
               <form onSubmit={(e) => {
                    e.preventDefault();
-                   this.props.dispatch(actions.addDrinkToMenu(this.props.currentConnection, this.props.newDrinkName, this.props.newDrinkPrice, this.props.newDrinkIngredients));
+                   this.props.dispatch(addDrinkToMenu(this.props.currentConnection, this.props.newDrinkName, this.props.newDrinkPrice, this.props.newDrinkIngredients));
                    }}>
                 <label>Drink Name:</label>
-                <input type="text" placeholder="Drink Name" value={this.props.newDrinkName} onChange={(e) => this.props.dispatch(actions.processNewDrinkName(e.target.value))}/>
+                <input type="text" placeholder="Drink Name" value={this.props.newDrinkName} onChange={(e) => this.props.dispatch(processNewDrinkName(e.target.value))}/>
                 <label>Price:</label>
-                <input type="text" placeholder="Price" value={this.props.newDrinkPrice} onChange={(e) => this.props.dispatch(actions.processNewDrinkPrice(e.target.value))}/>
+                <input type="text" placeholder="Price" value={this.props.newDrinkPrice} onChange={(e) => this.props.dispatch(processNewDrinkPrice(e.target.value))}/>
                 <label>Ingredients</label>
-                <input type="text" placeholder="Ingredients" value={this.props.newDrinkIngredients} onChange={(e) => this.props.dispatch(actions.processNewDrinkIngredients(e.target.value))}/>
+                <input type="text" placeholder="Ingredients" value={this.props.newDrinkIngredients} onChange={(e) => this.props.dispatch(processNewDrinkIngredients(e.target.value))}/>
                 <button type="submit">Add Drink</button>
               </form>
             </div>
