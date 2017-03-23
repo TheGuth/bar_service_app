@@ -311,6 +311,8 @@ export const addDrinkToMenu = (currentConnection, newDrinkName, newDrinkPrice, n
       }
       return response.json();
     }).then(data => {
+      dispatch(fetchOrders(currentConnection));
+      dispatch(fetchMenu(currentConnection));
       return dispatch(createDrink(data))
     }).catch(error => {
       return dispatch(createDrinkError(error));

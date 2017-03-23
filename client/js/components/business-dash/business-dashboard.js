@@ -13,7 +13,7 @@ export class BusinessDash extends React.Component {
 
     render() {
 
-      this.props.dispatch(actions.fetchMenu(this.props.currentConnection));
+      //this.props.dispatch(actions.fetchMenu(this.props.currentConnection));
 
       const businessMenuItems = this.props.menu.map((item, id) => {
         return <li key={id}>
