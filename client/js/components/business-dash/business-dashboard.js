@@ -13,6 +13,8 @@ export class BusinessDash extends React.Component {
 
     render() {
 
+      this.props.dispatch(actions.fetchMenu(this.props.currentConnection));
+
       const businessMenuItems = this.props.menu.map((item, id) => {
         return <li key={id}>
                   <h1>{item.drinkName}</h1>
@@ -22,15 +24,24 @@ export class BusinessDash extends React.Component {
                 </li>
       });
 
+
       let orderItems;
       if (this.props.orders) {
         orderItems = this.props.orders.map((order, id) => {
+          const orderDrinks = order.order.map((drink, drinkid) => {
+            return <li key={drinkid}>
+              <p>{drink.drinkName} - ${drink.price}</p>
+            </li>
+          })
           return <li key={order.id}>
                     <h1>Client Name: {order.clientName}</h1>
                     <p>Table Number: {order.table}</p>
                     <p>Client Email: {order.clientEmail}</p>
                     <p>Total Order Price: {order.orderTotal}</p>
                     <p>Number of Drinks: {order.totalDrinks}</p>
+                    <ul>
+                      {orderDrinks}
+                    </ul>
                     <button onClick={() => this.props.dispatch(actions.completeOrder(order.id, this.props.currentConnection))} >Ding Order Done</button>
                   </li>
         });
@@ -39,8 +50,8 @@ export class BusinessDash extends React.Component {
         return (
           <div className="business-dash-container">
             <div className="profile">
-              <h1>Bar Name</h1>
-              <h3>Id</h3>
+              <h1>{this.props.businessName}</h1>
+              <h3>{this.props.currentConnection}</h3>
             </div>
             <div className="orders-queue">
              <ul>
@@ -77,7 +88,8 @@ const mapStateToProps = (state, props) => ({
   menu: state.menu,
   newDrinkName: state.newDrinkName,
   newDrinkPrice: state.newDrinkPrice,
-  newDrinkIngredients: state.newDrinkIngredients
+  newDrinkIngredients: state.newDrinkIngredients,
+  businessName: state.businessName
 })
 
 export default connect(mapStateToProps)(BusinessDash);

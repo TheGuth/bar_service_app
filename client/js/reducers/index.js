@@ -11,6 +11,7 @@ const initialState = {
   id: null,
   name: '',
   email: '',
+  businessName: '',
   menu: [],
   orderHistory: [],
   orders: [],
@@ -22,19 +23,23 @@ const initialState = {
 }
 // 58cffedf015af4d521e640bc
 
-// walk through of app: to find any bugs
-// place and order should stay on the same page.
-// when we create a menu item or delete menu item should stay on same page
-// move login and sign up buttons and add business click here button to landing page
-// add remove button to currentOrder list
+// constant reloading on business dashboard (needs to be fixed);
 
-// web socket library stuff
-// socket.io for real time client to business orders;
-// add socket.io for real time order feedback to client side
+// afternoon Goals
+// 1. CSS
+// 2. Refactor
+// 3. Squash bugs/find bugs
 
 // Continue to polish app with css
 // css mobile first, then tablet, then pc views // responsive design
 // Refactor actions and reducers into seperate groups
+
+///////////////////////////////////////////////
+// Go over this with mentor // or add hacked version
+
+// web socket library stuff
+// socket.io for real time client to business orders;
+// add socket.io for real time order feedback to client side
 
 // authentication bonus
 
@@ -46,6 +51,7 @@ const initialState = {
 // business profile
 
 export const reducer = (state=initialState, action) => {
+  console.log(action.type);
   switch(action.type){
 
     case actions.PROCESS_USER_EMAIL_INPUT:
@@ -72,13 +78,20 @@ export const reducer = (state=initialState, action) => {
 
     case actions.LOGIN:
       console.log(action.id);
-      return {...state, currentConnection: action.id};
+      return {...state, currentConnection: action.id, businessName: action.businessName};
 
     case actions.LOGIN_ERROR:
       console.error(action.error);
       return state;
 
     case actions.SIGNUP:
+      return state;
+
+    case actions.BUSINESS_INFO_SUCCESS:
+      return {...state, businessName: action.data.businessName};
+
+    case actions.BUSINESS_INFO_ERROR:
+      console.error(action.error)
       return state;
 
     case actions.CONNECT_TO_BUSINESS:
@@ -101,7 +114,6 @@ export const reducer = (state=initialState, action) => {
       return state;
 
     case actions.ADD_ORDER:
-      console.log(state.orders);
       const currentOrder = state.currentOrder.slice();
       currentOrder.push({drinkName: action.drinkName, price: action.price});
       return {...state, currentOrder: currentOrder};
@@ -110,7 +122,18 @@ export const reducer = (state=initialState, action) => {
       console.error(action.error);
       return state;
 
+    case actions.REMOVE_ORDER:
+      const currentOrderRemoval = state.currentOrder.slice();
+      currentOrderRemoval.splice(action.id, 1);
+      return {...state, currentOrder: currentOrderRemoval};
+
+    case actions.REMOVE_ORDER_ERROR:
+      console.error(action.error);
+      return state;
+
     case actions.ORDER_SUCCESS:
+      console.log('goodbye');
+      console.log(state.currentOrder);
       return {...state, currentOrder: []};
 
     case actions.ORDER_FAILURE:
