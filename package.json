@@ -63,6 +63,8 @@
   "author": "Joe Turner <joe@oampo.co.uk>",
   "license": "UNLICENSED",
   "devDependencies": {
+  },
+  "dependencies": {
     "babel-cli": "^6.11.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
@@ -76,9 +78,7 @@
     "mustache": "^2.2.1",
     "node-sass": "^3.8.0",
     "nodemon": "^1.10.0",
-    "webpack": "^1.13.1"
-  },
-  "dependencies": {
+    "webpack": "^1.13.1",
     "npm-run-all": "^3.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
