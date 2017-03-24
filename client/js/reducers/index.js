@@ -24,26 +24,27 @@ const initialState = {
 
 // 58cffedf015af4d521e640bc
 
-// Tomorrows Agenda
+// Today's Agenda
 // fix signup to push to dashboard
-// Validation
-// correct form types
-// set interval for fetching orders;
+// Simple Validation
+// correct form types (type="password", type="email")
+// set interval for fetching orders; (set to 10 seconds)
 // polish css even more (adding mobile version of business dashboard)
-// possibly add drink status to client side (false to true status marker in right corner)
-// set interval for fetching drink status;
-// refactoring code
+
+
+// max time to wait to do this 3:00
 // set up mlab dumby data.
 // push to heroku and make it live
 
-// if we have free time do some authentication;
+// make readme pretty
+
+
+// if we have free time
+
+// refactoring code
+// possibly add drink status to client side (false to true status marker in right corner) (state: drinkStatus: false)
+// set interval for fetching drink status;
 // google auth
-
-// client side
-
-// Business Side
-// let it breath; padding:
-// soften the hard black or change cards into little reciepts
 
 
 ///////////////////////////////////////////////

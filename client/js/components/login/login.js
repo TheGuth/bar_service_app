@@ -21,7 +21,7 @@ export class Login extends React.Component {
             <div className="login-page-form">
               <form onSubmit={() => {
                   this.props.dispatch(userLogin(this.props.userEmailInput, this.props.userPasswordInput)).then((response) => {
-                    if (response.type === "LOGIN_SUCCESS") {
+                    if (response.type === "LOGIN") {
                       this.props.history.push(`/business/dashboard/${this.props.currentConnection}`);
                     }
                   });
