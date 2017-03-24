@@ -15,8 +15,7 @@ export class Login extends React.Component {
         return (
           <div className="login-container">
             <div className="login-page-header">
-              <h1>App Name</h1>
-              <h3>enticing description</h3>
+              <h1>Drunk Fast</h1>
             </div>
             <div className="login-page-form">
               <form onSubmit={(e) => {

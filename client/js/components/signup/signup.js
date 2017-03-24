@@ -11,8 +11,8 @@ export class Signup extends React.Component {
         return (
           <div className="signup-container">
             <div className="signup-page-container">
-              <h1>App Name</h1>
-              <h3>enticing description</h3>
+              <h1>Drunk Fast</h1>
+              <h3>Sign Up</h3>
             </div>
             <div className="signup-page-form">
               <form onSubmit={(e) => {
