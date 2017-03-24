@@ -6,7 +6,7 @@
   "main:server": "server/index.js",
   "main:client": "client/js/index.js",
   "scripts": {
-    "start": "[ \"$NODE_ENV\" = \"production\" ] && npm run serve:server:production || npm run serve:server:dev",
+    "start": "[ \"$NODE_ENV\" = \"production\" ] && npm run build && npm run serve:server:production || npm run serve:server:dev",
     "dev": "run-p watch serve:server:dev",
     "test": "mocha --recursive",
     "repl": "babel-node",
@@ -14,7 +14,6 @@
     "clean": "rm -rf build",
     "serve": "npm start",
     "watch": "run-s watch:*",
-    "heroku-postbuild": "npm run build",
     "clean:server": "rm -rf build/server",
     "mkdir:server": "mkdir -p build/server",
     "build:server": "run-s build:server:production",
@@ -77,10 +76,10 @@
     "mustache": "^2.2.1",
     "node-sass": "^3.8.0",
     "nodemon": "^1.10.0",
-    "npm-run-all": "^3.0.0",
     "webpack": "^1.13.1"
   },
   "dependencies": {
+    "npm-run-all": "^3.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
     "express": "^4.14.0",
