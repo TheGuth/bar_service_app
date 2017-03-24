@@ -12,7 +12,10 @@ export class LandingPage extends React.Component {
       return (
         <div className="landing-page-container">
           <div className="landing-page-title">
-            <h1>Bar Service App</h1>
+            <h1>Drunk Fast</h1>
+          </div>
+          <div className="landing-page-description">
+            <p>Why fight the crowd, when you can order your drinks without missing a beat.</p>
           </div>
           <div className="landing-page-connect">
             <h2>Connect to a Business!</h2>
