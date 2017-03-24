@@ -1,6 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as actions from '../../actions/actions';
+import { fetchOrders,
+         completeOrder
+       } from '../../actions/order';
+import { addDrinkToMenu,
+         processNewDrinkName,
+         processNewDrinkPrice,
+         processNewDrinkIngredients,
+         deleteDrinkFromMenu
+  } from '../../actions/menu';
 
 export class BusinessDash extends React.Component {
     constructor(props) {
@@ -8,7 +16,7 @@ export class BusinessDash extends React.Component {
     }
 
     componentWillMount() {
-      this.props.dispatch(actions.fetchOrders(this.props.currentConnection));
+      this.props.dispatch(fetchOrders(this.props.currentConnection));
     }
 
 
@@ -20,7 +28,7 @@ export class BusinessDash extends React.Component {
                   <h1>{item.drinkName} - ${item.price}</h1>
                   <h3>Ingredients</h3>
                   <p>{item.ingredients}</p>
-                  <button onClick={() => this.props.dispatch(actions.deleteDrinkFromMenu(item.id, this.props.currentConnection))} >Delete</button>
+                  <button onClick={() => this.props.dispatch(deleteDrinkFromMenu(item.id, this.props.currentConnection))} >Delete</button>
                 </li>
       });
 
@@ -42,7 +50,7 @@ export class BusinessDash extends React.Component {
                     <ol>
                       {orderDrinks}
                     </ol>
-                    <button onClick={() => this.props.dispatch(actions.completeOrder(order.id, this.props.currentConnection))} >Ding Order Done</button>
+                    <button onClick={() => this.props.dispatch(completeOrder(order.id, this.props.currentConnection))} >Ding Order Done</button>
                   </li>
         });
       }
@@ -70,14 +78,14 @@ export class BusinessDash extends React.Component {
               <h1>Add Menu Item</h1>
               <form onSubmit={(e) => {
                    e.preventDefault();
-                   this.props.dispatch(actions.addDrinkToMenu(this.props.currentConnection, this.props.newDrinkName, this.props.newDrinkPrice, this.props.newDrinkIngredients));
+                   this.props.dispatch(addDrinkToMenu(this.props.currentConnection, this.props.newDrinkName, this.props.newDrinkPrice, this.props.newDrinkIngredients));
                    }}>
                 <label>Drink Name</label>
-                <input type="text" placeholder="Drink Name" value={this.props.newDrinkName} onChange={(e) => this.props.dispatch(actions.processNewDrinkName(e.target.value))}/>
+                <input type="text" placeholder="Drink Name" value={this.props.newDrinkName} onChange={(e) => this.props.dispatch(processNewDrinkName(e.target.value))}/>
                 <label>Price</label>
-                <input type="text" placeholder="Price" value={this.props.newDrinkPrice} onChange={(e) => this.props.dispatch(actions.processNewDrinkPrice(e.target.value))}/>
+                <input type="text" placeholder="Price" value={this.props.newDrinkPrice} onChange={(e) => this.props.dispatch(processNewDrinkPrice(e.target.value))}/>
                 <label>Ingredients</label>
-                <input type="text" placeholder="Ingredients" value={this.props.newDrinkIngredients} onChange={(e) => this.props.dispatch(actions.processNewDrinkIngredients(e.target.value))}/>
+                <input type="text" placeholder="Ingredients" value={this.props.newDrinkIngredients} onChange={(e) => this.props.dispatch(processNewDrinkIngredients(e.target.value))}/>
                 <button type="submit">Add Drink</button>
               </form>
             </div>
@@ -87,13 +95,13 @@ export class BusinessDash extends React.Component {
   }
 
 const mapStateToProps = (state, props) => ({
-  orders: state.orders,
-  currentConnection: state.currentConnection,
-  menu: state.menu,
-  newDrinkName: state.newDrinkName,
-  newDrinkPrice: state.newDrinkPrice,
-  newDrinkIngredients: state.newDrinkIngredients,
-  businessName: state.businessName
+  orders: state.orderReducer.orders,
+  currentConnection: state.signupLogingReducer.currentConnection,
+  menu: state.menuReducer.menu,
+  newDrinkName: state.menuReducer.newDrinkName,
+  newDrinkPrice: state.menuReducer.newDrinkPrice,
+  newDrinkIngredients: state.menuReducer.newDrinkIngredients,
+  businessName: state.signupLogingReducer.businessName
 })
 
 export default connect(mapStateToProps)(BusinessDash);

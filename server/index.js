@@ -164,7 +164,7 @@ app.delete('/dashboard/:id/drinks/:drinkid', (req, res) => {
     .findByIdAndRemove(req.params.drinkid)
     .exec()
     .then(() => {
-      res.status(204).json({message: 'success'});
+      res.status(200).json({message: 'success'});
     })
     .catch(err => {
       console.error(err);
@@ -237,7 +237,6 @@ app.post('/order/:id', (req, res) => {
 app.get('/order/:id', (req, res) => {
   Order
     .find({businessId: req.params.id})
-    .limit(10)
     .exec()
     .then(orders => {
       res.json(orders.map(order => order.apiRepr()));
@@ -253,7 +252,7 @@ app.delete('/order/:id', (req, res) => {
     .findByIdAndRemove(req.params.id)
     .exec()
     .then(() => {
-      res.status(204).json({message: 'success'});
+      res.status(200).json({message: 'success'});
     })
     .catch(err => {
       console.error(err);

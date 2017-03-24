@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {userSignUp, proccessUserEmailInput, proccessUserNameInput, proccessUserPasswordInput} from '../../actions/actions'
+import {userSignUp, proccessUserEmailInput, proccessUserNameInput, proccessUserPasswordInput} from '../../actions/signup-login'
 
 export class Signup extends React.Component {
     constructor(props) {
@@ -37,10 +37,10 @@ export class Signup extends React.Component {
   }
 
   const mapStateToProps = (state, props) => ({
-    userEmailInput: state.emailInput,
-    userPasswordInput: state.passwordInput,
-    userNameInput: state.nameInput,
-    currentConnection: state.currentConnection
+    userEmailInput: state.signupLogingReducer.emailInput,
+    userPasswordInput: state.signupLogingReducer.passwordInput,
+    userNameInput: state.signupLogingReducer.nameInput,
+    currentConnection: state.signupLogingReducer.currentConnection
   })
 
 
