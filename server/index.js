@@ -237,7 +237,6 @@ app.post('/order/:id', (req, res) => {
 app.get('/order/:id', (req, res) => {
   Order
     .find({businessId: req.params.id})
-    .limit(10)
     .exec()
     .then(orders => {
       res.json(orders.map(order => order.apiRepr()));

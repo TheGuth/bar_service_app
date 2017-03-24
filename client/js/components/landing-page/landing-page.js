@@ -28,7 +28,7 @@ export class LandingPage extends React.Component {
   }
 
   const mapStateToProps = (state, props) => ({
-    userIdInput: state.idInput
+    userIdInput: state.signupLogingReducer.idInput
   })
 
 export default connect(mapStateToProps)(LandingPage);

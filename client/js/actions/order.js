@@ -3,6 +3,7 @@ import {fetchMenu} from './menu';
 // Send and receive Order Drink Actions
 
 export const fetchOrders = (currentConnection) => dispatch => {
+    console.log(currentConnection);
     return fetch(`/order/${currentConnection}`)
     .then(response => {
       if (!response.ok) {

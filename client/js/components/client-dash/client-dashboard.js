@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addOrder,
-        removeOrder,
-        submitOrder
+import { addOrder,
+         removeOrder,
+         submitOrder
        } from '../../actions/order';
 import { proccessUserNameInput,
          proccessUserTableInput,
@@ -83,14 +83,14 @@ export class ClientDash extends React.Component {
   }
 
   const mapStateToProps = (state, props) => ({
-    menu: state.menu,
-    currentConnection: state.currentConnection,
-    orders: state.orders,
-    currentOrder: state.currentOrder,
-    userNameInput: state.nameInput,
-    userEmailInput: state.emailInput,
-    userTableInput: state.tableInput,
-    businessName: state.businessName
+    menu: state.menuReducer.menu,
+    currentConnection: state.connectToBusinessReducer.currentConnection,
+    orders: state.orderReducer.orders,
+    currentOrder: state.orderReducer.currentOrder,
+    userNameInput: state.signupLogingReducer.nameInput,
+    userEmailInput: state.signupLogingReducer.emailInput,
+    userTableInput: state.signupLogingReducer.tableInput,
+    businessName: state.signupLogingReducer.businessName
   })
 
 export default connect(mapStateToProps)(ClientDash);

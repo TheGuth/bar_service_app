@@ -10,14 +10,18 @@ import { addDrinkToMenu,
          deleteDrinkFromMenu
   } from '../../actions/menu';
 
+
 export class BusinessDash extends React.Component {
     constructor(props) {
         super(props);
+        console.log('--------->', props);
     }
+
 
     componentWillMount() {
       this.props.dispatch(fetchOrders(this.props.currentConnection));
     }
+
 
     render() {
 
@@ -89,13 +93,13 @@ export class BusinessDash extends React.Component {
   }
 
 const mapStateToProps = (state, props) => ({
-  orders: state.orders,
-  currentConnection: state.currentConnection,
-  menu: state.menu,
-  newDrinkName: state.newDrinkName,
-  newDrinkPrice: state.newDrinkPrice,
-  newDrinkIngredients: state.newDrinkIngredients,
-  businessName: state.businessName
+  orders: state.orderReducer.orders,
+  currentConnection: state.signupLogingReducer.currentConnection,
+  menu: state.menuReducer.menu,
+  newDrinkName: state.menuReducer.newDrinkName,
+  newDrinkPrice: state.menuReducer.newDrinkPrice,
+  newDrinkIngredients: state.menuReducer.newDrinkIngredients,
+  businessName: state.signupLogingReducer.businessName
 })
 
 export default connect(mapStateToProps)(BusinessDash);

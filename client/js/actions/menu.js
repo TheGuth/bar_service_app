@@ -1,7 +1,6 @@
-import {retrieveBusinessInfo,
-        connectToBusiness
+import { retrieveBusinessInfo,
+         connectToBusiness
        } from './connect-to-business';
-
 import {fetchOrders} from './order';
 
 // Grab Menu List from Business

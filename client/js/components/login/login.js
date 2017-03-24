@@ -43,9 +43,9 @@ export class Login extends React.Component {
   }
 
 const mapStateToProps = (state, props) => ({
-  userEmailInput: state.emailInput,
-  userPasswordInput: state.passwordInput,
-  currentConnection: state.currentConnection
+  userEmailInput: state.signupLogingReducer.emailInput,
+  userPasswordInput: state.signupLogingReducer.passwordInput,
+  currentConnection: state.signupLogingReducer.currentConnection
 })
 
 export default connect(mapStateToProps)(Login);
