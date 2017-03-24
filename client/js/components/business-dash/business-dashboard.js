@@ -11,6 +11,8 @@ export class BusinessDash extends React.Component {
       this.props.dispatch(actions.fetchOrders(this.props.currentConnection));
     }
 
+    
+
     render() {
 
       const businessMenuItems = this.props.menu.map((item, id) => {

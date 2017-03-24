@@ -24,29 +24,27 @@ const initialState = {
 
 // 58cffedf015af4d521e640bc
 
+// Tomorrows Agenda
+// fix signup to push to dashboard
+// Validation
+// correct form types
+// set interval for fetching orders;
+// polish css even more (adding mobile version of business dashboard)
+// possibly add drink status to client side (false to true status marker in right corner)
+// set interval for fetching drink status;
+// refactoring code
+// set up mlab dumby data.
+// push to heroku and make it live
+
+// if we have free time do some authentication;
+// google auth
+
 // client side
-// get rid of name
-// add $ instead of saying price,
-// mess with alignment for cards.
-// dark gray instead of a hard black;
-// add some padding to the form:
 
 // Business Side
 // let it breath; padding:
 // soften the hard black or change cards into little reciepts
 
-
-// constant reloading on business dashboard (needs to be fixed);
-// add redirects for when businessConnection is wrong
-
-// afternoon Goals
-// 1. CSS
-// 2. Refactor
-// 3. Squash bugs/find bugs
-
-// Continue to polish app with css
-// css mobile first, then tablet, then pc views // responsive design
-// Refactor actions and reducers into seperate groups
 
 ///////////////////////////////////////////////
 // Go over this with mentor // or add hacked version
@@ -59,10 +57,14 @@ const initialState = {
 
 // version 1
 
-// version 2:
+// version 2
+// change unique id to something simple to connect to business.
 // client profile
 // client authenticaion
 // business profile
+// settings page in profiles
+// favorites list in client dash
+//
 
 export const reducer = (state=initialState, action) => {
   console.log(action.type);
