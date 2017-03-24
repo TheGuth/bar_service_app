@@ -73,7 +73,7 @@ export class ClientDash extends React.Component {
                 <label>Table:</label>
                 <input type="text" value={this.props.userTableInput} onChange={(e) => this.props.dispatch(proccessUserTableInput(e.target.value))}></input>
                 <label>Email:</label>
-                <input type="text" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(proccessUserEmailInput(e.target.value))}></input>
+                <input type="email" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(proccessUserEmailInput(e.target.value))}></input>
                 <button type="submit">Submit</button>
               </form>
             </div>

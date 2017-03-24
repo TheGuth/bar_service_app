@@ -15,8 +15,10 @@ export class Signup extends React.Component {
               <h3>enticing description</h3>
             </div>
             <div className="signup-page-form">
-              <form onSubmit={() => {
+              <form onSubmit={(e) => {
+                  e.preventDefault();
                    this.props.dispatch(userSignUp(this.props.userEmailInput, this.props.userPasswordInput, this.props.userNameInput)).then((response) => {
+                     console.log(response.type);
                      if (response.type === "SIGN_UP") {
                        this.props.history.push(`/business/dashboard/${this.props.currentConnection}`);
                      }
@@ -25,9 +27,9 @@ export class Signup extends React.Component {
                 <label>Name:</label>
                 <input type="text" placeholder="Name" value={this.props.userNameInput} onChange={(e) => this.props.dispatch(proccessUserNameInput(e.target.value))}/>
                 <label>Email:</label>
-                <input type="text" placeholder="email" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(proccessUserEmailInput(e.target.value))}/>
+                <input type="email" placeholder="email" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(proccessUserEmailInput(e.target.value))}/>
                 <label>Password:</label>
-                <input type="text" placeholder="password" value={this.props.userPasswordInput} onChange={(e) => this.props.dispatch(proccessUserPasswordInput(e.target.value))}/>
+                <input type="password" placeholder="password" value={this.props.userPasswordInput} onChange={(e) => this.props.dispatch(proccessUserPasswordInput(e.target.value))}/>
                 <button type="submit">Submit</button>
               </form>
             </div>

@@ -17,6 +17,11 @@ export class BusinessDash extends React.Component {
 
     componentWillMount() {
       this.props.dispatch(fetchOrders(this.props.currentConnection));
+      
+      const myProps = this.props;
+      setInterval(() => {
+        myProps.dispatch(fetchOrders(myProps.currentConnection));
+      }, 5000);
     }
 
 
