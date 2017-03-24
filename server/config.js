@@ -11,3 +11,4 @@ exports.TEST_DATABASE_URL = (
 exports.PORT = process.env.PORT || 8080;
 
 console.log('hello');
+console.log('goodbye');
