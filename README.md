@@ -19,9 +19,9 @@ Why is this app useful? If your like me then you hate having to wait for the opp
 
 [Initial WireFrames](https://github.com/TheGuth/bar_service_app/tree/master/readme_images/wireframes)
 
-## current UX
+## Current UX
 
-[Initial WireFrames](https://github.com/TheGuth/bar_service_app/tree/master/readme_images/Live_version)
+[Live Version Images](https://github.com/TheGuth/bar_service_app/tree/master/readme_images/Live_version)
 
 ## Working Prototype
 
