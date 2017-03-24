@@ -11,7 +11,7 @@ export class BusinessDash extends React.Component {
       this.props.dispatch(actions.fetchOrders(this.props.currentConnection));
     }
 
-    
+
 
     render() {
 
