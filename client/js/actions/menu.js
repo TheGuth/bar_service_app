@@ -2,6 +2,7 @@ import { retrieveBusinessInfo,
          connectToBusiness
        } from './connect-to-business';
 import {fetchOrders} from './order';
+import 'isomorphic-fetch';
 
 // Grab Menu List from Business
 
@@ -39,7 +40,6 @@ export const loadMenuError = (error) => ({
 
 export const addDrinkToMenu = (currentConnection, newDrinkName, newDrinkPrice, newDrinkIngredients,) => dispatch => {
     const data = {drinkName: newDrinkName, price: newDrinkPrice, ingredients: newDrinkIngredients};
-    console.log(data);
     return fetch(`/dashboard/${currentConnection}/drinks`, {
       method: 'POST',
       headers: {
@@ -47,7 +47,6 @@ export const addDrinkToMenu = (currentConnection, newDrinkName, newDrinkPrice, n
       },
       body: JSON.stringify(data)
     }).then(response => {
-      console.log(response);
       if (!response.ok) {
         throw new Error(response.statusText);
       }

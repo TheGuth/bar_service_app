@@ -1,9 +1,8 @@
 import {fetchMenu} from './menu';
-
+import 'isomorphic-fetch';
 // Send and receive Order Drink Actions
 
 export const fetchOrders = (currentConnection) => dispatch => {
-    console.log(currentConnection);
     return fetch(`/order/${currentConnection}`)
     .then(response => {
       if (!response.ok) {
@@ -48,8 +47,6 @@ export const submitOrder = (userNameInput, userEmailInput, userTableInput, order
     }
     return response.json();
   }).then(data => {
-    console.log(data);
-    console.log('hello');
     return dispatch(orderSuccess());
   }).catch(error => {
     return dispatch(orderFailure(error));
@@ -110,14 +107,12 @@ export const completeOrder = (orderId, currentConnection) => dispatch => {
     return fetch(`/order/${orderId}`, {
       method: 'DELETE'
     }).then(response => {
-      console.log(response);
       if (!response.ok) {
         throw new Error(response.statusText);
       }
       dispatch(fetchOrders(currentConnection));
       return response.json();
     }).then(data => {
-      console.log(data);
       return dispatch(drinkIsReady(data))
     }).catch(error => {
       return dispatch(drinkIsReadyError(error));

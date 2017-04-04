@@ -1,8 +1,9 @@
+import 'isomorphic-fetch';
+
 // Sign Up Actions
 
 export const userSignUp = (emailInput, passwordInput, nameInput) => dispatch => {
     const data = {email: emailInput, password: passwordInput, businessName: nameInput};
-    console.log(data);
     return fetch('/users', {
       method: 'POST',
       headers: {
@@ -10,7 +11,6 @@ export const userSignUp = (emailInput, passwordInput, nameInput) => dispatch => 
       },
       body: JSON.stringify(data)
     }).then(response => {
-      console.log(response);
       if (!response.ok) {
         throw new Error(response.statusText);
       }
@@ -47,7 +47,6 @@ export const userLogin = (emailInput, passwordInput) => dispatch => {
       },
       body: JSON.stringify(data)
     }).then(response => {
-      console.log('hello');
       if (!response.ok) {
         throw new Error(response.statusText);
       }

@@ -1,3 +1,5 @@
+import 'isomorphic-fetch';
+
 // Client Side Actions
 export const retrieveBusinessInfo = (currentConnection) => dispatch => {
   return fetch(`/dashboard/${currentConnection}`)
