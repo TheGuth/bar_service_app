@@ -42,6 +42,13 @@ This app is built using React, Redux, Nodejs, express, mongodb as well as html a
 
 This is v1.0 of the app, but future enhancements are expected.
 
+### Immediate Developments
+
+### Add authentication for business side/ persistent logins
+### Add form validations
+### redirects when refreshes happen to home page, dashboards.
+### Web Socket in place of set interval function.
+
 ### Future developments:
 
 * Create Customer sign up and login page, so they can save favorite drinks as well as save unique ids to connect to their favorite business.
@@ -53,7 +60,18 @@ This is v1.0 of the app, but future enhancements are expected.
 * Add stripe library so that users and business can handle transactions without having to use cash.
 * Add better validation to forms
 * Add email service
+* Add text update (for drink status)
 * Add client ability to have drivers license as part of their Profile
 * add when an order is send it also sends the drivers license to help verify the order.
 * Add queue structure for orders
 * Add client estimated time till order is ready
+* Add Confirmation message for order Submit
+* Add Custom Drink order on client side? (description)
+* Add order denied on business side for custom drink orders. (sends message back)
+* Add for custom menu design where business can add a banner image, logo, etc...
+
+
+### bugs
+
+* add Drink on mobile sometimes doesn't add???
+*

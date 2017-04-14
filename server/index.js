@@ -3,7 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import passport from 'passport';
-import {BasicStrategy} from 'passport-http';
+// import {BasicStrategy} from 'passport-http';
 import {PORT, DATABASE_URL} from './config';
 import Path from 'path';
 
@@ -19,37 +19,14 @@ console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
 const app = express();
 app.use(bodyParser.json());
-
 app.use(express.static(process.env.CLIENT_PATH));
 
-// Authentication // (Basic,  *local), google
-
-const strategy = new BasicStrategy(function(username, password, callback) {
-  let user;
-  User
-    .findOne({username: username})
-    .exec()
-    .then(_user => {
-      user = _user;
-      if (!user) {
-        return callback(null, false, {message: 'Incorrect username'});
-      }
-      return user.validatePassword(password);
-    })
-    .then(isValid => {
-      if (!isValid) {
-        return callback(null, false, {message: 'Incorrect password'});
-      }
-      else {
-        return callback(null, user)
-      }
-    });
-});
-
-passport.use(strategy);
+// AUTHENTICATION
 
 
-//Business User Endpoints
+
+
+// Business User Endpoints
 
 app.get('/users', (req, res) => {
   BusinessUser
@@ -60,6 +37,8 @@ app.get('/users', (req, res) => {
       res.json({businessJson});
     })
 });
+
+// Sign Up
 
 app.post('/users', (req, res) => {
   const requiredFields = ['email', 'businessName', 'password'];
@@ -101,6 +80,8 @@ app.post('/users', (req, res) => {
     });
 });
 
+// BUSINESS LOGIN
+
 app.post('/login', (req, res) => {
   BusinessUser
   .findOne({email: req.body.email})
@@ -125,7 +106,8 @@ app.get('/dashboard/:id', (req, res) => {
       });
 });
 
-//Drink Endpoints
+
+// DRINK ENDPOINTS
 
 app.get('/dashboard/:id/drinks/:page', (req, res) => {
   MenuItem
@@ -134,7 +116,6 @@ app.get('/dashboard/:id/drinks/:page', (req, res) => {
   .exec()
   .then(drinks => {
      res.json(drinks.map(drink => drink.apiRepr()));
-
   })
   .catch(err => {
    console.error(err);
@@ -198,10 +179,6 @@ app.put('/dashboard/:id/drinks/:drinkid', (req, res) => {
 
 // Client ENDPOINTS
 
-// app.post('/login', (req, res) => {
-//
-// }
-
 app.get('/client/dashboard/:id', (req, res) => {
   BusinessUser
     .findById(req.params.id)
@@ -212,7 +189,8 @@ app.get('/client/dashboard/:id', (req, res) => {
         res.status(500).json({error: 'something went horribly awry'});
   });
 });
-//Orders Endpoints
+
+// Orders Endpoints
 
 app.post('/order/:id', (req, res) => {
   Order
