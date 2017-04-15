@@ -1,9 +1,12 @@
 import 'babel-polyfill';
 import express from 'express';
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
+import morgan from 'morgan';
 import bodyParser from 'body-parser';
+import Authentication from './controllers/authentication';
 import passport from 'passport';
-// import {BasicStrategy} from 'passport-http';
+import passportService from'./services/passport';
+
 import {PORT, DATABASE_URL} from './config';
 import Path from 'path';
 
@@ -13,72 +16,77 @@ import {MenuItem} from './models/menu-model';
 // import {ClientUser} from './models/client-user-model';
 import {BusinessUser} from './models/business-user-model';
 
+const requireAuth = passport.authenticate('jwt', { session: false });
+const requireSignin = passport.authenticate('local', { session: false });
+
 mongoose.Promise = global.Promise;
 
 console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
 const app = express();
 app.use(bodyParser.json());
+app.use(morgan('combined'));
 app.use(express.static(process.env.CLIENT_PATH));
 
 // AUTHENTICATION
 
-
+import users from './routes/users';
+users(app);
 
 
 // Business User Endpoints
-
-app.get('/users', (req, res) => {
-  BusinessUser
-    .find()
-    .exec()
-    .then(response => {
-      const businessJson = response.map(user => user.apiRepr());
-      res.json({businessJson});
-    })
-});
+//
+// app.get('/users', requireAuth, (req, res) => {
+//   BusinessUser
+//     .find()
+//     .exec()
+//     .then(response => {
+//       const businessJson = response.map(user => user.apiRepr());
+//       res.json({businessJson});
+//     })
+// });
 
 // Sign Up
 
-app.post('/users', (req, res) => {
-  const requiredFields = ['email', 'businessName', 'password'];
-
-  const missingIndex = requiredFields.findIndex(field => !req.body[field]);
-  if (missingIndex != -1) {
-    return res.status(400).json({
-      message: `Missing field: ${requiredFields[missingIndex]}`
-    });
-  }
-
-  let {email, businessName, password} = req.body;
-
-  password = password.trim();
-
-  return BusinessUser
-    .find({email})
-    .count()
-    .exec()
-    .then(count => {
-      if (count > 0) {
-        return res.status(422).json({message: 'username already taken'});
-      }
-      return BusinessUser.hashPassword(password)
-    })
-    .then(hash => {
-      return BusinessUser
-        .create({
-          email: email,
-          businessName: businessName,
-          password: hash
-        })
-    })
-    .then(user => {
-      return res.status(201).json(user.apiRepr());
-    })
-    .catch(err => {
-      res.status(500).json({message: 'Internal server error'})
-    });
-});
+// app.post('/users', (req, res) => {
+//   const requiredFields = ['email', 'businessName', 'password'];
+//
+//   const missingIndex = requiredFields.findIndex(field => !req.body[field]);
+//   if (missingIndex != -1) {
+//     return res.status(400).json({
+//       message: `Missing field: ${requiredFields[missingIndex]}`
+//     });
+//   }
+//
+//   let {email, businessName, password} = req.body;
+//
+//   password = password.trim();
+//
+//   return BusinessUser
+//     .find({email})
+//     .count()
+//     .exec()
+//     .then(count => {
+//       if (count > 0) {
+//         return res.status(422).json({message: 'username already taken'});
+//       }
+//       return BusinessUser.hashPassword(password)
+//     })
+//     .then(hash => {
+//       return BusinessUser
+//         .create({
+//           email: email,
+//           businessName: businessName,
+//           password: hash
+//         })
+//     })
+//     .then(user => {
+//       return res.status(201).json(user.apiRepr());
+//     })
+//     .catch(err => {
+//       res.status(500).json({message: 'Internal server error'})
+//     });
+// });
 
 // BUSINESS LOGIN
 

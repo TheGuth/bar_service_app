@@ -8,17 +8,11 @@ const BusinessUserSchema = mongoose.Schema({
       type: String,
       required: true
     },
-    // manager: {
-    //   type: String,
-    //   required: true
-    // },
     email: {
       type: String,
       unique: true,
       required: true
     },
-    // address: '',
-    // phone: '',
     password: {
       type: String,
       required: true
@@ -28,18 +22,34 @@ const BusinessUserSchema = mongoose.Schema({
 BusinessUserSchema.methods.apiRepr = function() {
   return {
     businessName: this.businessName,
-    // manager: this.manager,
     username: this.email,
     id: this._id
   }
 }
 
-BusinessUserSchema.methods.validatePassword = function(password) {
-  return bcrypt.compare(password, this.password);
-}
+// On Save Hook, encrypt password before saving a model, run this function.
+BusinessUserSchema.pre('save', function(next) {
+  const user = this;
+  console.log(user);
 
-BusinessUserSchema.statics.hashPassword = function(password) {
-  return bcrypt.hash(password, 10);
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) { return next(err); }
+
+    bcrypt.hash(user.password, salt, null, (err, hash) => {
+      if (err) { return next(err); }
+
+      user.password = hash;
+      next();
+    });
+  });
+});
+
+BusinessUserSchema.methods.comparePassword = (candidatePassword, callback) => {
+  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+    if (err) { return callback(err); }
+
+    callback(null, isMatch);
+  });
 }
 
 const BusinessUser = mongoose.model('BusinessUser', BusinessUserSchema);

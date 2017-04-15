@@ -9,3 +9,5 @@ exports.TEST_DATABASE_URL = (
 	'mongodb://localhost/test_bar_app');
 
 exports.PORT = process.env.PORT || 8080;
+
+exports.SECRET = { secret: 'DrunkFast for the win!' }
