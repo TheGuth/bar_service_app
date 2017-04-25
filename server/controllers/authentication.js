@@ -38,7 +38,6 @@ exports.signup = function(req, res, next) {
       businessName: businessName
     });
 
-    console.log(user);
     user.save(function(err) {
       if (err) { return next(err); }
 

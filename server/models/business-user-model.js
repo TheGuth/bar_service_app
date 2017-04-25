@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt-nodejs');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
@@ -30,12 +30,10 @@ BusinessUserSchema.methods.apiRepr = function() {
 // On Save Hook, encrypt password before saving a model, run this function.
 BusinessUserSchema.pre('save', function(next) {
   const user = this;
-  console.log(user);
 
-  bcrypt.genSalt(10, (err, salt) => {
+  bcrypt.genSalt(10, function(err, salt) {
     if (err) { return next(err); }
-
-    bcrypt.hash(user.password, salt, null, (err, hash) => {
+    bcrypt.hash(user.password, salt, null, function(err, hash) {
       if (err) { return next(err); }
 
       user.password = hash;
@@ -44,8 +42,8 @@ BusinessUserSchema.pre('save', function(next) {
   });
 });
 
-BusinessUserSchema.methods.comparePassword = (candidatePassword, callback) => {
-  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+BusinessUserSchema.methods.comparePassword = function(candidatePassword, callback) {
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
     if (err) { return callback(err); }
 
     callback(null, isMatch);

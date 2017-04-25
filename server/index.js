@@ -90,18 +90,18 @@ users(app);
 
 // BUSINESS LOGIN
 
-app.post('/login', (req, res) => {
-  BusinessUser
-  .findOne({email: req.body.email})
-  .exec()
-  .then(user => {
-    res.status(201).json(user.apiRepr());
-  })
-  .catch(err => {
-    console.error(err);
-    res.status(500).json({error: 'something went terribly wrong'});
-  });
-});
+// app.post('/login', (req, res) => {
+//   BusinessUser
+//   .findOne({email: req.body.email})
+//   .exec()
+//   .then(user => {
+//     res.status(201).json(user.apiRepr());
+//   })
+//   .catch(err => {
+//     console.error(err);
+//     res.status(500).json({error: 'something went terribly wrong'});
+//   });
+// });
 
 app.get('/dashboard/:id', (req, res) => {
   BusinessUser
