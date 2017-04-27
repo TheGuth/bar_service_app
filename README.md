@@ -69,6 +69,8 @@ This is v1.0 of the app, but future enhancements are expected.
 * Add Custom Drink order on client side? (description)
 * Add order denied on business side for custom drink orders. (sends message back)
 * Add for custom menu design where business can add a banner image, logo, etc...
+* Add Search feature on client side to look for current Business participating.
+* limit by 10 with next and prev buttons
 
 
 ### bugs

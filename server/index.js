@@ -3,9 +3,9 @@ import express from 'express';
 import mongoose from 'mongoose'
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-import Authentication from './controllers/authentication';
-import passport from 'passport';
-import passportService from'./services/passport';
+// import Authentication from './controllers/authentication';
+// import passport from 'passport';
+// import passportService from'./services/passport';
 
 import {PORT, DATABASE_URL} from './config';
 import Path from 'path';
@@ -16,8 +16,8 @@ import {MenuItem} from './models/menu-model';
 // import {ClientUser} from './models/client-user-model';
 import {BusinessUser} from './models/business-user-model';
 
-const requireAuth = passport.authenticate('jwt', { session: false });
-const requireSignin = passport.authenticate('local', { session: false });
+// const requireAuth = passport.authenticate('jwt', { session: false });
+// const requireSignin = passport.authenticate('local', { session: false });
 
 mongoose.Promise = global.Promise;
 
@@ -31,7 +31,9 @@ app.use(express.static(process.env.CLIENT_PATH));
 // AUTHENTICATION
 
 import users from './routes/users';
+import clientUsers from './routes/clientUsers';
 users(app);
+clientUsers(app);
 
 
 // Business User Endpoints

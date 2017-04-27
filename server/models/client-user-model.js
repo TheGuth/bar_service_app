@@ -1,13 +1,9 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt-nodejs');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
 const ClientUserSchema = mongoose.Schema({
-    name: {
-      type: String,
-      required: true
-    },
     email: {
       type: String,
       unique: true,
@@ -21,18 +17,32 @@ const ClientUserSchema = mongoose.Schema({
 
 ClientUserSchema.methods.apiRepr = function() {
   return {
-    name: this.name,
     username: this.email,
     id: this._id
   }
 }
 
-ClientUserSchema.methods.validatePassword = function(password) {
-  return bcrypt.compare(password, this.password);
-}
+// On Save Hook, encrypt password before saving a model, run this function.
+ClientUserSchema.pre('save', function(next) {
+  const user = this;
 
-ClientUserSchema.statics.hashPassword = function(password) {
-  return bcrypt.hash(password, 10);
+  bcrypt.genSalt(10, function(err, salt) {
+    if (err) { return next(err); }
+    bcrypt.hash(user.password, salt, null, function(err, hash) {
+      if (err) { return next(err); }
+
+      user.password = hash;
+      next();
+    });
+  });
+});
+
+ClientUserSchema.methods.comparePassword = function(candidatePassword, callback) {
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+    if (err) { return callback(err); }
+
+    callback(null, isMatch);
+  });
 }
 
 const ClientUser = mongoose.model('ClientUser', ClientUserSchema);
