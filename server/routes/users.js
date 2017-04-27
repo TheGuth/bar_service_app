@@ -2,16 +2,14 @@ import Authentication from '../controllers/authentication';
 import passport from 'passport';
 import passportService from'../services/passport';
 import { BusinessUser }  from '../models/business-user-model';
-import { ClientUser } from '../models/client-user-model';
 
-const requireAuth = passport.authenticate('jwt', { session: false });
-const requireSignin = passport.authenticate('local', { session: false });
-// BusinessUser Sign in and Log out.
+const requireAuthBusiness = passport.authenticate('jwt', { session: false });
+const requireSigninBusiness = passport.authenticate('localLoginBusiness', { session: false });
 
 // grabs all business users
 
 module.exports = function(app) {
-  app.get('/users', requireAuth, (req, res) => {
+  app.get('/users', requireAuthBusiness, (req, res) => {
     BusinessUser
       .find()
       .exec()
@@ -27,7 +25,8 @@ module.exports = function(app) {
   });
 
   // Login
-  app.post('/login',requireSignin, (req, res) => {
+  app.post('/login', requireSigninBusiness, (req, res) => {
+    console.log('hello');
     BusinessUser
     .findOne({email: req.body.email})
     .exec()

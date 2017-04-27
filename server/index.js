@@ -32,78 +32,12 @@ app.use(express.static(process.env.CLIENT_PATH));
 
 import users from './routes/users';
 import clientUsers from './routes/clientUsers';
+
 users(app);
 clientUsers(app);
 
 
-// Business User Endpoints
-//
-// app.get('/users', requireAuth, (req, res) => {
-//   BusinessUser
-//     .find()
-//     .exec()
-//     .then(response => {
-//       const businessJson = response.map(user => user.apiRepr());
-//       res.json({businessJson});
-//     })
-// });
 
-// Sign Up
-
-// app.post('/users', (req, res) => {
-//   const requiredFields = ['email', 'businessName', 'password'];
-//
-//   const missingIndex = requiredFields.findIndex(field => !req.body[field]);
-//   if (missingIndex != -1) {
-//     return res.status(400).json({
-//       message: `Missing field: ${requiredFields[missingIndex]}`
-//     });
-//   }
-//
-//   let {email, businessName, password} = req.body;
-//
-//   password = password.trim();
-//
-//   return BusinessUser
-//     .find({email})
-//     .count()
-//     .exec()
-//     .then(count => {
-//       if (count > 0) {
-//         return res.status(422).json({message: 'username already taken'});
-//       }
-//       return BusinessUser.hashPassword(password)
-//     })
-//     .then(hash => {
-//       return BusinessUser
-//         .create({
-//           email: email,
-//           businessName: businessName,
-//           password: hash
-//         })
-//     })
-//     .then(user => {
-//       return res.status(201).json(user.apiRepr());
-//     })
-//     .catch(err => {
-//       res.status(500).json({message: 'Internal server error'})
-//     });
-// });
-
-// BUSINESS LOGIN
-
-// app.post('/login', (req, res) => {
-//   BusinessUser
-//   .findOne({email: req.body.email})
-//   .exec()
-//   .then(user => {
-//     res.status(201).json(user.apiRepr());
-//   })
-//   .catch(err => {
-//     console.error(err);
-//     res.status(500).json({error: 'something went terribly wrong'});
-//   });
-// });
 
 app.get('/dashboard/:id', (req, res) => {
   BusinessUser
