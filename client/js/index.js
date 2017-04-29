@@ -6,8 +6,8 @@ import store from './store';
 import {HashRouter as Router, Route, Link } from 'react-router-dom';
 
 // ROUTES
-import Login from './components/login/login';
-import Signup from './components/signup/signup';
+import Login from './components/login/login-business';
+import Signup from './components/signup/signup-business';
 import ClientDash from './components/client-dash/client-dashboard';
 import BusinessDash from './components/business-dash/business-dashboard';
 import LandingPage from './components/landing-page/landing-page';
@@ -19,8 +19,8 @@ const routes = (
   <Router>
     <div>
       <Route exact path="/" component={LandingPage} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/signup" component={Signup} />
+      <Route exact path="/login/business" component={Login} />
+      <Route exact path="/signup/business" component={Signup} />
       <Route exact path="/client/dashboard" component={ClientDash} />
       <Route exact path="/business/dashboard/:id" component={RequireAuth(BusinessDash)} />
     </div>

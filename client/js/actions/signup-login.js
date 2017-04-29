@@ -3,6 +3,7 @@ import 'isomorphic-fetch';
 // Sign Up Actions
 
 export const userSignUp = (emailInput, passwordInput, nameInput) => dispatch => {
+    console.log('hello');
     const data = {email: emailInput, password: passwordInput, businessName: nameInput};
     return fetch('/users', {
       method: 'POST',
@@ -16,8 +17,11 @@ export const userSignUp = (emailInput, passwordInput, nameInput) => dispatch => 
       }
       return response.json();
     }).then(data => {
+      console.log(data);
+      console.log(data.token);
+      console.log(data.user);
       localStorage.setItem('token', data.token);
-      return dispatch(signup(data))
+      return dispatch(signup(data.user))
     }).catch(error => {
       return dispatch(signupError(error));
     });
@@ -26,8 +30,8 @@ export const userSignUp = (emailInput, passwordInput, nameInput) => dispatch => 
 export const SIGN_UP = 'SIGN_UP';
 export const signup = (data) => ({
     type: SIGN_UP,
-    email: data.username,
-    id: data.id,
+    email: data.email,
+    id: data._id,
     businessName: data.businessName
 });
 

@@ -22,7 +22,7 @@ module.exports = function(app) {
 
   // Signup
   app.post('/users', Authentication.signup, (req, res) => {
-    return res.status(201).json(user.apiRepr());
+    return res.status(201).json(data);
   });
 
   // Login

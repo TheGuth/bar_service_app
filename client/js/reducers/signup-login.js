@@ -40,6 +40,7 @@ export const signupLogingReducer = (state=initialState, action) => {
       return {...state, tableInput: action.tableInput};
 
     case SIGN_UP:
+      console.log(action);
       return {...state, currentConnection: action.id, authenticated: true};
 
     case SIGN_UP_ERROR:

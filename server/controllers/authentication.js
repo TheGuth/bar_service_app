@@ -18,11 +18,10 @@ exports.signup = function(req, res, next) {
   const email = req.body.email;
   const password = req.body.password;
   const businessName = req.body.businessName;
-
   if (!email || !password || !businessName) {
     return res.status(422).send({ error: 'You must provide email, password, and Business Name'});
   }
-
+  console.log('server');
   // See if a user with the given email exists
   BusinessUser.findOne({ email: email }, function(err, existingUser) {
     if (err) { return next(err); }
@@ -43,7 +42,7 @@ exports.signup = function(req, res, next) {
       if (err) { return next(err); }
 
       // Repond to request indicating the user was created
-      res.json({ token: tokenForUser(user) });
+      res.json({ token: tokenForUser(user), user: user });
     });
   });
 }

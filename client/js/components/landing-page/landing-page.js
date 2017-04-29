@@ -24,7 +24,7 @@ export class LandingPage extends React.Component {
           </div>
           <div className="landing-page-login">
             <h1>Business join Here</h1>
-            <Link to="/login"><button>I am A Business</button></Link>
+            <Link to="/login/business"><button>I am A Business</button></Link>
           </div>
         </div>
       )}
