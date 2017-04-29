@@ -1,14 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {proccessUserIdInput} from '../../actions/signup-login';
 
-export class ClientLandingPage extends React.Component {
+export class LoginClient extends React.Component {
     constructor(props) {
         super(props);
 
-        state = {
-          name: '',
+        this.state = {
           email: '',
           password: '',
         }
@@ -21,15 +19,7 @@ export class ClientLandingPage extends React.Component {
             <h1>Drunk Fast</h1>
           </div>
           <div className="login-page-form">
-            <form onSubmit={(e) => {
-                e.preventDefault();
-                this.props.dispatch(userLogin(this.props.userEmailInput, this.props.userPasswordInput)).then((response) => {
-                  if (response.type === "LOGIN") {
-                    // window.location(`/business/dashboard/${this.props.currentConnection}`);
-                    this.props.history.push(`/business/dashboard/${this.props.currentConnection}`);
-                  }
-                });
-              }}>
+            <form>
               <label>Email</label>
               <input type="email" placeholder="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />
               <label>Password</label>
@@ -52,4 +42,4 @@ export class ClientLandingPage extends React.Component {
     userIdInput: state.signupLogingReducer.idInput
   })
 
-export default connect(mapStateToProps)(LandingPage);
+export default connect(mapStateToProps)(LoginClient);

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {userLogin, proccessUserEmailInput, proccessUserPasswordInput} from '../../actions/signup-login';
 import {Link} from 'react-router-dom';
 
-export class Login extends React.Component {
+export class LoginBusiness extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -51,4 +51,4 @@ const mapStateToProps = (state, props) => ({
   currentConnection: state.signupLogingReducer.currentConnection
 })
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps)(LoginBusiness);

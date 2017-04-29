@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {userSignUp, proccessUserEmailInput, proccessUserNameInput, proccessUserPasswordInput} from '../../actions/signup-login'
 
-export class Signup extends React.Component {
+export class SignupBusiness extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -45,4 +45,4 @@ export class Signup extends React.Component {
   })
 
 
-export default connect(mapStateToProps)(Signup);
+export default connect(mapStateToProps)(SignupBusiness);

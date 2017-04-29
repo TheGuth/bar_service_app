@@ -23,6 +23,10 @@ export class LandingPage extends React.Component {
             <Link to={{pathname: '/client/dashboard', params: {id: this.props.userIdInput}} }><button className="btn btn-primary btn-lg btn-block">Connect</button></Link>
           </div>
           <div className="landing-page-login">
+            <h1>Connect to a Buiness Here</h1>
+            <Link to="/login/client"><button>Users Join Here</button></Link>
+          </div>
+          <div className="landing-page-login">
             <h1>Business join Here</h1>
             <Link to="/login/business"><button>I am A Business</button></Link>
           </div>
