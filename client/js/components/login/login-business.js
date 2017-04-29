@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {userLogin, proccessUserEmailInput, proccessUserPasswordInput} from '../../actions/signup-login';
+import {BusinessUserLogin, proccessUserEmailInput, proccessUserPasswordInput} from '../../actions/signup-login';
 import {Link} from 'react-router-dom';
 
 export class LoginBusiness extends React.Component {
@@ -20,7 +20,7 @@ export class LoginBusiness extends React.Component {
             <div className="login-page-form">
               <form onSubmit={(e) => {
                   e.preventDefault();
-                  this.props.dispatch(userLogin(this.props.userEmailInput, this.props.userPasswordInput)).then((response) => {
+                  this.props.dispatch(BusinessUserLogin(this.props.userEmailInput, this.props.userPasswordInput)).then((response) => {
                     if (response.type === "LOGIN") {
                       // window.location(`/business/dashboard/${this.props.currentConnection}`);
                       this.props.history.push(`/business/dashboard/${this.props.currentConnection}`);

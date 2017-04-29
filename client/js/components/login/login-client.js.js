@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import { ClientUserLogin } from '../../actions/signup-login';
 
 export class LoginClient extends React.Component {
     constructor(props) {
@@ -19,7 +20,15 @@ export class LoginClient extends React.Component {
             <h1>Drunk Fast</h1>
           </div>
           <div className="login-page-form">
-            <form>
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                this.props.dispatch(ClientUserLogin(this.state.email, this.state.password)).then((response) => {
+                  if (response.type === "CLIENT_LOGIN") {
+                    // window.location(`/business/dashboard/${this.props.currentConnection}`);
+                    this.props.history.push(`/client/landingPage`);
+                  }
+                });
+              }}>
               <label>Email</label>
               <input type="email" placeholder="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />
               <label>Password</label>

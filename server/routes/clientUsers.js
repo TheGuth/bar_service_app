@@ -3,8 +3,8 @@ import passport from 'passport';
 import passportService from'../services/clientPassport';
 import { ClientUser } from '../models/client-user-model';
 
-const requireAuth = passport.authenticate('jwt', { session: false });
-const requireSignin = passport.authenticate('local', { session: false });
+const requireAuth = passport.authenticate('jwtClientLogin', { session: false });
+const requireSignin = passport.authenticate('localClientLogin', { session: false });
 
 // Client Sign in and Log out ///////////////////
 

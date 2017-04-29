@@ -17,6 +17,7 @@ import {MenuItem} from './models/menu-model';
 import {BusinessUser} from './models/business-user-model';
 
 const requireAuth = passport.authenticate('jwtLoginBusiness', { session: false });
+const requireAuthClient = passport.authenticate('jwtClientLogin', { session: false });
 const requireSignin = passport.authenticate('localLoginBusiness', { session: false });
 
 mongoose.Promise = global.Promise;
@@ -36,14 +37,13 @@ import clientUsers from './routes/clientUsers';
 users(app);
 clientUsers(app);
 
-
-
-
-app.get('/dashboard/:id', requireAuth, (req, res) => {
+app.get('/dashboard/:id', (req, res) => {
   BusinessUser
     .findById(req.params.id)
       .exec()
-      .then(post => res.json(post.apiRepr()))
+      .then(post => {
+        res.json(post.apiRepr())
+      })
       .catch(err => {
         console.error(err);
         res.status(500).json({error: 'something went horribly awry'});
@@ -53,7 +53,7 @@ app.get('/dashboard/:id', requireAuth, (req, res) => {
 
 // DRINK ENDPOINTS
 
-app.get('/dashboard/:id/drinks/:page', requireAuth, (req, res) => {
+app.get('/dashboard/:id/drinks/:page', (req, res) => {
   MenuItem
   .find({createdById: req.params.id})
   .limit(10)
@@ -118,9 +118,6 @@ app.put('/dashboard/:id/drinks/:drinkid', requireAuth, (req, res) => {
       .catch(err => res.status(500).json({message: 'Something went wrong'}));
   });
 
-
-
-
 // Client ENDPOINTS
 
 app.get('/client/dashboard/:id', requireAuth, (req, res) => {
@@ -137,6 +134,7 @@ app.get('/client/dashboard/:id', requireAuth, (req, res) => {
 // Orders Endpoints
 
 app.post('/order/:id', requireAuth, (req, res) => {
+  console.log('hello');
   Order
     .create({
       businessId: req.params.id,
@@ -156,10 +154,12 @@ app.post('/order/:id', requireAuth, (req, res) => {
 
 
 app.get('/order/:id', requireAuth, (req, res) => {
+  console.log('hello');
   Order
     .find({businessId: req.params.id})
     .exec()
     .then(orders => {
+      console.log(orders);
       res.json(orders.map(order => order.apiRepr()));
     })
     .catch(err => {

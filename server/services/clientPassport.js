@@ -27,16 +27,18 @@ const jwtOptions = {
 
 
 const jwtClientLogin = new JwtStrategy(jwtOptions, function(payload, done) {
-  ClientUser.findById(payload.sub, function(err, user) {
-    if (err) { return done(err, false); }
+    ClientUser.findById(payload.sub, function(err, user) {
+      console.log(user);
+      if (err) { return done(err, false); }
 
-    if (user) {
-      done(null, user);
-    } else {
-      done(null, false);
-    }
-  });
+      if (user) {
+        console.log('2', user);
+        done(null, user);
+      } else {
+        done(null, false);
+      }
+  })
 });
 
-passport.use(jwtClientLogin);
-passport.use(localClientLogin);
+passport.use('jwtClientLogin', jwtClientLogin);
+passport.use('localClientLogin', localClientLogin);

@@ -40,7 +40,7 @@ exports.clientSignup = function(req, res, next) {
       if (err) { return next(err); }
 
       // Repond to request indicating the user was created
-      res.json({ token: tokenForUser(user) });
+      res.json({ token: tokenForUser(user), user: user });
     });
   });
 }

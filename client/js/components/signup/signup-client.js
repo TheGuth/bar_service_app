@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {ClientUserSignUp} from '../../actions/signup-login'
 
 export class SignupClient extends React.Component {
     constructor(props) {
@@ -20,7 +21,14 @@ export class SignupClient extends React.Component {
               <h3>Sign Up</h3>
             </div>
             <div className="signup-page-form">
-              <form>
+              <form onSubmit={(e) => {
+                  e.preventDefault();
+                   this.props.dispatch(ClientUserSignUp(this.state.email, this.state.password)).then((response) => {
+                     if (response.type === "SIGN_UP") {
+                       this.props.history.push(`/client/landingPage`);
+                     }
+                   })
+                 }}>
                 <label>Name:</label>
                 <input type="text" placeholder="Name" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})}/>
                 <label>Email:</label>

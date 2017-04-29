@@ -1,6 +1,8 @@
 import { SIGN_UP,
+        CLIENT_SIGN_UP,
         SIGN_UP_ERROR,
         LOGIN,
+        CLIENT_LOGIN,
         LOGIN_ERROR,
         PROCESS_USER_EMAIL_INPUT,
         PROCESS_USER_PASSWORD_INPUT,
@@ -43,12 +45,19 @@ export const signupLogingReducer = (state=initialState, action) => {
       console.log(action);
       return {...state, currentConnection: action.id, authenticated: true};
 
+    case CLIENT_SIGN_UP:
+      console.log(action);
+      return { ...state, authenticated: true };
+
     case SIGN_UP_ERROR:
       console.error(action.error);
       return state;
 
     case LOGIN:
       return {...state, authenticated: true, currentConnection: action.id, businessName: action.businessName};
+
+    case CLIENT_LOGIN:
+      return {...state, authenticated: true, }
 
     case LOGIN_ERROR:
       console.error(action.error);
