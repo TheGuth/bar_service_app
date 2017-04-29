@@ -18,6 +18,7 @@ const initialState = {
   id: null,
   currentConnection: '',
   businessName: '',
+  authenticated: false,
 }
 
 
@@ -39,14 +40,14 @@ export const signupLogingReducer = (state=initialState, action) => {
       return {...state, tableInput: action.tableInput};
 
     case SIGN_UP:
-      return {...state, currentConnection: action.id };
+      return {...state, currentConnection: action.id, authenticated: true};
 
     case SIGN_UP_ERROR:
       console.error(action.error);
       return state;
 
     case LOGIN:
-      return {...state, currentConnection: action.id, businessName: action.businessName};
+      return {...state, authenticated: true, currentConnection: action.id, businessName: action.businessName};
 
     case LOGIN_ERROR:
       console.error(action.error);

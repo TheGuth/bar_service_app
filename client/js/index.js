@@ -11,6 +11,7 @@ import Signup from './components/signup/signup';
 import ClientDash from './components/client-dash/client-dashboard';
 import BusinessDash from './components/business-dash/business-dashboard';
 import LandingPage from './components/landing-page/landing-page';
+import RequireAuth from './components/auth/require_auth';
 
 console.log(`Client running in ${process.env.NODE_ENV} mode`);
 
@@ -21,7 +22,7 @@ const routes = (
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/client/dashboard" component={ClientDash} />
-      <Route exact path="/business/dashboard/:id" component={BusinessDash} />
+      <Route exact path="/business/dashboard/:id" component={RequireAuth(BusinessDash)} />
     </div>
   </Router>
 );
