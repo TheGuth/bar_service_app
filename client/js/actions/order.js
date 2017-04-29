@@ -3,7 +3,11 @@ import 'isomorphic-fetch';
 // Send and receive Order Drink Actions
 
 export const fetchOrders = (currentConnection) => dispatch => {
-    return fetch(`/order/${currentConnection}`)
+    return fetch(`/order/${currentConnection}`, {
+      headers: {
+        'authorization': localStorage.getItem('token'),
+      }
+    })
     .then(response => {
       if (!response.ok) {
         throw new Error(response.statusText);
@@ -38,7 +42,8 @@ export const submitOrder = (userNameInput, userEmailInput, userTableInput, order
   return fetch(`/order/${currentConnection}`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'authorization': localStorage.getItem('token')
     },
     body: JSON.stringify(data)
   }).then(response => {
@@ -105,7 +110,10 @@ export const nextOrderPage = () => ({
 
 export const completeOrder = (orderId, currentConnection) => dispatch => {
     return fetch(`/order/${orderId}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'authorization': localStorage.getItem('token'),
+      }
     }).then(response => {
       if (!response.ok) {
         throw new Error(response.statusText);

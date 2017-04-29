@@ -47,10 +47,8 @@ const initialState = {
 
 
 export const menuReducer = (state=initialState, action) => {
-  console.log(action.type);
   switch(action.type){
     case LOAD_MENU:
-      console.log(action.data);
       return {...state, menu: action.data};
 
     case LOAD_MENU_ERROR:

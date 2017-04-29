@@ -23,7 +23,7 @@ app.post('/client/users', Authentication.clientSignup, (req, res) => {
   return res.status(201).json(user.apiRepr());
 });
 
-app.post('/client/login', requireSignin, (req, res) => {
+app.post('/client/login', requireSignin, Authentication.signin, (req, res) => {
     ClientUser
     .findOne({email: req.body.email})
     .exec()

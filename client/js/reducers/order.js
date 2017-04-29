@@ -16,11 +16,9 @@ const initialState = {
 }
 
 export const orderReducer = (state=initialState, action) => {
-  console.log(action.type);
   switch(action.type){
 
     case GRAB_ORDERS:
-      console.log(action.data);
       return {...state, orders: action.data};
 
     case GRAB_ORDERS_ERROR:
@@ -46,7 +44,6 @@ export const orderReducer = (state=initialState, action) => {
       return state;
 
     case ORDER_SUCCESS:
-      console.log(state.currentOrder);
       return {...state, currentOrder: []};
 
     case ORDER_FAILURE:

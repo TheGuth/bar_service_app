@@ -16,6 +16,7 @@ export const userSignUp = (emailInput, passwordInput, nameInput) => dispatch => 
       }
       return response.json();
     }).then(data => {
+      localStorage.setItem('token', data.token);
       return dispatch(signup(data))
     }).catch(error => {
       return dispatch(signupError(error));
@@ -52,8 +53,7 @@ export const userLogin = (emailInput, passwordInput) => dispatch => {
       }
       return response.json();
     }).then(data => {
-      console.log(data);
-      return dispatch(login(data));
+      return dispatch(login(data.user));
     }).catch(error => {
       return dispatch(loginError(error));
     });

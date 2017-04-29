@@ -22,7 +22,6 @@ const initialState = {
 
 
 export const signupLogingReducer = (state=initialState, action) => {
-  console.log(action.type);
   switch(action.type){
     case PROCESS_USER_EMAIL_INPUT:
       return {...state, emailInput: action.emailInput};
@@ -47,7 +46,6 @@ export const signupLogingReducer = (state=initialState, action) => {
       return state;
 
     case LOGIN:
-      console.log(action.id);
       return {...state, currentConnection: action.id, businessName: action.businessName};
 
     case LOGIN_ERROR:

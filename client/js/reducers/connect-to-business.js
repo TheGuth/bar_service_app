@@ -9,7 +9,6 @@ const initialState = {
 }
 
 export const connectToBusinessReducer = (state=initialState, action) => {
-  console.log(action.type);
     switch(action.type){
       case BUSINESS_INFO_SUCCESS:
         return {...state, businessName: action.data.businessName};

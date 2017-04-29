@@ -2,7 +2,11 @@ import 'isomorphic-fetch';
 
 // Client Side Actions
 export const retrieveBusinessInfo = (currentConnection) => dispatch => {
-  return fetch(`/dashboard/${currentConnection}`)
+  return fetch(`/dashboard/${currentConnection}`, {
+    headers: {
+      'authorization': localStorage.getItem('token'),
+    }
+  })
   .then(response => {
     if (!response.ok) {
       throw new Error(response.statusText);

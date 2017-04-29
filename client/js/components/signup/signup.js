@@ -18,7 +18,6 @@ export class Signup extends React.Component {
               <form onSubmit={(e) => {
                   e.preventDefault();
                    this.props.dispatch(userSignUp(this.props.userEmailInput, this.props.userPasswordInput, this.props.userNameInput)).then((response) => {
-                     console.log(response.type);
                      if (response.type === "SIGN_UP") {
                        this.props.history.push(`/business/dashboard/${this.props.currentConnection}`);
                      }

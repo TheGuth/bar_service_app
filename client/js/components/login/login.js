@@ -22,8 +22,6 @@ export class Login extends React.Component {
                   e.preventDefault();
                   this.props.dispatch(userLogin(this.props.userEmailInput, this.props.userPasswordInput)).then((response) => {
                     if (response.type === "LOGIN") {
-                      console.log(window);
-                      console.log(location);
                       // window.location(`/business/dashboard/${this.props.currentConnection}`);
                       this.props.history.push(`/business/dashboard/${this.props.currentConnection}`);
                     }

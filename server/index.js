@@ -3,9 +3,9 @@ import express from 'express';
 import mongoose from 'mongoose'
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-// import Authentication from './controllers/authentication';
-// import passport from 'passport';
-// import passportService from'./services/passport';
+import Authentication from './controllers/authentication';
+import passport from 'passport';
+import passportService from'./services/passport';
 
 import {PORT, DATABASE_URL} from './config';
 import Path from 'path';
@@ -16,8 +16,8 @@ import {MenuItem} from './models/menu-model';
 // import {ClientUser} from './models/client-user-model';
 import {BusinessUser} from './models/business-user-model';
 
-// const requireAuth = passport.authenticate('jwt', { session: false });
-// const requireSignin = passport.authenticate('local', { session: false });
+const requireAuth = passport.authenticate('jwtLoginBusiness', { session: false });
+const requireSignin = passport.authenticate('localLoginBusiness', { session: false });
 
 mongoose.Promise = global.Promise;
 
@@ -39,7 +39,7 @@ clientUsers(app);
 
 
 
-app.get('/dashboard/:id', (req, res) => {
+app.get('/dashboard/:id', requireAuth, (req, res) => {
   BusinessUser
     .findById(req.params.id)
       .exec()
@@ -53,7 +53,7 @@ app.get('/dashboard/:id', (req, res) => {
 
 // DRINK ENDPOINTS
 
-app.get('/dashboard/:id/drinks/:page', (req, res) => {
+app.get('/dashboard/:id/drinks/:page', requireAuth, (req, res) => {
   MenuItem
   .find({createdById: req.params.id})
   .limit(10)
@@ -67,7 +67,7 @@ app.get('/dashboard/:id/drinks/:page', (req, res) => {
  });
 })
 
-app.post('/dashboard/:id/drinks', (req, res) => {
+app.post('/dashboard/:id/drinks', requireAuth, (req, res) => {
   MenuItem
   .create({
     drinkName: req.body.drinkName,
@@ -83,7 +83,7 @@ app.post('/dashboard/:id/drinks', (req, res) => {
   });
 });
 
-app.delete('/dashboard/:id/drinks/:drinkid', (req, res) => {
+app.delete('/dashboard/:id/drinks/:drinkid', requireAuth, (req, res) => {
   MenuItem
     .findByIdAndRemove(req.params.drinkid)
     .exec()
@@ -96,7 +96,7 @@ app.delete('/dashboard/:id/drinks/:drinkid', (req, res) => {
     });
 });
 
-app.put('/dashboard/:id/drinks/:drinkid', (req, res) => {
+app.put('/dashboard/:id/drinks/:drinkid', requireAuth, (req, res) => {
   if (!(req.params.drinkid && req.body.drinkid && req.params.drinkid === req.body.drinkid)) {
       res.status(400).json({
         error: 'Request path id and request body id values must match'
@@ -123,7 +123,7 @@ app.put('/dashboard/:id/drinks/:drinkid', (req, res) => {
 
 // Client ENDPOINTS
 
-app.get('/client/dashboard/:id', (req, res) => {
+app.get('/client/dashboard/:id', requireAuth, (req, res) => {
   BusinessUser
     .findById(req.params.id)
       .exec()
@@ -136,7 +136,7 @@ app.get('/client/dashboard/:id', (req, res) => {
 
 // Orders Endpoints
 
-app.post('/order/:id', (req, res) => {
+app.post('/order/:id', requireAuth, (req, res) => {
   Order
     .create({
       businessId: req.params.id,
@@ -155,7 +155,7 @@ app.post('/order/:id', (req, res) => {
    });
 
 
-app.get('/order/:id', (req, res) => {
+app.get('/order/:id', requireAuth, (req, res) => {
   Order
     .find({businessId: req.params.id})
     .exec()
@@ -168,7 +168,7 @@ app.get('/order/:id', (req, res) => {
   });
 });
 
-app.delete('/order/:id', (req, res) => {
+app.delete('/order/:id', requireAuth, (req, res) => {
   Order
     .findByIdAndRemove(req.params.id)
     .exec()

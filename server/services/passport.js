@@ -34,6 +34,7 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
     if (user) {
       done(null, user);
     } else {
+      res.redirect('/');
       done(null, false);
     }
   });

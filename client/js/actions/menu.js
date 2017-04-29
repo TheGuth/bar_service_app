@@ -8,7 +8,11 @@ import 'isomorphic-fetch';
 
 export const fetchMenu = (currentConnection) => dispatch => {
   // /dashboard/:id/drinks/:page
-    return fetch(`/dashboard/${currentConnection}/drinks/0`)
+    return fetch(`/dashboard/${currentConnection}/drinks/0`, {
+      headers: {
+        'authorization': localStorage.getItem('token'),
+      }
+    })
     .then(response => {
       if (!response.ok) {
         throw new Error(response.statusText);
@@ -43,7 +47,8 @@ export const addDrinkToMenu = (currentConnection, newDrinkName, newDrinkPrice, n
     return fetch(`/dashboard/${currentConnection}/drinks`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'authorization': localStorage.getItem('token')
       },
       body: JSON.stringify(data)
     }).then(response => {
@@ -75,7 +80,10 @@ export const createDrinkError = () => ({
 
 export const deleteDrinkFromMenu = (drinkId, currentConnection) => dispatch => {
   return fetch(`/dashboard/${currentConnection}/drinks/${drinkId}`, {
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: {
+      'authorization': localStorage.getItem('token'),
+    }
   }).then(response => {
     if (!response.ok) {
       throw new Error(response.statusText);

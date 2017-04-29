@@ -9,6 +9,7 @@ const requireSigninBusiness = passport.authenticate('localLoginBusiness', { sess
 // grabs all business users
 
 module.exports = function(app) {
+
   app.get('/users', requireAuthBusiness, (req, res) => {
     BusinessUser
       .find()
@@ -25,13 +26,16 @@ module.exports = function(app) {
   });
 
   // Login
-  app.post('/login', requireSigninBusiness, (req, res) => {
-    console.log('hello');
+  app.post('/login', requireSigninBusiness, Authentication.signin, (req, res) => {
     BusinessUser
     .findOne({email: req.body.email})
     .exec()
     .then(user => {
-      res.status(201).json(user.apiRepr());
+      const data = {
+        user: user.apiRepr(),
+        token: req.token,
+      }
+      res.status(201).json(data);
     })
     .catch(err => {
       console.error(err);

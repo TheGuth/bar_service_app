@@ -76,4 +76,4 @@ This is v1.0 of the app, but future enhancements are expected.
 ### bugs
 
 * add Drink on mobile sometimes doesn't add???
-*
+* Can't display more than 10 drinks at a time currently.
