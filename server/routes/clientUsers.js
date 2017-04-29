@@ -28,7 +28,11 @@ app.post('/client/login', requireSignin, Authentication.signin, (req, res) => {
     .findOne({email: req.body.email})
     .exec()
     .then(user => {
-      res.status(201).json(user.apiRepr());
+      const data = {
+        user: user.apiRepr(),
+        token: req.token,
+      }
+      res.status(201).json(data);
     })
     .catch(err => {
       console.error(err);
