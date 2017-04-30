@@ -24,7 +24,7 @@ export class SignupClient extends React.Component {
               <form onSubmit={(e) => {
                   e.preventDefault();
                    this.props.dispatch(ClientUserSignUp(this.state.email, this.state.password)).then((response) => {
-                     if (response.type === "SIGN_UP") {
+                     if (response.type === "CLIENT_SIGN_UP") {
                        this.props.history.push(`/client/landingPage`);
                      }
                    })

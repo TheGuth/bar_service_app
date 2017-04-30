@@ -3,12 +3,15 @@ import 'isomorphic-fetch';
 // Send and receive Order Drink Actions
 
 export const fetchOrders = (currentConnection) => dispatch => {
+    console.log('id', currentConnection);
+    console.log('token', localStorage.getItem('token'));
     return fetch(`/order/${currentConnection}`, {
       headers: {
         'authorization': localStorage.getItem('token'),
       }
     })
     .then(response => {
+      console.log(response);
       if (!response.ok) {
         throw new Error(response.statusText);
       }

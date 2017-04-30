@@ -1,6 +1,6 @@
 exports.DATABASE_URL = process.env.DATABASE_URL ||
                        global.DATABASE_URL ||
-                       'mongodb://localhost/bar_app';
+                       'mongodb://localhost/bar_app_development';
 
 // mongodb://james:pass55@ds137040.mlab.com:37040/bar_app
 

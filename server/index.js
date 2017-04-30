@@ -133,7 +133,7 @@ app.get('/client/dashboard/:id', requireAuth, (req, res) => {
 
 // Orders Endpoints
 
-app.post('/order/:id', requireAuth, (req, res) => {
+app.post('/order/:id', requireAuthClient, (req, res) => {
   console.log('hello');
   Order
     .create({

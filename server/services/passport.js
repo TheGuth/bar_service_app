@@ -30,6 +30,7 @@ const jwtOptions = {
 const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
   console.log(payload);
   BusinessUser.findById(payload.sub, function(err, user) {
+    console.log(user);
     if (err) { return done(err, false); }
 
     if (user) {

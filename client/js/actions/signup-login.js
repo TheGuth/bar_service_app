@@ -82,6 +82,7 @@ export const BusinessUserLogin = (emailInput, passwordInput) => dispatch => {
       }
       return response.json();
     }).then(data => {
+      localStorage.setItem('token', data.token);
       return dispatch(login(data.user));
     }).catch(error => {
       return dispatch(loginError(error));
@@ -102,6 +103,7 @@ export const ClientUserLogin = (emailInput, passwordInput) => dispatch => {
       }
       return response.json();
     }).then(data => {
+      localStorage.setItem('token', data.token);
       return dispatch(clientLogin(data.user));
     }).catch(error => {
       return dispatch(loginError(error));
