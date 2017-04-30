@@ -9,7 +9,7 @@ const requireSignin = passport.authenticate('localClientLogin', { session: false
 // Client Sign in and Log out ///////////////////
 
 module.exports = function(app) {
-  app.get('/users', requireAuth, (req, res) => {
+  app.get('/client/users', requireAuth, (req, res) => {
     ClientUser
       .find()
       .exec()

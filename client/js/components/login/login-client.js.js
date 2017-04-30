@@ -10,7 +10,18 @@ export class LoginClient extends React.Component {
         this.state = {
           email: '',
           password: '',
+          error: false,
         }
+    }
+
+    displayError() {
+      if (this.state.error) {
+        return (
+          <div className="error_message">
+            <p>email or password was incorrect</p>
+          </div>
+        )
+      }
     }
 
     render() {
@@ -25,7 +36,10 @@ export class LoginClient extends React.Component {
                 this.props.dispatch(ClientUserLogin(this.state.email, this.state.password)).then((response) => {
                   if (response.type === "CLIENT_LOGIN") {
                     // window.location(`/business/dashboard/${this.props.currentConnection}`);
+                    this.setState({error: false})
                     this.props.history.push(`/client/landingPage`);
+                  } else {
+                    this.setState({error: true})
                   }
                 });
               }}>
@@ -33,6 +47,7 @@ export class LoginClient extends React.Component {
               <input type="email" placeholder="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />
               <label>Password</label>
               <input type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})}/>
+              {this.displayError()}
               <button type="submit">Login</button>
             </form>
           </div>
@@ -48,7 +63,6 @@ export class LoginClient extends React.Component {
   }
 
   const mapStateToProps = (state, props) => ({
-    userIdInput: state.signupLogingReducer.idInput
   })
 
 export default connect(mapStateToProps)(LoginClient);

@@ -6,10 +6,25 @@ import {Link} from 'react-router-dom';
 export class LoginBusiness extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+          email: '',
+          password: '',
+          error: false,
+        }
+    }
+
+    displayError() {
+      if (this.state.error) {
+        return (
+          <div className="error_message">
+            <p>email or password was incorrect</p>
+          </div>
+        )
+      }
     }
 
     render() {
-
       const {userEmailInput} = this.props;
 
         return (
@@ -20,17 +35,20 @@ export class LoginBusiness extends React.Component {
             <div className="login-page-form">
               <form onSubmit={(e) => {
                   e.preventDefault();
-                  this.props.dispatch(BusinessUserLogin(this.props.userEmailInput, this.props.userPasswordInput)).then((response) => {
+                  this.props.dispatch(BusinessUserLogin(this.state.email, this.state.password)).then((response) => {
                     if (response.type === "LOGIN") {
                       // window.location(`/business/dashboard/${this.props.currentConnection}`);
                       this.props.history.push(`/business/dashboard/${this.props.currentConnection}`);
+                    } else {
+                      this.setState({error: true})
                     }
                   });
                 }}>
                 <label>Email</label>
-                <input type="email" placeholder="email" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(proccessUserEmailInput(e.target.value))}/>
+                <input type="email" placeholder="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
                 <label>Password</label>
-                <input type="password" placeholder="Password" value={this.props.userPasswordInput} onChange={(e) => this.props.dispatch(proccessUserPasswordInput(e.target.value))}/>
+                <input type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})}/>
+                {this.displayError()}
                 <button type="submit">Login</button>
               </form>
             </div>
@@ -46,8 +64,6 @@ export class LoginBusiness extends React.Component {
   }
 
 const mapStateToProps = (state, props) => ({
-  userEmailInput: state.signupLogingReducer.emailInput,
-  userPasswordInput: state.signupLogingReducer.passwordInput,
   currentConnection: state.signupLogingReducer.currentConnection
 })
 

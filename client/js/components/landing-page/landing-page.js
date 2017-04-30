@@ -17,17 +17,14 @@ export class LandingPage extends React.Component {
           <div className="landing-page-description">
             <p>Why fight the crowd, when you can order your drinks without missing a beat.</p>
           </div>
-          <div className="landing-page-connect">
-            <h2>Connect to a Business!</h2>
-            <input type="text" placeholder="Unique ID:" value={this.props.userIdInput} onChange={(e) => this.props.dispatch(proccessUserIdInput(e.target.value))}/>
-            <Link to={{pathname: '/client/dashboard', params: {id: this.props.userIdInput}} }><button className="btn btn-primary btn-lg btn-block">Connect</button></Link>
-          </div>
           <div className="landing-page-login">
-            <h1>Connect to a Buiness Here</h1>
+            <h1>Start Connecting Now</h1>
+            <p>Why wait in line when you can order from your phone</p>
             <Link to="/login/client"><button>Users Join Here</button></Link>
           </div>
           <div className="landing-page-login">
             <h1>Business join Here</h1>
+            <p>Drunk Fast provides the perfect platform for business to sell directly to their clients, without the hassel of dealing with lines.</p>
             <Link to="/login/business"><button>I am A Business</button></Link>
           </div>
         </div>
@@ -35,7 +32,6 @@ export class LandingPage extends React.Component {
   }
 
   const mapStateToProps = (state, props) => ({
-    userIdInput: state.signupLogingReducer.idInput
   })
 
 export default connect(mapStateToProps)(LandingPage);

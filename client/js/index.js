@@ -26,10 +26,10 @@ const routes = (
       <Route exact path="/login/business" component={LoginBusiness} />
       <Route exact path="/signup/business" component={SignupBusiness} />
       <Route exact path="/signup/client" component={SignupClient} />
-      <Route exact path="/client/dashboard" component={ClientDash} />
+      <Route exact path="/client/dashboard" component={RequireAuth(ClientDash)} />
       <Route exact path="/business/dashboard/:id" component={RequireAuth(BusinessDash)} />
       <Route exact path="/login/client" component={LoginClient} />
-      <Route exact path="/client/landingPage" component={ClientLandingPage} />
+      <Route exact path="/client/landingPage" component={RequireAuth(ClientLandingPage)} />
     </div>
   </Router>
 );

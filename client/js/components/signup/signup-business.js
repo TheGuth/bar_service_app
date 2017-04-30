@@ -5,6 +5,12 @@ import {BusinessUserSignUp, proccessUserEmailInput, proccessUserNameInput, procc
 export class SignupBusiness extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+          businessName: '',
+          email: '',
+          password: '',
+        }
     }
 
     render() {
@@ -17,18 +23,18 @@ export class SignupBusiness extends React.Component {
             <div className="signup-page-form">
               <form onSubmit={(e) => {
                   e.preventDefault();
-                   this.props.dispatch(BusinessUserSignUp(this.props.userEmailInput, this.props.userPasswordInput, this.props.userNameInput)).then((response) => {
+                   this.props.dispatch(BusinessUserSignUp(this.state.email, this.state.password, this.state.businessName)).then((response) => {
                      if (response.type === "SIGN_UP") {
                        this.props.history.push(`/business/dashboard/${this.props.currentConnection}`);
                      }
                    })
                  }}>
                 <label>Name:</label>
-                <input type="text" placeholder="Name" value={this.props.userNameInput} onChange={(e) => this.props.dispatch(proccessUserNameInput(e.target.value))}/>
+                <input type="text" placeholder="Name" value={this.state.businessName} onChange={(e) => this.setState({businessName: e.target.value})}/>
                 <label>Email:</label>
-                <input type="email" placeholder="email" value={this.props.userEmailInput} onChange={(e) => this.props.dispatch(proccessUserEmailInput(e.target.value))}/>
+                <input type="email" placeholder="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
                 <label>Password:</label>
-                <input type="password" placeholder="password" value={this.props.userPasswordInput} onChange={(e) => this.props.dispatch(proccessUserPasswordInput(e.target.value))}/>
+                <input type="password" placeholder="password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})}/>
                 <button type="submit">Submit</button>
               </form>
             </div>
@@ -38,11 +44,7 @@ export class SignupBusiness extends React.Component {
   }
 
   const mapStateToProps = (state, props) => ({
-    userEmailInput: state.signupLogingReducer.emailInput,
-    userPasswordInput: state.signupLogingReducer.passwordInput,
-    userNameInput: state.signupLogingReducer.nameInput,
     currentConnection: state.signupLogingReducer.currentConnection
   })
-
 
 export default connect(mapStateToProps)(SignupBusiness);

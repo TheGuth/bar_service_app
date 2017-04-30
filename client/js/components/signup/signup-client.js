@@ -47,5 +47,4 @@ export class SignupClient extends React.Component {
 
   })
 
-
 export default connect(mapStateToProps)(SignupClient);
