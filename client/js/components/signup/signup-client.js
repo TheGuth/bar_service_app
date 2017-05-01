@@ -10,7 +10,18 @@ export class SignupClient extends React.Component {
           name: '',
           email: '',
           password: '',
+          error: false,
         }
+    }
+
+    displayError() {
+      if (this.state.error) {
+        return (
+          <div className="error_message">
+            <p>email already taken, or missing business name, email, or password</p>
+          </div>
+        )
+      }
     }
 
     render() {
@@ -25,7 +36,10 @@ export class SignupClient extends React.Component {
                   e.preventDefault();
                    this.props.dispatch(ClientUserSignUp(this.state.email, this.state.password)).then((response) => {
                      if (response.type === "CLIENT_SIGN_UP") {
+                       this.setState({error: false});
                        this.props.history.push(`/client/landingPage`);
+                     } else {
+                       this.setState({error: true});
                      }
                    })
                  }}>
@@ -35,6 +49,7 @@ export class SignupClient extends React.Component {
                 <input type="email" placeholder="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
                 <label>Password:</label>
                 <input type="password" placeholder="password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})}/>
+                {this.displayError()}
                 <button type="submit">Submit</button>
               </form>
             </div>
