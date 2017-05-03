@@ -42,7 +42,7 @@ export const menuReducer = (state=initialState, action) => {
       return {...state, newDrinkIngredients: action.newDrinkIngredients};
 
     case CREATE_DRINK:
-    return
+    return state;
 
     default:
       return state;

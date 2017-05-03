@@ -42,15 +42,10 @@ This app is built using React, Redux, Nodejs, express, mongodb as well as html a
 
 This is v1.0 of the app, but future enhancements are expected.
 
-### Immediate Developments
-
-### Add authentication for business side/ persistent logins
-### Add form validations
-### redirects when refreshes happen to home page, dashboards.
-### Web Socket in place of set interval function.
-
 ### Future developments:
 
+* Add emailer for user signup to validate email.
+* Web Socket in place of set interval function.
 * Create Customer sign up and login page, so they can save favorite drinks as well as save unique ids to connect to their favorite business.
 * Create Customer Profile page.
 * Create business Profile page.
