@@ -20,17 +20,15 @@ const localLogin = new LocalStrategy(localOptions, function(email, password, don
   });
 });
 
-// Setup options for JWT Strategy
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
   secretOrKey: config.secret
 };
 
-// Create JWT strategy
 const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
   BusinessUser.findById(payload.sub, function(err, user) {
     if (err) { return done(err, false); }
-    
+
     if (user) {
       done(null, user);
     } else {
