@@ -8,8 +8,8 @@ export class LoginClient extends React.Component {
         super(props);
 
         this.state = {
-          email: '',
-          password: '',
+          email: 'example589@gmail.com',
+          password: 'password',
           error: false,
         };
     }
@@ -43,15 +43,16 @@ export class LoginClient extends React.Component {
                 });
               }}>
               <label>Email</label>
-              <input type="email" placeholder="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />
+              <input onClick={(e) => e.currentTarget.select()} type="email" placeholder="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />
               <label>Password</label>
-              <input type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})}/>
+              <input onClick={(e) => e.currentTarget.select()} type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})}/>
               {this.displayError()}
               <button type="submit">Login</button>
             </form>
           </div>
           <div className="login-page-signup">
             <h3>Not Registered? Sign Up!</h3>
+            <p>Not Sure? Log in with our demo account and check it out!</p>
             <div>
               <Link to="/signup/client"><button>Sign Up</button></Link>
             </div>
