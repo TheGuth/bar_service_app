@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {BusinessUserSignUp, proccessUserEmailInput, proccessUserNameInput, proccessUserPasswordInput} from '../../actions/signup-login'
+import {BusinessUserSignUp, proccessUserEmailInput, proccessUserNameInput, proccessUserPasswordInput} from '../../actions/signup-login';
 
 export class SignupBusiness extends React.Component {
     constructor(props) {
@@ -11,7 +11,7 @@ export class SignupBusiness extends React.Component {
           email: '',
           password: '',
           error: false,
-        }
+        };
     }
 
     displayError() {
@@ -20,7 +20,7 @@ export class SignupBusiness extends React.Component {
           <div className="error_message">
             <p>email already taken, or missing business name, email, or password</p>
           </div>
-        )
+        );
       }
     }
 
@@ -36,12 +36,12 @@ export class SignupBusiness extends React.Component {
                   e.preventDefault();
                    this.props.dispatch(BusinessUserSignUp(this.state.email, this.state.password, this.state.businessName)).then((response) => {
                      if (response.type === "SIGN_UP") {
-                       this.setState({error: false})
+                       this.setState({error: false});
                        this.props.history.push(`/business/dashboard/${this.props.currentConnection}`);
                      } else {
-                       this.setState({error: true})
+                       this.setState({error: true});
                      }
-                   })
+                   });
                  }}>
                 <label>Name:</label>
                 <input type="text" placeholder="Name" value={this.state.businessName} onChange={(e) => this.setState({businessName: e.target.value})}/>
@@ -54,12 +54,12 @@ export class SignupBusiness extends React.Component {
               </form>
             </div>
           </div>
-        )
+        );
     }
   }
 
   const mapStateToProps = (state, props) => ({
     currentConnection: state.signupLogingReducer.currentConnection
-  })
+  });
 
 export default connect(mapStateToProps)(SignupBusiness);

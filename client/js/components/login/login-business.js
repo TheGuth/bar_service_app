@@ -11,7 +11,7 @@ export class LoginBusiness extends React.Component {
           email: '',
           password: '',
           error: false,
-        }
+        };
     }
 
     displayError() {
@@ -20,12 +20,11 @@ export class LoginBusiness extends React.Component {
           <div className="error_message">
             <p>email or password was incorrect</p>
           </div>
-        )
+        );
       }
     }
 
     render() {
-      const {userEmailInput} = this.props;
 
         return (
           <div className="login-container">
@@ -37,10 +36,9 @@ export class LoginBusiness extends React.Component {
                   e.preventDefault();
                   this.props.dispatch(BusinessUserLogin(this.state.email, this.state.password)).then((response) => {
                     if (response.type === "LOGIN") {
-                      // window.location(`/business/dashboard/${this.props.currentConnection}`);
                       this.props.history.push(`/business/dashboard/${this.props.currentConnection}`);
                     } else {
-                      this.setState({error: true})
+                      this.setState({error: true});
                     }
                   });
                 }}>
@@ -59,12 +57,12 @@ export class LoginBusiness extends React.Component {
               </div>
             </div>
           </div>
-        )
+        );
     }
   }
 
 const mapStateToProps = (state, props) => ({
   currentConnection: state.signupLogingReducer.currentConnection
-})
+});
 
 export default connect(mapStateToProps)(LoginBusiness);

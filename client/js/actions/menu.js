@@ -4,10 +4,7 @@ import { retrieveBusinessInfo,
 import {fetchOrders} from './order';
 import 'isomorphic-fetch';
 
-// Grab Menu List from Business
-
 export const fetchMenu = (currentConnection) => dispatch => {
-  // /dashboard/:id/drinks/:page
     return fetch(`/dashboard/${currentConnection}/drinks/0`, {
       headers: {
         'authorization': localStorage.getItem('token'),
@@ -22,7 +19,7 @@ export const fetchMenu = (currentConnection) => dispatch => {
 
       dispatch(retrieveBusinessInfo(currentConnection));
       dispatch(connectToBusiness(currentConnection));
-      return dispatch(loadMenu(data))
+      return dispatch(loadMenu(data));
     }).catch(error => {
       return dispatch(loadMenuError(error));
     });
@@ -42,7 +39,7 @@ export const loadMenuError = (error) => ({
 
 //Create, delete drinks from menu
 
-export const addDrinkToMenu = (currentConnection, newDrinkName, newDrinkPrice, newDrinkIngredients,) => dispatch => {
+export const addDrinkToMenu = (currentConnection, newDrinkName, newDrinkPrice, newDrinkIngredients) => dispatch => {
     const data = {drinkName: newDrinkName, price: newDrinkPrice, ingredients: newDrinkIngredients};
     return fetch(`/dashboard/${currentConnection}/drinks`, {
       method: 'POST',

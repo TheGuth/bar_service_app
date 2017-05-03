@@ -13,7 +13,7 @@ import { GRAB_ORDERS,
 const initialState = {
  orders: [],
  currentOrder: [],
-}
+};
 
 export const orderReducer = (state=initialState, action) => {
   switch(action.type){
@@ -60,4 +60,4 @@ export const orderReducer = (state=initialState, action) => {
     default:
     return state;
   }
-}
+};

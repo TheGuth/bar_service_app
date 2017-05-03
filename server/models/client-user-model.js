@@ -19,8 +19,8 @@ ClientUserSchema.methods.apiRepr = function() {
   return {
     username: this.email,
     id: this._id
-  }
-}
+  };
+};
 
 // On Save Hook, encrypt password before saving a model, run this function.
 ClientUserSchema.pre('save', function(next) {
@@ -43,7 +43,7 @@ ClientUserSchema.methods.comparePassword = function(candidatePassword, callback)
 
     callback(null, isMatch);
   });
-}
+};
 
 const ClientUser = mongoose.model('ClientUser', ClientUserSchema);
 

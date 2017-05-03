@@ -1,9 +1,9 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './store';
-import {HashRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 // ROUTES
 import LoginBusiness from './components/login/login-business';
@@ -15,7 +15,6 @@ import BusinessDash from './components/business-dash/business-dashboard';
 import LandingPage from './components/landing-page/landing-page';
 import RequireAuth from './components/auth/require_auth';
 import ClientLandingPage from './components/landing-page/client-landing-page';
-
 
 console.log(`Client running in ${process.env.NODE_ENV} mode`);
 
@@ -42,5 +41,3 @@ document.addEventListener('DOMContentLoaded', () =>
         document.getElementById('app')
     )
 );
-
-// 58cffedf015af4d521e640bc james's test business id:

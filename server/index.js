@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 import express from 'express';
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import Authentication from './controllers/authentication';
@@ -42,7 +42,7 @@ app.get('/dashboard/:id', (req, res) => {
     .findById(req.params.id)
       .exec()
       .then(post => {
-        res.json(post.apiRepr())
+        res.json(post.apiRepr());
       })
       .catch(err => {
         console.error(err);
@@ -65,7 +65,7 @@ app.get('/dashboard/:id/drinks/:page', (req, res) => {
    console.error(err);
    res.status(500).json({error: 'something went horribly awry'});
  });
-})
+});
 
 app.post('/dashboard/:id/drinks', requireAuth, (req, res) => {
   MenuItem
@@ -134,7 +134,6 @@ app.get('/client/dashboard/:id', requireAuth, (req, res) => {
 // Orders Endpoints
 
 app.post('/order/:id', requireAuthClient, (req, res) => {
-  console.log('hello');
   Order
     .create({
       businessId: req.params.id,
@@ -154,12 +153,10 @@ app.post('/order/:id', requireAuthClient, (req, res) => {
 
 
 app.get('/order/:id', requireAuth, (req, res) => {
-  console.log('hello');
   Order
     .find({businessId: req.params.id})
     .exec()
     .then(orders => {
-      console.log(orders);
       res.json(orders.map(order => order.apiRepr()));
     })
     .catch(err => {
@@ -183,7 +180,7 @@ app.delete('/order/:id', requireAuth, (req, res) => {
 
 app.get('*', (req, res) => {
   res.sendFile('index.html', {root: process.env.CLIENT_PATH});
-})
+});
 
 
 let server;

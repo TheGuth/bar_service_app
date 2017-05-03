@@ -16,7 +16,7 @@ const localClientLogin = new LocalStrategy(localOptions, function(email, passwor
       if (!isMatch) { return done(null, false); }
 
       return done(null, user);
-    })
+    });
   });
 });
 
@@ -25,11 +25,8 @@ const jwtOptions = {
   secretOrKey: config.secret
 };
 
-
 const jwtClientLogin = new JwtStrategy(jwtOptions, function(payload, done) {
-    console.log(payload);
     ClientUser.findById(payload.sub, function(err, user) {
-      console.log(user);
       if (err) { return done(err, false); }
 
       if (user) {
@@ -38,7 +35,7 @@ const jwtClientLogin = new JwtStrategy(jwtOptions, function(payload, done) {
       } else {
         done(null, false);
       }
-  })
+  });
 });
 
 passport.use('jwtClientLogin', jwtClientLogin);

@@ -28,10 +28,11 @@ export class LandingPage extends React.Component {
             <Link to="/login/business"><button>I am A Business</button></Link>
           </div>
         </div>
-      )}
+      );
+    }
   }
 
   const mapStateToProps = (state, props) => ({
-  })
+  });
 
 export default connect(mapStateToProps)(LandingPage);

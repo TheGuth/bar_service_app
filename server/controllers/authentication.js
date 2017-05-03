@@ -12,7 +12,7 @@ exports.signin = function(req, res, next) {
   // We just need to give them a token
   req.token = tokenForUser(req.user);
   return next();
-}
+};
 
 exports.signup = function(req, res, next) {
   const email = req.body.email;
@@ -45,4 +45,4 @@ exports.signup = function(req, res, next) {
       res.json({ token: tokenForUser(user), user: user });
     });
   });
-}
+};

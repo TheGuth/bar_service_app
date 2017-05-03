@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {ClientUserSignUp} from '../../actions/signup-login'
+import {ClientUserSignUp} from '../../actions/signup-login';
 
 export class SignupClient extends React.Component {
     constructor(props) {
@@ -11,7 +11,7 @@ export class SignupClient extends React.Component {
           email: '',
           password: '',
           error: false,
-        }
+        };
     }
 
     displayError() {
@@ -20,7 +20,7 @@ export class SignupClient extends React.Component {
           <div className="error_message">
             <p>email already taken, or missing business name, email, or password</p>
           </div>
-        )
+        );
       }
     }
 
@@ -41,7 +41,7 @@ export class SignupClient extends React.Component {
                      } else {
                        this.setState({error: true});
                      }
-                   })
+                   });
                  }}>
                 <label>Name:</label>
                 <input type="text" placeholder="Name" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})}/>
@@ -54,12 +54,12 @@ export class SignupClient extends React.Component {
               </form>
             </div>
           </div>
-        )
+        );
     }
   }
 
   const mapStateToProps = (state, props) => ({
 
-  })
+  });
 
 export default connect(mapStateToProps)(SignupClient);

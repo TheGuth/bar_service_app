@@ -9,11 +9,11 @@ export class ClientLandingPage extends React.Component {
 
       this.state = {
         id: ''
-      }
+      };
     }
 
     onSubmit(e) {
-      this.setState({id: e.target.value})
+      this.setState({id: e.target.value});
       this.props.dispatch(proccessUserIdInput(e.target.value));
     }
 
@@ -32,11 +32,12 @@ export class ClientLandingPage extends React.Component {
             <Link to={{pathname: '/client/dashboard', params: {id: this.state.id}}}><button className="btn btn-primary btn-lg btn-block">Connect</button></Link>
           </div>
         </div>
-      )}
+      );
+    }
   }
 
   const mapStateToProps = (state, props) => ({
     currentConnection: state.currentConnection
-  })
+  });
 
 export default connect(mapStateToProps)(ClientLandingPage);

@@ -24,8 +24,8 @@ BusinessUserSchema.methods.apiRepr = function() {
     businessName: this.businessName,
     username: this.email,
     id: this._id
-  }
-}
+  };
+};
 
 // On Save Hook, encrypt password before saving a model, run this function.
 BusinessUserSchema.pre('save', function(next) {
@@ -48,7 +48,7 @@ BusinessUserSchema.methods.comparePassword = function(candidatePassword, callbac
 
     callback(null, isMatch);
   });
-}
+};
 
 const BusinessUser = mongoose.model('BusinessUser', BusinessUserSchema);
 

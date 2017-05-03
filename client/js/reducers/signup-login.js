@@ -21,7 +21,7 @@ const initialState = {
   currentConnection: '',
   businessName: '',
   authenticated: false,
-}
+};
 
 
 export const signupLogingReducer = (state=initialState, action) => {
@@ -57,7 +57,7 @@ export const signupLogingReducer = (state=initialState, action) => {
       return {...state, authenticated: true, currentConnection: action.id, businessName: action.businessName};
 
     case CLIENT_LOGIN:
-      return {...state, authenticated: true, }
+      return {...state, authenticated: true, };
 
     case LOGIN_ERROR:
       console.error(action.error);
@@ -66,4 +66,4 @@ export const signupLogingReducer = (state=initialState, action) => {
     default:
       return state;
   }
-}
+};

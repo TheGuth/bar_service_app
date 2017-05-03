@@ -17,7 +17,7 @@ export const BusinessUserSignUp = (emailInput, passwordInput, nameInput) => disp
       return response.json();
     }).then(data => {
       localStorage.setItem('token', data.token);
-      return dispatch(signup(data.user))
+      return dispatch(signup(data.user));
     }).catch(error => {
       return dispatch(signupError(error));
     });
@@ -39,7 +39,7 @@ export const ClientUserSignUp = (emailInput, passwordInput) => dispatch => {
     }).then(data => {
       localStorage.setItem('token', data.token);
       console.log(data);
-      return dispatch(clientSignup(data.user))
+      return dispatch(clientSignup(data.user));
     }).catch(error => {
       return dispatch(signupError(error));
     });

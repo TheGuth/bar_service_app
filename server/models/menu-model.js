@@ -38,8 +38,8 @@ MenuSchema.methods.apiRepr = function() {
     ingredients: this.ingredients || '',
     imageUrl: this.imageUrl || '',
     timeEstimate: this.timeEstimate || ''
-  }
-}
+  };
+};
 
 const MenuItem = mongoose.model('MenuItem', MenuSchema);
 

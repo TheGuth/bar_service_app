@@ -11,7 +11,7 @@ export class LoginClient extends React.Component {
           email: '',
           password: '',
           error: false,
-        }
+        };
     }
 
     displayError() {
@@ -20,7 +20,7 @@ export class LoginClient extends React.Component {
           <div className="error_message">
             <p>email or password was incorrect</p>
           </div>
-        )
+        );
       }
     }
 
@@ -35,11 +35,10 @@ export class LoginClient extends React.Component {
                 e.preventDefault();
                 this.props.dispatch(ClientUserLogin(this.state.email, this.state.password)).then((response) => {
                   if (response.type === "CLIENT_LOGIN") {
-                    // window.location(`/business/dashboard/${this.props.currentConnection}`);
-                    this.setState({error: false})
+                    this.setState({error: false});
                     this.props.history.push(`/client/landingPage`);
                   } else {
-                    this.setState({error: true})
+                    this.setState({error: true});
                   }
                 });
               }}>
@@ -58,11 +57,11 @@ export class LoginClient extends React.Component {
             </div>
           </div>
         </div>
-      )
+      );
     }
   }
 
   const mapStateToProps = (state, props) => ({
-  })
+  });
 
 export default connect(mapStateToProps)(LoginClient);

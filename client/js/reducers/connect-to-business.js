@@ -6,7 +6,7 @@ import { BUSINESS_INFO_SUCCESS,
 const initialState = {
  businessName: '',
  currentConnection: '',
-}
+};
 
 export const connectToBusinessReducer = (state=initialState, action) => {
     switch(action.type){
@@ -14,7 +14,7 @@ export const connectToBusinessReducer = (state=initialState, action) => {
         return {...state, businessName: action.data.businessName};
 
       case BUSINESS_INFO_ERROR:
-        console.error(action.error)
+        console.error(action.error);
         return state;
 
       case CONNECT_TO_BUSINESS:
@@ -23,4 +23,4 @@ export const connectToBusinessReducer = (state=initialState, action) => {
       default:
       return state;
   }
-}
+};

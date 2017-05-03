@@ -44,8 +44,8 @@ OrderSchema.methods.apiRepr = function() {
     order: this.order,
     orderTotal: this.orderTotal,
     totalDrinks: this.totalDrinks
-  }
-}
+  };
+};
 
 const Order = mongoose.model('Order', OrderSchema);
 

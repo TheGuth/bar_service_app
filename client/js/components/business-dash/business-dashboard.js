@@ -32,7 +32,7 @@ export class BusinessDash extends React.Component {
                   <h3>Ingredients</h3>
                   <p>{item.ingredients}</p>
                   <button onClick={() => this.props.dispatch(deleteDrinkFromMenu(item.id, this.props.currentConnection))} >Delete</button>
-                </li>
+                </li>;
       });
 
 
@@ -42,8 +42,8 @@ export class BusinessDash extends React.Component {
           const orderDrinks = order.order.map((drink, drinkid) => {
             return <li key={drinkid}>
               <p>{drinkid + 1}. {drink.drinkName} - ${drink.price}</p>
-            </li>
-          })
+            </li>;
+          });
           return <li key={order.id}>
                     <h1>{order.clientName}</h1>
                     <p>Table:   {order.table}</p>
@@ -54,7 +54,7 @@ export class BusinessDash extends React.Component {
                       {orderDrinks}
                     </ol>
                     <button onClick={() => this.props.dispatch(completeOrder(order.id, this.props.currentConnection))} >Ding Order Done</button>
-                  </li>
+                  </li>;
         });
       }
 
@@ -93,7 +93,7 @@ export class BusinessDash extends React.Component {
               </form>
             </div>
           </div>
-        )
+        );
     }
   }
 
@@ -105,6 +105,6 @@ const mapStateToProps = (state, props) => ({
   newDrinkPrice: state.menuReducer.newDrinkPrice,
   newDrinkIngredients: state.menuReducer.newDrinkIngredients,
   businessName: state.signupLogingReducer.businessName
-})
+});
 
 export default connect(mapStateToProps)(BusinessDash);

@@ -16,7 +16,7 @@ module.exports = function(app) {
       .then(response => {
         const clientJson = response.map(user => user.apiRepr());
         res.json({clientJson});
-      })
+      });
   });
 
 app.post('/client/users', Authentication.clientSignup, (req, res) => {
@@ -31,12 +31,12 @@ app.post('/client/login', requireSignin, Authentication.signin, (req, res) => {
       const data = {
         user: user.apiRepr(),
         token: req.token,
-      }
+      };
       res.status(201).json(data);
     })
     .catch(err => {
       console.error(err);
-      res.status(500).json({error: 'Internal Server Error'})
+      res.status(500).json({error: 'Internal Server Error'});
     });
   });
-}
+};

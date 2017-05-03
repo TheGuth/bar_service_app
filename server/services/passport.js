@@ -16,7 +16,7 @@ const localLogin = new LocalStrategy(localOptions, function(email, password, don
         if (!isMatch) { return done(null, false); }
 
         return done(null, user);
-      })
+      });
   });
 });
 
@@ -28,13 +28,10 @@ const jwtOptions = {
 
 // Create JWT strategy
 const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
-  console.log(payload);
   BusinessUser.findById(payload.sub, function(err, user) {
-    console.log(user);
     if (err) { return done(err, false); }
-
+    
     if (user) {
-      console.log('/////////////////////////')
       done(null, user);
     } else {
       done(null, false);

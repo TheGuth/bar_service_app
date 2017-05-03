@@ -9,7 +9,7 @@ import { proccessUserNameInput,
          proccessUserEmailInput
        } from '../../actions/signup-login';
 
-import {fetchMenu} from '../../actions/menu'
+import {fetchMenu} from '../../actions/menu';
 
 export class ClientDash extends React.Component {
     constructor(props) {
@@ -29,7 +29,7 @@ export class ClientDash extends React.Component {
                   <h3>Ingredients</h3>
                   <h3>{item.ingredients}</h3>
                   <button onClick={() => this.props.dispatch(addOrder(item.drinkName, item.price))}>Order</button>
-                </li>
+                </li>;
       });
 
       // add current total bottom right:
@@ -38,13 +38,13 @@ export class ClientDash extends React.Component {
                 <h1>{order.drinkName}</h1>
                 <p>${order.price}</p>
                 <button onClick={() => this.props.dispatch(removeOrder(id))}>Remove Item</button>
-               </li>
-      })
+               </li>;
+      });
 
       let total = 0;
       const currentOrderTotal = this.props.currentOrder.forEach((order) => {
         total += Number(order.price);
-      })
+      });
 
       // this.props.location.params.id
       // this holds the currentConnection from landing page
@@ -66,7 +66,7 @@ export class ClientDash extends React.Component {
             <div className="client-page-form">
               <form onSubmit={(e) => {
                   e.preventDefault();
-                  this.props.dispatch(submitOrder(userNameInput, userEmailInput, userTableInput, currentOrder, this.props.currentConnection))
+                  this.props.dispatch(submitOrder(userNameInput, userEmailInput, userTableInput, currentOrder, this.props.currentConnection));
                 }}>
                 <label>Name:</label>
                 <input type="text" value={this.props.userNameInput} onChange={(e) => this.props.dispatch(proccessUserNameInput(e.target.value))}></input>
@@ -78,7 +78,7 @@ export class ClientDash extends React.Component {
               </form>
             </div>
           </div>
-        )
+        );
     }
   }
 
@@ -91,6 +91,6 @@ export class ClientDash extends React.Component {
     userEmailInput: state.signupLogingReducer.emailInput,
     userTableInput: state.signupLogingReducer.tableInput,
     businessName: state.signupLogingReducer.businessName
-  })
+  });
 
 export default connect(mapStateToProps)(ClientDash);

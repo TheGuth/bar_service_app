@@ -6,11 +6,7 @@ export class Menu extends React.Component {
         super(props);
     }
 
-
-
     render() {
-
-
         return (
           <div className="menu-container">
             <h1>Menu</h1>
@@ -23,7 +19,8 @@ export class Menu extends React.Component {
             <button>previous</button>
             <button>next</button>
           </div>
-        )
+        );
     }
   }
+  
 export default connect(Menu);

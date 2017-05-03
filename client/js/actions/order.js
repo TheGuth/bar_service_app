@@ -18,7 +18,7 @@ export const fetchOrders = (currentConnection) => dispatch => {
       return response.json();
     }).then(data => {
       dispatch (fetchMenu(currentConnection));
-      return dispatch(grabOrders(data))
+      return dispatch(grabOrders(data));
     }).catch(error => {
       return dispatch(grabOrdersError(error));
     });
@@ -40,8 +40,8 @@ export const submitOrder = (userNameInput, userEmailInput, userTableInput, order
   let orderTotal = 0;
   orders.forEach((order) => {
     orderTotal += order.price;
-  })
-  const data = {clientName: userNameInput, table: userTableInput, clientEmail: userEmailInput, order: orders, totalDrinks: orders.length, orderTotal: orderTotal }
+  });
+  const data = {clientName: userNameInput, table: userTableInput, clientEmail: userEmailInput, order: orders, totalDrinks: orders.length, orderTotal: orderTotal };
   return fetch(`/order/${currentConnection}`, {
     method: 'POST',
     headers: {
@@ -124,7 +124,7 @@ export const completeOrder = (orderId, currentConnection) => dispatch => {
       dispatch(fetchOrders(currentConnection));
       return response.json();
     }).then(data => {
-      return dispatch(drinkIsReady(data))
+      return dispatch(drinkIsReady(data));
     }).catch(error => {
       return dispatch(drinkIsReadyError(error));
     });

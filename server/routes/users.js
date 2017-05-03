@@ -6,8 +6,6 @@ import { BusinessUser }  from '../models/business-user-model';
 const requireAuthBusiness = passport.authenticate('jwt', { session: false });
 const requireSigninBusiness = passport.authenticate('localLoginBusiness', { session: false });
 
-// grabs all business users
-
 module.exports = function(app) {
 
   app.get('/users', requireAuthBusiness, (req, res) => {
@@ -17,7 +15,7 @@ module.exports = function(app) {
       .then(response => {
         const businessJson = response.map(user => user.apiRepr());
         res.json({businessJson});
-      })
+      });
   });
 
   // Signup
@@ -34,7 +32,7 @@ module.exports = function(app) {
       const data = {
         user: user.apiRepr(),
         token: req.token,
-      }
+      };
       res.status(201).json(data);
     })
     .catch(err => {
@@ -42,4 +40,4 @@ module.exports = function(app) {
       res.status(500).json({error: 'Internal Server Error'});
     });
   });
-}
+};
