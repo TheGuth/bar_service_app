@@ -43,11 +43,11 @@ export class SignupBusiness extends React.Component {
                      }
                    });
                  }}>
-                <label>Name:</label>
+                <label>Business Name</label>
                 <input type="text" placeholder="Name" value={this.state.businessName} onChange={(e) => this.setState({businessName: e.target.value})}/>
-                <label>Email:</label>
+                <label>Email</label>
                 <input type="email" placeholder="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
-                <label>Password:</label>
+                <label>Password</label>
                 <input type="password" placeholder="password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})}/>
                 {this.displayError()}
                 <button type="submit">Submit</button>
