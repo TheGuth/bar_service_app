@@ -15,6 +15,7 @@ export class ClientDash extends React.Component {
     }
 
     render() {
+        console.log(this.props.businessName);
         return (
           <div className="client-dash-container">
             <h1>{this.props.businessName}</h1>
@@ -33,7 +34,7 @@ export class ClientDash extends React.Component {
   }
 
   const mapStateToProps = (state, props) => ({
-    businessName: state.signupLogingReducer.businessName
+    businessName: state.connectToBusinessReducer.businessName
   });
 
 export default connect(mapStateToProps)(ClientDash);
