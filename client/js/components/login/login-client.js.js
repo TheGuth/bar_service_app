@@ -28,7 +28,7 @@ export class LoginClient extends React.Component {
       return (
         <div className="login-container">
           <div className="login-page-header">
-            <h1>Drunk Fast</h1>
+            <h1>Q-Less</h1>
           </div>
           <div className="login-page-form">
             <form onSubmit={(e) => {

@@ -21,7 +21,7 @@ export class ClientLandingPage extends React.Component {
       return (
         <div className="landing-page-container">
           <div className="landing-page-title">
-            <h1>Drunk Fast</h1>
+            <h1>Q-Less</h1>
           </div>
           <div className="landing-page-description">
             <p>Why fight the crowd, when you can order your drinks without missing a beat.</p>
